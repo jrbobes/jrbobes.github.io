@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jrbobes - Developer Portfolio</title>
+    <title>jrbobes - Developer & Researcher</title>
     <style>
         * {
             margin: 0;
@@ -15,8 +15,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #ffffff;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
             color: #333333;
             line-height: 1.6;
         }
@@ -43,38 +41,98 @@
             color: #333333;
         }
 
-        .container {
-            flex: 1;
+        .main-container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            flex: 1;
+            background: #fafafa;
             padding: 3rem 2rem;
+            border-right: 1px solid #e0e0e0;
+            animation: fadeInLeft 0.8s ease;
         }
 
-        .hero {
-            text-align: center;
-            color: #333333;
-            margin-bottom: 4rem;
-            animation: fadeInDown 0.8s ease;
-            max-width: 800px;
+        .content {
+            flex: 1;
+            padding: 3rem 2rem;
+            animation: fadeInRight 0.8s ease;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        .profile-header {
+            margin-bottom: 2rem;
+        }
+
+        .profile-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 300;
             letter-spacing: -0.5px;
+            color: #333333;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
+        .profile-header .subtitle {
+            font-size: 1.1rem;
             color: #666666;
             font-weight: 300;
+            margin-bottom: 2rem;
         }
 
-        .btn {
+        .about-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: #333333;
+            font-weight: 600;
+        }
+
+        .about-section p {
+            color: #666666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: white;
+            color: #333333;
+            text-decoration: none;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #333333;
+            color: white;
+            border-color: #333333;
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .github-link {
             display: inline-block;
             padding: 0.9rem 2.2rem;
             background: #333333;
@@ -84,127 +142,24 @@
             font-weight: 500;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            margin: 0.5rem;
-        }
-
-        .btn:hover {
-            background: #555555;
-        }
-
-        .btn.secondary {
-            background: transparent;
-            color: #333333;
-            border: 1px solid #333333;
-        }
-
-        .btn.secondary:hover {
-            background: #f5f5f5;
-        }
-
-        .section {
-            background: #ffffff;
-            padding: 3rem 2rem;
-            max-width: 900px;
-            width: 100%;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .section h2 {
-            color: #333333;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-        }
-
-        .game-container {
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: #fafafa;
-            border-radius: 4px;
-        }
-
-        .game-description {
-            color: #666666;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            height: auto;
-            background: #1a1a2e;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-        }
-
-        .game-info {
-            display: flex;
-            justify-content: space-around;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: #333333;
-            background: white;
-            padding: 1.2rem;
-            border-radius: 4px;
-        }
-
-        .game-info span {
-            font-weight: 600;
-            color: #333333;
-        }
-
-        .game-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .game-btn {
-            padding: 0.7rem 1.5rem;
-            background: #333333;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .game-btn:hover {
-            background: #555555;
-        }
-
-        .instructions {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 4px;
             margin-top: 1.5rem;
         }
 
-        .instructions h3 {
-            color: #333333;
-            margin-bottom: 1rem;
-            font-weight: 600;
+        .github-link:hover {
+            background: #555555;
         }
 
-        .instructions p {
-            color: #666666;
-            margin: 0.5rem 0;
-            font-size: 0.9rem;
+        .projects-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333333;
+            font-weight: 300;
+            letter-spacing: -0.5px;
         }
 
         .projects-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 1.5rem;
         }
 
@@ -212,14 +167,13 @@
             background: #fafafa;
             padding: 2rem;
             border-radius: 4px;
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
             transition: all 0.3s ease;
+            border-left: 4px solid transparent;
         }
 
         .project-card:hover {
             background: #f0f0f0;
+            border-left-color: #333333;
         }
 
         .project-card h3 {
@@ -251,34 +205,11 @@
             background: #555555;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         footer {
             background: #ffffff;
             color: #666666;
             text-align: center;
             padding: 2rem;
-            margin-top: 2rem;
             box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.08);
             font-size: 0.9rem;
         }
@@ -293,18 +224,50 @@
             text-decoration: underline;
         }
 
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
+            .main-container {
+                flex-direction: column;
+                min-height: auto;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 2rem 1.5rem;
             }
 
-            .section {
-                max-width: 95%;
-                padding: 1.5rem;
+            .content {
+                padding: 2rem 1.5rem;
+            }
+
+            .profile-header h1 {
+                font-size: 2rem;
+            }
+
+            .projects-section h2 {
+                font-size: 1.5rem;
             }
 
             nav a {
@@ -312,13 +275,34 @@
                 font-size: 0.9rem;
             }
 
-            canvas {
-                height: 300px;
+            .social-links {
+                gap: 0.7rem;
             }
 
-            .game-info {
-                flex-direction: column;
-                gap: 0.8rem;
+            .social-link {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav a {
+                margin-right: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .profile-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .social-link {
+                flex: 1;
+                justify-content: center;
+                padding: 0.6rem 0.8rem;
+            }
+
+            .social-links {
+                gap: 0.5rem;
             }
         }
     </style>
@@ -326,300 +310,76 @@
 <body>
     <nav>
         <a href="#home">Home</a>
-        <a href="#game">Game</a>
+        <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="https://github.com/jrbobes" target="_blank">GitHub</a>
     </nav>
 
-    <div class="container">
-        <div class="hero" id="home">
-            <h1>José Bobes</h1>
-            <p>Developer • Creator • Game Enthusiast</p>
-            <div>
-                <button class="btn" onclick="document.getElementById('game').scrollIntoView({behavior: 'smooth'})">Play Game</button>
-                <a href="https://github.com/jrbobes" target="_blank" class="btn secondary">GitHub</a>
-                <button class="btn secondary" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">My Projects</button>
+    <div class="main-container">
+        <!-- Sidebar: About Section -->
+        <aside class="sidebar" id="about">
+            <div class="profile-header">
+                <h1>José Bobes</h1>
+                <p class="subtitle">Developer • Researcher • Creator</p>
             </div>
-        </div>
 
-        <div class="section" id="game">
-            <h2>Space Shooter</h2>
-            
-            <div class="game-container">
-                <p class="game-description">Defend against incoming enemies! Destroy them all to advance to the next wave. Each enemy is worth 10 points!</p>
-                
-                <canvas id="gameCanvas" width="800" height="600"></canvas>
-
-                <div class="game-info">
-                    <div>Score: <span id="score">0</span></div>
-                    <div>Lives: <span id="lives">3</span></div>
-                    <div>Wave: <span id="wave">1</span></div>
-                </div>
-
-                <div class="game-buttons">
-                    <button class="game-btn" onclick="startGame()">Start Game</button>
-                    <button class="game-btn" onclick="pauseGame()">Pause</button>
-                    <button class="game-btn" onclick="resetGame()">Reset</button>
-                </div>
-
-                <div class="instructions">
-                    <h3>How to Play</h3>
-                    <p><strong>Controls:</strong> Arrow Keys or A/D to move left and right. Spacebar to shoot.</p>
-                    <p><strong>Objective:</strong> Destroy enemies before they reach the bottom!</p>
-                    <p><strong>Rules:</strong> Each enemy destroyed = 10 points. Difficulty increases each wave. Lose all 3 lives and it's game over!</p>
-                </div>
+            <div class="about-section">
+                <h2>About Me</h2>
+                <p>
+                    Welcome to my personal portfolio. I'm a passionate developer and researcher focused on creating innovative solutions and contributing to the scientific community.
+                </p>
+                <p>
+                    I'm interested in exploring the intersection of software development and academic research, bringing technical expertise to challenging problems.
+                </p>
             </div>
-        </div>
 
-        <div class="section" id="projects">
-            <h2>My Projects</h2>
-            <div class="projects-container">
-                <div class="project-card">
-                    <h3>Virusing</h3>
-                    <p>Explore my latest project and see what I've been working on.</p>
-                    <a href="https://virusing.info" target="_blank" class="project-link">Visit Project</a>
+            <div class="about-section">
+                <h2>Academic Profiles</h2>
+                <div class="social-links">
+                    <a href="https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID" target="_blank" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                        </svg>
+                        Google Scholar
+                    </a>
+                    <a href="https://orcid.org/YOUR_ORCID_ID" target="_blank" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 7v10"></path>
+                            <path d="M9 9h6"></path>
+                        </svg>
+                        ORCID
+                    </a>
+                    <a href="https://linkedin.com/in/YOUR_LINKEDIN_PROFILE" target="_blank" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.809 0-9.731h3.554v1.375c.427-.659 1.191-1.595 2.897-1.595 2.117 0 3.704 1.385 3.704 4.362v5.589zM5.337 8.855c-1.144 0-1.915-.759-1.915-1.71 0-.955.77-1.71 1.956-1.71 1.184 0 1.915.755 1.915 1.71 0 .951-.731 1.71-1.956 1.71zm1.575 11.597H3.762V9.671h3.15v10.781zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
+                        </svg>
+                        LinkedIn
+                    </a>
                 </div>
             </div>
-        </div>
+
+            <a href="https://github.com/jrbobes" target="_blank" class="github-link">View My GitHub</a>
+        </aside>
+
+        <!-- Main Content: Projects Section -->
+        <main class="content" id="projects">
+            <section class="projects-section">
+                <h2>My Projects</h2>
+                <div class="projects-container">
+                    <div class="project-card">
+                        <h3>Virusing</h3>
+                        <p>Explore my latest project and see what I've been working on. A showcase of innovation and technical expertise.</p>
+                        <a href="https://virusing.info" target="_blank" class="project-link">Visit Project</a>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
     <footer>
         <p>&copy; 2026 José Bobes | <a href="https://github.com/jrbobes/jrbobes.github.io" target="_blank">View Source</a></p>
     </footer>
-
-    <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        const gameState = {
-            running: false,
-            paused: false,
-            score: 0,
-            lives: 3,
-            wave: 1,
-            
-            player: {
-                x: canvas.width / 2 - 20,
-                y: canvas.height - 50,
-                width: 40,
-                height: 30,
-                speed: 5
-            },
-            
-            enemies: [],
-            bullets: [],
-            
-            enemySpeed: 2,
-            shootSpeed: 200,
-            enemySpawnRate: 0.02,
-            maxEnemies: 5,
-            lastShot: 0
-        };
-
-        const keys = {};
-
-        window.addEventListener('keydown', (e) => {
-            keys[e.key] = true;
-            
-            if (e.key === ' ' && gameState.running && !gameState.paused) {
-                shootBullet();
-                e.preventDefault();
-            }
-        });
-
-        window.addEventListener('keyup', (e) => {
-            keys[e.key] = false;
-        });
-
-        function startGame() {
-            gameState.running = true;
-            gameState.paused = false;
-            gameState.score = 0;
-            gameState.lives = 3;
-            gameState.wave = 1;
-            gameState.enemies = [];
-            gameState.bullets = [];
-            gameState.player.x = canvas.width / 2 - 20;
-            gameState.enemySpeed = 2;
-            updateUI();
-            gameLoop();
-        }
-
-        function pauseGame() {
-            if (!gameState.running) return;
-            gameState.paused = !gameState.paused;
-            if (!gameState.paused) gameLoop();
-        }
-
-        function resetGame() {
-            gameState.running = false;
-            gameState.paused = false;
-            gameState.score = 0;
-            gameState.lives = 3;
-            gameState.wave = 1;
-            gameState.enemies = [];
-            gameState.bullets = [];
-            gameState.player.x = canvas.width / 2 - 20;
-            draw();
-            updateUI();
-        }
-
-        function shootBullet() {
-            if (Date.now() - gameState.lastShot < gameState.shootSpeed) return;
-            gameState.lastShot = Date.now();
-
-            gameState.bullets.push({
-                x: gameState.player.x + gameState.player.width / 2 - 2,
-                y: gameState.player.y,
-                width: 4,
-                height: 15,
-                speed: 8
-            });
-        }
-
-        function spawnEnemy() {
-            if (gameState.enemies.length < gameState.maxEnemies && Math.random() < gameState.enemySpawnRate) {
-                gameState.enemies.push({
-                    x: Math.random() * (canvas.width - 40),
-                    y: -30,
-                    width: 40,
-                    height: 30,
-                    speed: gameState.enemySpeed
-                });
-            }
-        }
-
-        function update() {
-            if (gameState.paused) return;
-
-            if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
-                gameState.player.x = Math.max(0, gameState.player.x - gameState.player.speed);
-            }
-            if (keys['ArrowRight'] || keys['d'] || keys['D']) {
-                gameState.player.x = Math.min(canvas.width - gameState.player.width, gameState.player.x + gameState.player.speed);
-            }
-
-            spawnEnemy();
-
-            for (let i = gameState.enemies.length - 1; i >= 0; i--) {
-                gameState.enemies[i].y += gameState.enemies[i].speed;
-
-                if (gameState.enemies[i].y > canvas.height) {
-                    gameState.enemies.splice(i, 1);
-                    gameState.lives--;
-                    updateUI();
-                    if (gameState.lives <= 0) {
-                        gameState.running = false;
-                        setTimeout(() => alert(`Game Over!\nFinal Score: ${gameState.score}\nWave Reached: ${gameState.wave}`), 100);
-                    }
-                }
-            }
-
-            for (let i = gameState.bullets.length - 1; i >= 0; i--) {
-                gameState.bullets[i].y -= gameState.bullets[i].speed;
-
-                if (gameState.bullets[i].y < 0) {
-                    gameState.bullets.splice(i, 1);
-                }
-            }
-
-            checkCollisions();
-
-            if (gameState.enemies.length === 0 && gameState.score > 0 && gameState.score % 100 === 0) {
-                gameState.wave++;
-                gameState.enemySpeed += 0.3;
-                gameState.maxEnemies++;
-                updateUI();
-            }
-
-            updateUI();
-        }
-
-        function checkCollisions() {
-            for (let i = gameState.bullets.length - 1; i >= 0; i--) {
-                for (let j = gameState.enemies.length - 1; j >= 0; j--) {
-                    if (isColliding(gameState.bullets[i], gameState.enemies[j])) {
-                        gameState.bullets.splice(i, 1);
-                        gameState.enemies.splice(j, 1);
-                        gameState.score += 10;
-                        break;
-                    }
-                }
-            }
-        }
-
-        function isColliding(a, b) {
-            return a.x < b.x + b.width &&
-                   a.x + a.width > b.x &&
-                   a.y < b.y + b.height &&
-                   a.y + a.height > b.y;
-        }
-
-        function draw() {
-            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#1a1a2e');
-            gradient.addColorStop(1, '#16213e');
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = 'white';
-            for (let i = 0; i < 50; i++) {
-                const x = (i * 103) % canvas.width;
-                const y = (i * 137) % canvas.height;
-                const size = Math.random() * 1.5;
-                ctx.fillRect(x, y, size, size);
-            }
-
-            ctx.fillStyle = '#00d4ff';
-            ctx.fillRect(gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
-            ctx.fillStyle = '#0099cc';
-            ctx.fillRect(gameState.player.x + 8, gameState.player.y - 10, gameState.player.width - 16, 10);
-
-            gameState.enemies.forEach(enemy => {
-                ctx.fillStyle = '#ff006e';
-                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
-                ctx.strokeStyle = '#ff00ff';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(enemy.x, enemy.y, enemy.width, enemy.height);
-            });
-
-            gameState.bullets.forEach(bullet => {
-                ctx.fillStyle = '#ffd60a';
-                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
-                ctx.fillStyle = '#ffaa00';
-                ctx.fillRect(bullet.x - 1, bullet.y - 5, bullet.width + 2, 5);
-            });
-
-            if (!gameState.running && gameState.lives <= 0) {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#ff006e';
-                ctx.font = 'bold 48px Arial';
-                ctx.textAlign = 'center';
-                ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 40);
-                ctx.font = '24px Arial';
-                ctx.fillStyle = '#ffd60a';
-                ctx.fillText(`Final Score: ${gameState.score}`, canvas.width / 2, canvas.height / 2 + 20);
-            }
-        }
-
-        function updateUI() {
-            document.getElementById('score').textContent = gameState.score;
-            document.getElementById('lives').textContent = gameState.lives;
-            document.getElementById('wave').textContent = gameState.wave;
-        }
-
-        function gameLoop() {
-            update();
-            draw();
-
-            if (gameState.running) {
-                requestAnimationFrame(gameLoop);
-            }
-        }
-
-        draw();
-        updateUI();
-    </script>
 </body>
 </html>
