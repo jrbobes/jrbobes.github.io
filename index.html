@@ -13,24 +13,25 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            color: #333;
+            color: #e0e0e0;
         }
 
         nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 15, 30, 0.95);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 2px solid #00d4ff;
         }
 
         nav a {
-            color: #667eea;
+            color: #00d4ff;
             text-decoration: none;
             margin-right: 2rem;
             font-weight: 500;
@@ -38,7 +39,7 @@
         }
 
         nav a:hover {
-            color: #764ba2;
+            color: #ff006e;
         }
 
         .container {
@@ -52,7 +53,7 @@
 
         .hero {
             text-align: center;
-            color: white;
+            color: #e0e0e0;
             margin-bottom: 3rem;
             animation: fadeInDown 0.8s ease;
         }
@@ -60,20 +61,21 @@
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 8px rgba(0, 212, 255, 0.5);
+            color: #00d4ff;
         }
 
         .hero p {
             font-size: 1.5rem;
             margin-bottom: 2rem;
-            opacity: 0.95;
+            opacity: 0.9;
         }
 
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: white;
-            color: #667eea;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #0f0f1e;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
@@ -86,43 +88,46 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+            background: linear-gradient(135deg, #ff006e 0%, #ff4499 100%);
         }
 
         .games-section {
-            background: white;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: 15px;
             padding: 3rem;
             max-width: 900px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
             animation: fadeInUp 0.8s ease;
+            border: 2px solid #00d4ff;
         }
 
         .games-section h2 {
-            color: #667eea;
+            color: #00d4ff;
             margin-bottom: 2rem;
             text-align: center;
             font-size: 2rem;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
         }
 
         .game-container {
             margin-bottom: 2rem;
             padding: 1.5rem;
-            background: #f8f9fa;
+            background: rgba(30, 30, 50, 0.6);
             border-radius: 10px;
-            border: 2px solid #667eea;
+            border: 2px solid #00d4ff;
         }
 
         .game-title {
-            color: #667eea;
+            color: #00d4ff;
             font-size: 1.3rem;
             margin-bottom: 1rem;
             font-weight: 600;
         }
 
         .game-description {
-            color: #666;
+            color: #b0b0b0;
             margin-bottom: 1rem;
             font-size: 0.95rem;
         }
@@ -131,9 +136,9 @@
             display: block;
             width: 100%;
             height: auto;
-            background: #1a1a2e;
+            background: #0a0a15;
             border-radius: 8px;
-            border: 3px solid #667eea;
+            border: 3px solid #00d4ff;
             margin-bottom: 1rem;
         }
 
@@ -142,15 +147,16 @@
             justify-content: space-around;
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            color: #333;
-            background: #f0f0f0;
+            color: #e0e0e0;
+            background: rgba(20, 20, 40, 0.8);
             padding: 1rem;
             border-radius: 5px;
+            border: 1px solid #00d4ff;
         }
 
         .game-info span {
             font-weight: 600;
-            color: #667eea;
+            color: #ffd60a;
         }
 
         .game-buttons {
@@ -162,8 +168,8 @@
 
         .game-btn {
             padding: 0.6rem 1.5rem;
-            background: #667eea;
-            color: white;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: #0f0f1e;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -172,7 +178,7 @@
         }
 
         .game-btn:hover {
-            background: #764ba2;
+            background: linear-gradient(135deg, #ff006e 0%, #ff4499 100%);
             transform: translateY(-2px);
         }
 
@@ -181,21 +187,60 @@
         }
 
         .instructions {
-            background: #f0f0f0;
+            background: rgba(20, 20, 40, 0.6);
             padding: 1.5rem;
             border-radius: 5px;
             margin-top: 1rem;
+            border: 1px solid #00d4ff;
         }
 
         .instructions h3 {
-            color: #667eea;
+            color: #00d4ff;
             margin-bottom: 0.5rem;
         }
 
         .instructions p {
-            color: #666;
+            color: #b0b0b0;
             margin: 0.3rem 0;
             font-size: 0.95rem;
+        }
+
+        .projects-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 15px;
+            padding: 3rem;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.2);
+            animation: fadeInUp 0.8s ease;
+            border: 2px solid #ff006e;
+            margin-top: 2rem;
+        }
+
+        .projects-section h2 {
+            color: #ff006e;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ff006e 0%, #ff4499 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            text-align: center;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 0, 110, 0.3);
         }
 
         @keyframes fadeInDown {
@@ -221,20 +266,22 @@
         }
 
         footer {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: rgba(15, 15, 30, 0.9);
+            color: #b0b0b0;
             text-align: center;
             padding: 1.5rem;
             margin-top: 2rem;
+            border-top: 2px solid #00d4ff;
         }
 
         footer a {
-            color: #ffd60a;
+            color: #00d4ff;
             text-decoration: none;
         }
 
         footer a:hover {
             text-decoration: underline;
+            color: #ff006e;
         }
 
         @media (max-width: 768px) {
@@ -247,6 +294,11 @@
             }
 
             .games-section {
+                max-width: 95%;
+                padding: 1.5rem;
+            }
+
+            .projects-section {
                 max-width: 95%;
                 padding: 1.5rem;
             }
@@ -266,6 +318,7 @@
     <nav>
         <a href="#home">Home</a>
         <a href="#game">Game</a>
+        <a href="#projects">Projects</a>
         <a href="https://github.com/jrbobes" target="_blank">GitHub</a>
     </nav>
 
@@ -276,6 +329,7 @@
             <div>
                 <button class="btn" onclick="document.getElementById('game').scrollIntoView({behavior: 'smooth'})">🎮 Play Game</button>
                 <a href="https://github.com/jrbobes" target="_blank" class="btn">💻 GitHub</a>
+                <button class="btn" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">🚀 My Projects</button>
             </div>
         </div>
 
@@ -307,6 +361,14 @@
                     <p><strong>📊 Objective:</strong> Destroy enemies before they reach the bottom!</p>
                     <p><strong>⚡ Rules:</strong> Each enemy destroyed = 10 points. Difficulty increases each wave. Lose all 3 lives and it's game over!</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="projects-section" id="projects">
+            <h2>🚀 My Projects</h2>
+            <div style="text-align: center;">
+                <a href="https://virusing.info" target="_blank" class="project-link">🔒 Virusing</a>
+                <p style="margin-top: 1rem; color: #b0b0b0;">Check out my other projects and contributions</p>
             </div>
         </div>
     </div>
