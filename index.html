@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jrbobes - Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #333;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .games-section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .games-section h2 {
+            color: #667eea;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .game-container {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #667eea;
+        }
+
+        .game-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .game-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #1a1a2e;
+            border-radius: 8px;
+            border: 3px solid #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .game-info {
+            display: flex;
+            justify-content: space-around;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #333;
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        .game-info span {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .game-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .game-btn {
+            padding: 0.6rem 1.5rem;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .game-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .game-btn:active {
+            transform: translateY(0);
+        }
+
+        .instructions {
+            background: #f0f0f0;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .instructions h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructions p {
+            color: #666;
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: #ffd60a;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .games-section {
+                max-width: 95%;
+                padding: 1.5rem;
+            }
+
+            canvas {
+                height: 300px;
+            }
+
+            .game-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#game">Game</a>
+        <a href="https://github.com/jrbobes" target="_blank">GitHub</a>
+    </nav>
+
+    <div class="container">
+        <div class="hero" id="home">
+            <h1>👋 Welcome to jrbobes</h1>
+            <p>Developer • Creator • Game Enthusiast</p>
+            <div>
+                <button class="btn" onclick="document.getElementById('game').scrollIntoView({behavior: 'smooth'})">🎮 Play Game</button>
+                <a href="https://github.com/jrbobes" target="_blank" class="btn">💻 GitHub</a>
+            </div>
+        </div>
+
+        <div class="games-section" id="game">
+            <h2>🎮 Space Shooter</h2>
+            
+            <div class="game-container">
+                <p class="game-description">Defend against incoming enemies! Destroy them all to advance to the next wave. Each enemy is worth 10 points!</p>
+                
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+                <div class="game-info">
+                    <div>Score: <span id="score">0</span></div>
+                    <div>Lives: <span id="lives">3</span></div>
+                    <div>Wave: <span id="wave">1</span></div>
+                </div>
+
+                <div class="game-buttons">
+                    <button class="game-btn" onclick="startGame()">▶️ Start Game</button>
+                    <button class="game-btn" onclick="pauseGame()">⏸️ Pause</button>
+                    <button class="game-btn" onclick="resetGame()">🔄 Reset</button>
+                </div>
+
+                <div class="instructions">
+                    <h3>📋 How to Play</h3>
+                    <p><strong>🎯 Controls:</strong></p>
+                    <p>• Arrow Keys or A/D - Move left and right</p>
+                    <p>• Spacebar - Shoot</p>
+                    <p><strong>📊 Objective:</strong> Destroy enemies before they reach the bottom!</p>
+                    <p><strong>⚡ Rules:</strong> Each enemy destroyed = 10 points. Difficulty increases each wave. Lose all 3 lives and it's game over!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 jrbobes | Crafted with ❤️ | <a href="https://github.com/jrbobes/jrbobes.github.io" target="_blank">View Source</a></p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const gameState = {
+            running: false,
+            paused: false,
+            score: 0,
+            lives: 3,
+            wave: 1,
+            
+            player: {
+                x: canvas.width / 2 - 20,
+                y: canvas.height - 50,
+                width: 40,
+                height: 30,
+                speed: 5
+            },
+            
+            enemies: [],
+            bullets: [],
+            
+            enemySpeed: 2,
+            shootSpeed: 200,
+            enemySpawnRate: 0.02,
+            maxEnemies: 5,
+            lastShot: 0
+        };
+
+        const keys = {};
+
+        window.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+            
+            if (e.key === ' ' && gameState.running && !gameState.paused) {
+                shootBullet();
+                e.preventDefault();
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+
+        function startGame() {
+            gameState.running = true;
+            gameState.paused = false;
+            gameState.score = 0;
+            gameState.lives = 3;
+            gameState.wave = 1;
+            gameState.enemies = [];
+            gameState.bullets = [];
+            gameState.player.x = canvas.width / 2 - 20;
+            gameState.enemySpeed = 2;
+            updateUI();
+            gameLoop();
+        }
+
+        function pauseGame() {
+            if (!gameState.running) return;
+            gameState.paused = !gameState.paused;
+            if (!gameState.paused) gameLoop();
+        }
+
+        function resetGame() {
+            gameState.running = false;
+            gameState.paused = false;
+            gameState.score = 0;
+            gameState.lives = 3;
+            gameState.wave = 1;
+            gameState.enemies = [];
+            gameState.bullets = [];
+            gameState.player.x = canvas.width / 2 - 20;
+            draw();
+            updateUI();
+        }
+
+        function shootBullet() {
+            if (Date.now() - gameState.lastShot < gameState.shootSpeed) return;
+            gameState.lastShot = Date.now();
+
+            gameState.bullets.push({
+                x: gameState.player.x + gameState.player.width / 2 - 2,
+                y: gameState.player.y,
+                width: 4,
+                height: 15,
+                speed: 8
+            });
+        }
+
+        function spawnEnemy() {
+            if (gameState.enemies.length < gameState.maxEnemies && Math.random() < gameState.enemySpawnRate) {
+                gameState.enemies.push({
+                    x: Math.random() * (canvas.width - 40),
+                    y: -30,
+                    width: 40,
+                    height: 30,
+                    speed: gameState.enemySpeed
+                });
+            }
+        }
+
+        function update() {
+            if (gameState.paused) return;
+
+            if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
+                gameState.player.x = Math.max(0, gameState.player.x - gameState.player.speed);
+            }
+            if (keys['ArrowRight'] || keys['d'] || keys['D']) {
+                gameState.player.x = Math.min(canvas.width - gameState.player.width, gameState.player.x + gameState.player.speed);
+            }
+
+            spawnEnemy();
+
+            for (let i = gameState.enemies.length - 1; i >= 0; i--) {
+                gameState.enemies[i].y += gameState.enemies[i].speed;
+
+                if (gameState.enemies[i].y > canvas.height) {
+                    gameState.enemies.splice(i, 1);
+                    gameState.lives--;
+                    updateUI();
+                    if (gameState.lives <= 0) {
+                        gameState.running = false;
+                        setTimeout(() => alert(`Game Over!\nFinal Score: ${gameState.score}\nWave Reached: ${gameState.wave}`), 100);
+                    }
+                }
+            }
+
+            for (let i = gameState.bullets.length - 1; i >= 0; i--) {
+                gameState.bullets[i].y -= gameState.bullets[i].speed;
+
+                if (gameState.bullets[i].y < 0) {
+                    gameState.bullets.splice(i, 1);
+                }
+            }
+
+            checkCollisions();
+
+            if (gameState.enemies.length === 0 && gameState.score > 0 && gameState.score % 100 === 0) {
+                gameState.wave++;
+                gameState.enemySpeed += 0.3;
+                gameState.maxEnemies++;
+                updateUI();
+            }
+
+            updateUI();
+        }
+
+        function checkCollisions() {
+            for (let i = gameState.bullets.length - 1; i >= 0; i--) {
+                for (let j = gameState.enemies.length - 1; j >= 0; j--) {
+                    if (isColliding(gameState.bullets[i], gameState.enemies[j])) {
+                        gameState.bullets.splice(i, 1);
+                        gameState.enemies.splice(j, 1);
+                        gameState.score += 10;
+                        break;
+                    }
+                }
+            }
+        }
+
+        function isColliding(a, b) {
+            return a.x < b.x + b.width &&
+                   a.x + a.width > b.x &&
+                   a.y < b.y + b.height &&
+                   a.y + a.height > b.y;
+        }
+
+        function draw() {
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#1a1a2e');
+            gradient.addColorStop(1, '#16213e');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'white';
+            for (let i = 0; i < 50; i++) {
+                const x = (i * 103) % canvas.width;
+                const y = (i * 137) % canvas.height;
+                const size = Math.random() * 1.5;
+                ctx.fillRect(x, y, size, size);
+            }
+
+            ctx.fillStyle = '#00d4ff';
+            ctx.fillRect(gameState.player.x, gameState.player.y, gameState.player.width, gameState.player.height);
+            ctx.fillStyle = '#0099cc';
+            ctx.fillRect(gameState.player.x + 8, gameState.player.y - 10, gameState.player.width - 16, 10);
+
+            gameState.enemies.forEach(enemy => {
+                ctx.fillStyle = '#ff006e';
+                ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+                ctx.strokeStyle = '#ff00ff';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(enemy.x, enemy.y, enemy.width, enemy.height);
+            });
+
+            gameState.bullets.forEach(bullet => {
+                ctx.fillStyle = '#ffd60a';
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+                ctx.fillStyle = '#ffaa00';
+                ctx.fillRect(bullet.x - 1, bullet.y - 5, bullet.width + 2, 5);
+            });
+
+            if (!gameState.running && gameState.lives <= 0) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#ff006e';
+                ctx.font = 'bold 48px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 40);
+                ctx.font = '24px Arial';
+                ctx.fillStyle = '#ffd60a';
+                ctx.fillText(`Final Score: ${gameState.score}`, canvas.width / 2, canvas.height / 2 + 20);
+            }
+        }
+
+        function updateUI() {
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('lives').textContent = gameState.lives;
+            document.getElementById('wave').textContent = gameState.wave;
+        }
+
+        function gameLoop() {
+            update();
+            draw();
+
+            if (gameState.running) {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        draw();
+        updateUI();
+    </script>
+</body>
+</html>
