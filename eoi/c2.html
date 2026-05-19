@@ -3,685 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C1/C2 English Conversation Practice - British English</title>
+    <title>C1/C2 English Exam Preparation - Conversation & Mediation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            padding: 40px;
-        }
-
-        .left-panel {
-            border-right: 2px solid #e0e0e0;
-            padding-right: 30px;
-        }
-
-        .right-panel {
-            padding-left: 30px;
-        }
-
-        .section-title {
-            color: #333;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 30px;
-            background: #667eea;
-            border-radius: 2px;
-        }
-
-        .conversation-selector {
-            margin-bottom: 30px;
-        }
-
-        .conversation-selector select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #667eea;
-            border-radius: 6px;
-            font-size: 1em;
-            background: white;
-            cursor: pointer;
-            transition: border-color 0.3s;
-        }
-
-        .conversation-selector select:hover {
-            border-color: #764ba2;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        button {
-            flex: 1;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 120px;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-primary:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-            border: 2px solid #ddd;
-        }
-
-        .btn-secondary:hover:not(:disabled) {
-            background: #e8e8e8;
-            border-color: #667eea;
-        }
-
-        .btn-success {
-            background: #48bb78;
-            color: white;
-        }
-
-        .btn-success:hover:not(:disabled) {
-            background: #38a169;
-        }
-
-        .btn-danger {
-            background: #f56565;
-            color: white;
-        }
-
-        .btn-danger:hover:not(:disabled) {
-            background: #e53e3e;
-        }
-
-        .recording-indicator {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px;
-            background: #fff5f5;
-            border-left: 4px solid #f56565;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .recording-indicator.active {
-            display: flex;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { background: #fff5f5; }
-            50% { background: #fed7d7; }
-        }
-
-        .recording-dot {
-            width: 12px;
-            height: 12px;
-            background: #f56565;
-            border-radius: 50%;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 49%, 100% { opacity: 1; }
-            50%, 99% { opacity: 0.3; }
-        }
-
-        .progress-bar {
-            background: #e0e0e0;
-            border-radius: 10px;
-            height: 8px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            width: 0%;
-            transition: width 0.3s;
-        }
-
-        .conversation-window {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            height: 500px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            border: 1px solid #e0e0e0;
-        }
-
-        .message {
-            margin-bottom: 20px;
-            padding: 12px 16px;
-            border-radius: 8px;
-            max-width: 90%;
-            word-wrap: break-word;
-        }
-
-        .message.agent {
-            background: #e7f3ff;
-            border-left: 4px solid #667eea;
-            margin-right: auto;
-        }
-
-        .message.user {
-            background: #e6ffed;
-            border-left: 4px solid #48bb78;
-            margin-left: auto;
-            text-align: right;
-        }
-
-        .message-label {
-            font-size: 0.8em;
-            opacity: 0.7;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .message-text {
-            font-size: 1em;
-            line-height: 1.5;
-        }
-
-        .feedback {
-            background: #fef5e7;
-            border-left: 4px solid #f39c12;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 15px 0;
-            display: none;
-        }
-
-        .feedback.show {
-            display: block;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .feedback-title {
-            font-weight: 600;
-            color: #d68910;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .feedback-content {
-            color: #333;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        .correction {
-            background: white;
-            padding: 10px;
-            border-radius: 4px;
-            margin: 8px 0;
-            border-left: 3px solid #e67e22;
-        }
-
-        .stats-panel {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .stat-item:last-child {
-            border-bottom: none;
-        }
-
-        .stat-label {
-            color: #666;
-            font-weight: 500;
-        }
-
-        .stat-value {
-            color: #667eea;
-            font-weight: 700;
-        }
-
-        .tips-section {
-            background: #f0f4ff;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .tips-title {
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tip {
-            background: white;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-            border-left: 3px solid #667eea;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-
-        .tip strong {
-            color: #667eea;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background: white;
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: slideUp 0.3s;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-header {
-            font-size: 1.8em;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-btn {
-            font-size: 2em;
-            font-weight: bold;
-            color: #999;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-            width: auto;
-            min-width: auto;
-        }
-
-        .close-btn:hover {
-            color: #333;
-        }
-
-        .tab-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid #ddd;
-            background: white;
-            color: #333;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .transcript-entry {
-            margin-bottom: 15px;
-            padding: 12px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            border-left: 3px solid #667eea;
-        }
-
-        .transcript-speaker {
-            font-weight: 600;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-
-        .transcript-text {
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .difficulty-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-
-        .difficulty-c1 {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .difficulty-c2 {
-            background: #f3e5f5;
-            color: #7b1fa2;
-        }
-
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
-            .left-panel {
-                border-right: none;
-                border-bottom: 2px solid #e0e0e0;
-                padding-right: 0;
-                padding-bottom: 30px;
-            }
-
-            .right-panel {
-                padding-left: 0;
-            }
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .accent-indicator {
-            display: inline-block;
-            padding: 4px 8px;
-            background: #e3f2fd;
-            color: #1976d2;
-            border-radius: 4px;
-            font-size: 0.85em;
-            margin-left: 10px;
-            font-weight: 600;
-        }
-
-        .error-message {
-            background: #ffebee;
-            color: #c62828;
-            padding: 12px;
-            border-radius: 6px;
-            border-left: 4px solid #c62828;
-            margin-bottom: 15px;
-        }
-
-        .success-message {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 12px;
-            border-radius: 6px;
-            border-left: 4px solid #2e7d32;
-            margin-bottom: 15px;
-        }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        .mode-selector { display: flex; gap: 10px; justify-content: center; margin: 20px 0; padding: 0 30px; flex-wrap: wrap; }
+        .mode-btn { padding: 12px 24px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .mode-btn.active { background: #667eea; color: white; }
+        .mode-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102,126,234,0.3); }
+        .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 40px; }
+        .left-panel { border-right: 2px solid #e0e0e0; padding-right: 30px; }
+        .right-panel { padding-left: 30px; }
+        .section-title { color: #333; font-size: 1.5em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 4px; height: 30px; background: #667eea; border-radius: 2px; }
+        .context-box { background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+        .context-title { font-weight: 600; color: #667eea; margin-bottom: 8px; }
+        .context-text { font-size: 0.95em; line-height: 1.6; color: #555; }
+        .conversation-selector select, .mediation-selector select {
+            width: 100%; padding: 12px; border: 2px solid #667eea; border-radius: 6px; font-size: 1em; background: white; cursor: pointer; margin-bottom: 12px;
+        }
+        .accent-selector { display: flex; gap: 8px; margin-bottom: 12px; }
+        .accent-btn { padding: 8px 12px; border: 2px solid #ddd; background: white; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: all 0.3s; }
+        .accent-btn.active { border-color: #667eea; background: #667eea; color: white; }
+        .btn-group { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        button { flex: 1; padding: 12px 20px; border: none; border-radius: 6px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s; min-width: 100px; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover:not(:disabled) { background: #5568d3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102,126,234,0.4); }
+        .btn-secondary { background: #f0f0f0; color: #333; border: 2px solid #ddd; }
+        .btn-secondary:hover { background: #e8e8e8; border-color: #667eea; }
+        .btn-success { background: #48bb78; color: white; }
+        .btn-success:hover { background: #38a169; }
+        .video-resources { background: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
+        .video-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e0e0e0; }
+        .video-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .video-link { color: #667eea; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+        .video-link:hover { text-decoration: underline; }
+        .conversation-window { background: #f8f9fa; border-radius: 8px; padding: 20px; height: 500px; overflow-y: auto; margin-bottom: 20px; border: 1px solid #e0e0e0; }
+        .message { margin-bottom: 20px; padding: 12px 16px; border-radius: 8px; max-width: 90%; word-wrap: break-word; }
+        .message.agent { background: #e7f3ff; border-left: 4px solid #667eea; margin-right: auto; }
+        .message.user { background: #e6ffed; border-left: 4px solid #48bb78; margin-left: auto; text-align: right; }
+        .message-label { font-size: 0.8em; opacity: 0.7; margin-bottom: 5px; font-weight: 600; }
+        .message-text { font-size: 1em; line-height: 1.5; }
+        .feedback { background: #fef5e7; border-left: 4px solid #f39c12; padding: 15px; border-radius: 6px; margin: 15px 0; display: none; }
+        .feedback.show { display: block; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .feedback-title { font-weight: 600; color: #d68910; margin-bottom: 8px; }
+        .feedback-content { color: #333; font-size: 0.95em; line-height: 1.6; }
+        .correction { background: white; padding: 10px; border-radius: 4px; margin: 8px 0; border-left: 3px solid #e67e22; }
+        .stats-panel { background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .stat-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e0e0e0; }
+        .stat-item:last-child { border-bottom: none; }
+        .stat-label { color: #666; font-weight: 500; }
+        .stat-value { color: #667eea; font-weight: 700; }
+        .tips-section { background: #f0f4ff; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .tips-title { color: #667eea; font-weight: 600; margin-bottom: 15px; }
+        .tip { background: white; padding: 12px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #667eea; font-size: 0.95em; line-height: 1.5; }
+        .tip strong { color: #667eea; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background: white; margin: 5% auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; animation: slideUp 0.3s; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-header { font-size: 1.8em; font-weight: 600; color: #333; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .close-btn { font-size: 2em; font-weight: bold; color: #999; cursor: pointer; background: none; border: none; padding: 0; width: auto; }
+        .close-btn:hover { color: #333; }
+        .tab-buttons { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab-btn { flex: 1; padding: 10px; border: 2px solid #ddd; background: white; color: #333; border-radius: 6px; cursor: pointer; font-weight: 600; min-width: 80px; }
+        .tab-btn.active { border-color: #667eea; background: #667eea; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .mediation-prompt { background: #e8f5e9; border-left: 4px solid #48bb78; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+        .mediation-prompt-title { font-weight: 600; color: #2e7d32; margin-bottom: 8px; }
+        .mediation-prompt-text { color: #333; line-height: 1.6; }
+        .positions { display: flex; gap: 15px; margin-bottom: 20px; }
+        .position { flex: 1; background: #f5f5f5; padding: 12px; border-radius: 6px; border-left: 3px solid #667eea; }
+        .position-title { font-weight: 600; color: #667eea; margin-bottom: 6px; }
+        .position-text { font-size: 0.9em; line-height: 1.5; color: #555; }
+        @media (max-width: 1024px) { .main-content { grid-template-columns: 1fr; } .left-panel { border-right: none; border-bottom: 2px solid #e0e0e0; padding-right: 0; padding-bottom: 30px; } .right-panel { padding-left: 0; } }
+        .recording-indicator { display: flex; align-items: center; gap: 10px; padding: 15px; background: #fff5f5; border-left: 4px solid #f56565; border-radius: 6px; margin-bottom: 20px; display: none; }
+        .recording-indicator.active { display: flex; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { background: #fff5f5; } 50% { background: #fed7d7; } }
+        .recording-dot { width: 12px; height: 12px; background: #f56565; border-radius: 50%; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0.3; } }
+        .error-message { background: #ffebee; color: #c62828; padding: 12px; border-radius: 6px; border-left: 4px solid #c62828; margin-bottom: 15px; }
+        .success-message { background: #e8f5e9; color: #2e7d32; padding: 12px; border-radius: 6px; border-left: 4px solid #2e7d32; margin-bottom: 15px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎯 C1/C2 English Conversation Practice</h1>
-            <p>British English • Real Exam Scenarios • AI-Powered Feedback</p>
+            <h1>🎯 C1/C2 English Exam Preparation</h1>
+            <p>Conversation • Mediation • Real Exam Scenarios • Video Tips</p>
+        </div>
+
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="switchMode('conversation')">💬 Conversation Practice</button>
+            <button class="mode-btn" onclick="switchMode('mediation')">🤝 Mediation Practice</button>
+            <button class="mode-btn" onclick="switchMode('resources')">📺 Video Resources</button>
         </div>
 
         <div class="main-content">
-            <!-- LEFT PANEL: CONVERSATION INTERFACE -->
+            <!-- LEFT PANEL -->
             <div class="left-panel">
-                <div class="section-title">Conversation Practice</div>
-
-                <!-- Conversation Selector -->
-                <div class="conversation-selector">
-                    <label for="conversationSelect" style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Choose a Scenario:</label>
-                    <select id="conversationSelect">
-                        <option value="">-- Select a conversation --</option>
-                    </select>
-                </div>
-
-                <!-- Difficulty Badge -->
-                <div id="difficultyBadge" style="margin-bottom: 20px;"></div>
-
-                <!-- Progress Bar -->
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-
-                <!-- Control Buttons -->
-                <div class="btn-group">
-                    <button class="btn-primary" id="startBtn" onclick="startConversation()" title="Start a new conversation">▶️ Start</button>
-                    <button class="btn-secondary" id="resetBtn" onclick="resetConversation()" title="Reset current conversation">↻ Reset</button>
-                    <button class="btn-secondary" id="tipsBtn" onclick="showTips()" title="Show helpful tips">💡 Tips</button>
-                </div>
-
-                <!-- Recording Indicator -->
-                <div class="recording-indicator" id="recordingIndicator">
-                    <div class="recording-dot"></div>
-                    <span id="recordingText">Listening...</span>
-                </div>
-
-                <!-- Microphone Controls -->
-                <div class="btn-group" style="margin-bottom: 20px;">
-                    <button class="btn-success" id="recordBtn" onclick="toggleRecording()" style="display: none;">🎤 Record</button>
-                    <button class="btn-danger" id="stopRecordBtn" onclick="stopRecording()" style="display: none;">⏹️ Stop</button>
-                    <button class="btn-secondary" id="speakerBtn" onclick="playLastAudio()" title="Replay agent's last message">🔊 Replay</button>
-                </div>
-
-                <!-- Conversation Window -->
-                <div class="conversation-window" id="conversationWindow"></div>
-
-                <!-- Feedback Section -->
-                <div class="feedback" id="feedbackSection">
-                    <div class="feedback-title">
-                        <span>💡 Feedback & Suggestions</span>
+                <div id="conversationMode">
+                    <div class="section-title">Conversation Practice</div>
+                    
+                    <div class="conversation-selector">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Choose Scenario:</label>
+                        <select id="conversationSelect">
+                            <option value="">-- Select a conversation --</option>
+                        </select>
                     </div>
-                    <div class="feedback-content" id="feedbackContent"></div>
+
+                    <!-- Context Box -->
+                    <div class="context-box" id="contextBox" style="display: none;">
+                        <div class="context-title">📋 Exam Context</div>
+                        <div class="context-text" id="contextText"></div>
+                    </div>
+
+                    <!-- Accent Selector -->
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Agent Accent:</label>
+                    <div class="accent-selector">
+                        <button class="accent-btn active" onclick="setAccent('british')">🇬🇧 British</button>
+                        <button class="accent-btn" onclick="setAccent('american')">🇺🇸 American</button>
+                        <button class="accent-btn" onclick="setAccent('irish')">🇮🇪 Irish</button>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn-primary" id="startBtn" onclick="startConversation()">▶️ Start</button>
+                        <button class="btn-secondary" onclick="resetConversation()">↻ Reset</button>
+                    </div>
+
+                    <div class="recording-indicator" id="recordingIndicator">
+                        <div class="recording-dot"></div>
+                        <span>Listening...</span>
+                    </div>
+
+                    <div class="btn-group" style="margin-bottom: 20px;">
+                        <button class="btn-success" id="recordBtn" onclick="toggleRecording()" style="display: none;">🎤 Record</button>
+                        <button id="stopRecordBtn" style="background: #f56565; color: white; display: none;" onclick="stopRecording()">⏹️ Stop</button>
+                        <button class="btn-secondary" onclick="playLastAudio()">🔊 Replay</button>
+                    </div>
+
+                    <div class="conversation-window" id="conversationWindow"></div>
+
+                    <div class="feedback" id="feedbackSection">
+                        <div class="feedback-title">💡 Feedback & Suggestions</div>
+                        <div class="feedback-content" id="feedbackContent"></div>
+                    </div>
+                </div>
+
+                <div id="mediationMode" style="display: none;">
+                    <div class="section-title">Mediation Practice</div>
+                    
+                    <div class="mediation-selector">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Choose Topic:</label>
+                        <select id="mediationSelect">
+                            <option value="">-- Select a mediation topic --</option>
+                        </select>
+                    </div>
+
+                    <div class="context-box" id="mediationContextBox" style="display: none;">
+                        <div class="context-title">🎯 Mediation Context</div>
+                        <div class="context-text" id="mediationContextText"></div>
+                    </div>
+
+                    <div class="positions" id="positionsBox" style="display: none;">
+                        <div class="position">
+                            <div class="position-title">Position A</div>
+                            <div class="position-text" id="positionA"></div>
+                        </div>
+                        <div class="position">
+                            <div class="position-title">Position B</div>
+                            <div class="position-text" id="positionB"></div>
+                        </div>
+                    </div>
+
+                    <div class="mediation-prompt" id="mediationPromptBox" style="display: none;">
+                        <div class="mediation-prompt-title">Your Task:</div>
+                        <div class="mediation-prompt-text" id="mediationPromptText"></div>
+                    </div>
+
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Agent Accent:</label>
+                    <div class="accent-selector">
+                        <button class="accent-btn active" onclick="setMediationAccent('british')">🇬🇧 British</button>
+                        <button class="accent-btn" onclick="setMediationAccent('american')">🇺🇸 American</button>
+                        <button class="accent-btn" onclick="setMediationAccent('irish')">🇮🇪 Irish</button>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn-primary" onclick="startMediation()">▶️ Start Mediation</button>
+                        <button class="btn-secondary" onclick="resetMediation()">↻ Reset</button>
+                    </div>
+
+                    <div class="recording-indicator" id="recordingIndicatorMed">
+                        <div class="recording-dot"></div>
+                        <span>Listening...</span>
+                    </div>
+
+                    <div class="btn-group" style="margin-bottom: 20px;">
+                        <button class="btn-success" id="recordBtnMed" onclick="toggleRecordingMediation()" style="display: none;">🎤 Record</button>
+                        <button id="stopRecordBtnMed" style="background: #f56565; color: white; display: none;" onclick="stopRecordingMediation()">⏹️ Stop</button>
+                        <button class="btn-secondary" onclick="playLastAudioMediation()">🔊 Replay</button>
+                    </div>
+
+                    <div class="conversation-window" id="mediationWindow"></div>
+
+                    <div class="feedback" id="feedbackSectionMed">
+                        <div class="feedback-title">💡 Mediation Feedback</div>
+                        <div class="feedback-content" id="feedbackContentMed"></div>
+                    </div>
+                </div>
+
+                <div id="resourcesMode" style="display: none;">
+                    <div class="section-title">📺 Video Tips & Resources</div>
+                    <div class="video-resources">
+                        <div id="videoContainer"></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- RIGHT PANEL: STATS & LEARNING RESOURCES -->
+            <!-- RIGHT PANEL -->
             <div class="right-panel">
                 <div class="section-title">Your Progress</div>
 
-                <!-- Stats Panel -->
                 <div class="stats-panel">
                     <div class="stat-item">
-                        <span class="stat-label">Conversations Completed</span>
-                        <span class="stat-value" id="completedCount">0</span>
+                        <span class="stat-label">Conversations</span>
+                        <span class="stat-value" id="conversationCount">0</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Total Practice Time</span>
-                        <span class="stat-value" id="practiceTime">0m</span>
+                        <span class="stat-label">Mediations</span>
+                        <span class="stat-value" id="mediationCount">0</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Accuracy Score</span>
-                        <span class="stat-value" id="accuracyScore">--</span>
+                        <span class="stat-label">Total Time</span>
+                        <span class="stat-value" id="totalTime">0m</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">Fluency Rating</span>
-                        <span class="stat-value" id="fluencyRating">--</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Current Streak</span>
-                        <span class="stat-value" id="streakCount">0</span>
+                        <span class="stat-label">Current Session</span>
+                        <span class="stat-value" id="sessionTime">0:00</span>
                     </div>
                 </div>
 
                 <button class="btn-primary" onclick="showTranscript()" style="width: 100%; margin-bottom: 20px;">📄 View Transcript</button>
 
-                <!-- Learning Tips -->
                 <div class="tips-section">
-                    <div class="tips-title">✨ Improvement Tips</div>
-                    <div id="tipsContainer">
-                        <div class="tip">
-                            <strong>C2 Mastery:</strong> Focus on nuanced expressions and idiomatic language specific to professional contexts.
-                        </div>
-                        <div class="tip">
-                            <strong>Pronunciation:</strong> British English pronunciation guides will help you master subtle vowel differences.
-                        </div>
-                        <div class="tip">
-                            <strong>Vocabulary:</strong> Pay attention to register and formality levels in different scenarios.
-                        </div>
-                        <div class="tip">
-                            <strong>Fluency:</strong> Aim for natural pacing and smooth transitions between ideas.
-                        </div>
-                        <div class="tip">
-                            <strong>Active Listening:</strong> Pay attention to how the agent uses connectors and discourse markers.
-                        </div>
+                    <div class="tips-title">✨ Quick Tips</div>
+                    <div class="tip">
+                        <strong>Read Context First:</strong> Always review the exam context before starting. It helps you anticipate topics and vocabulary.
+                    </div>
+                    <div class="tip">
+                        <strong>Active Listening:</strong> Pay attention to discourse markers and connectors used by the agent. Mirror these in your responses.
+                    </div>
+                    <div class="tip">
+                        <strong>Mediation Skills:</strong> Summarize both positions, find common ground, and propose balanced solutions.
+                    </div>
+                    <div class="tip">
+                        <strong>Natural Pacing:</strong> Don't rush. Use pauses for thinking, just like in real exams.
+                    </div>
+                    <div class="tip">
+                        <strong>Register Matters:</strong> Match the formality level of your conversation partner.
                     </div>
                 </div>
 
-                <!-- Quick Stats for Current Conversation -->
                 <div class="stats-panel" style="margin-top: 20px;">
                     <div class="stat-item">
-                        <span class="stat-label">Session Time</span>
-                        <span class="stat-value" id="sessionTime">0:00</span>
+                        <span class="stat-label">Words Spoken</span>
+                        <span class="stat-value" id="wordCount">0</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">Exchanges</span>
                         <span class="stat-value" id="exchangeCount">0</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Words Spoken</span>
-                        <span class="stat-value" id="wordCount">0</span>
                     </div>
                 </div>
             </div>
@@ -689,928 +293,163 @@
     </div>
 
     <!-- Modals -->
-    <div id="tipsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>💡 Learning Guide</span>
-                <button class="close-btn" onclick="closeTipsModal()">&times;</button>
-            </div>
-            <div class="tab-buttons">
-                <button class="tab-btn active" onclick="switchTab('pronunciation')">Pronunciation</button>
-                <button class="tab-btn" onclick="switchTab('grammar')">Grammar</button>
-                <button class="tab-btn" onclick="switchTab('vocabulary')">Vocabulary</button>
-            </div>
-            <div id="pronunciation" class="tab-content active">
-                <h3>🎯 British English Pronunciation Tips</h3>
-                <div class="tip">
-                    <strong>'R' Sounds:</strong> In British English, 'r' is only pronounced at the beginning of words or before vowels (e.g., "car" vs "car park").
-                </div>
-                <div class="tip">
-                    <strong>Vowel Shifts:</strong> Practice the differences between /ɑː/ (bath) and /æ/ (trap), and /ɔː/ (thought) vs /ʌ/ (strut).
-                </div>
-                <div class="tip">
-                    <strong>Stress and Intonation:</strong> English uses stress patterns to convey meaning. "REcord" vs "reCORD" changes the word's function.
-                </div>
-                <div class="tip">
-                    <strong>Connected Speech:</strong> Native speakers link words together. Practice "gonna" (going to), "wanna" (want to), and other reductions.
-                </div>
-                <div class="tip">
-                    <strong>Rhotic Features:</strong> British English speakers may use linking 'r' between words: "idea of" sounds like "idea_rof".
-                </div>
-            </div>
-            <div id="grammar" class="tab-content">
-                <h3>📚 C1/C2 Grammar Focus</h3>
-                <div class="tip">
-                    <strong>Advanced Conditionals:</strong> Master mixed and inversion conditionals for sophisticated argument construction.
-                </div>
-                <div class="tip">
-                    <strong>Passive Structures:</strong> Use passive voice to shift focus and create more formal, academic tone.
-                </div>
-                <div class="tip">
-                    <strong>Nominalisation:</strong> Convert verbs to nouns for academic writing: "The implementation of..." instead of "We implemented..."
-                </div>
-                <div class="tip">
-                    <strong>Cleft Sentences:</strong> Use "It is/was... that" to emphasise information: "It was her dedication that made the difference."
-                </div>
-                <div class="tip">
-                    <strong>Subjunctive Mood:</strong> Use subjunctive in formal contexts: "I suggest that he be informed" or "It is essential that she arrive on time."
-                </div>
-            </div>
-            <div id="vocabulary" class="tab-content">
-                <h3>🎓 C2 Vocabulary Building</h3>
-                <div class="tip">
-                    <strong>Collocations:</strong> Learn word pairs that naturally go together: "profound impact," "widespread concern," "heated debate."
-                </div>
-                <div class="tip">
-                    <strong>Synonyms with Nuance:</strong> Understand subtle differences between similar words: "criticise" vs "censure" vs "condemn."
-                </div>
-                <div class="tip">
-                    <strong>Register Awareness:</strong> Know when to use formal ("utilise"), standard ("use"), or informal ("use up") vocabulary.
-                </div>
-                <div class="tip">
-                    <strong>Idiomatic Expressions:</strong> Master idioms relevant to professional contexts: "think outside the box," "go the extra mile."
-                </div>
-                <div class="tip">
-                    <strong>Academic Discourse Markers:</strong> Use: "Whereas," "Furthermore," "Conversely," "To elaborate," "In essence."
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div id="transcriptModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span>📄 Conversation Transcript</span>
-                <button class="close-btn" onclick="closeTranscriptModal()">&times;</button>
+                <span>📄 Session Transcript</span>
+                <button class="close-btn" onclick="closeTranscript()">&times;</button>
             </div>
-            <div id="transcriptContent" style="max-height: 600px; overflow-y: auto;"></div>
+            <div id="transcriptContent"></div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>
-        // =============================================
-        // CONVERSATION SCENARIOS (20+ Real Exam-Based)
-        // =============================================
+        // ========== MODE MANAGEMENT ==========
+        function switchMode(mode) {
+            document.getElementById('conversationMode').style.display = mode === 'conversation' ? 'block' : 'none';
+            document.getElementById('mediationMode').style.display = mode === 'mediation' ? 'block' : 'none';
+            document.getElementById('resourcesMode').style.display = mode === 'resources' ? 'block' : 'none';
+            
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (mode === 'resources') {
+                loadVideoResources();
+            }
+        }
+
+        // ========== CONVERSATION SCENARIOS WITH CONTEXT ==========
         const conversations = [
             {
                 id: 1,
                 title: "Business Negotiation - Contract Terms",
                 difficulty: "C2",
-                duration: 4,
                 initiator: "agent",
-                scenario: "You are negotiating contract terms for a major project with a client.",
+                context: "You work in procurement for a tech company. A project manager from a consulting firm is proposing a contract for a major digital transformation project. Before meeting, you've reviewed their proposal and identified concerns about the timeline and budget.",
+                scenario: "Negotiating contract terms for a major project delivery.",
                 agentRole: "Senior Project Manager",
                 userRole: "Procurement Director",
-                openingPrompt: "Good morning. I've reviewed your proposal, and whilst the scope is comprehensive, I do have some reservations about the timeline and pricing structure. Shall we discuss the details?",
                 turns: [
-                    {
-                        role: "agent",
-                        text: "Good morning. I've reviewed your proposal, and whilst the scope is comprehensive, I do have some reservations about the timeline and pricing structure. Shall we discuss the details?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Acknowledge their concerns and suggest a structured discussion"
-                    },
-                    {
-                        role: "agent",
-                        text: "I appreciate that. Perhaps we could start with the timeline? Our team estimates eight months for the full implementation, though we recognise this might be optimistic. What timeframe were you envisioning?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "50-70 words",
-                        feedback: "Counter-propose with justification"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's a significant reduction. What would be the implications for quality assurance? We'd need to discuss resource allocation and potential risks."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Demonstrate problem-solving approach"
-                    }
+                    { role: "agent", text: "Good morning. I've reviewed your feedback. Whilst the scope is comprehensive, I'd like to address the timeline concerns head-on." },
+                    { role: "user", expectedLength: "60-80 words", feedback: "Acknowledge concerns and suggest structured discussion" },
+                    { role: "agent", text: "Right. Our team estimates eight months for full implementation. That gives us reasonable buffer for quality assurance. Would that work for your schedule?" },
+                    { role: "user", expectedLength: "55-75 words", feedback: "Counter-propose with business justification" },
+                    { role: "agent", text: "I understand the pressure. Could we phase the project? Perhaps deliver core functionality in four months, then subsequent features in months five through eight?" },
+                    { role: "user", expectedLength: "60-80 words", feedback: "Evaluate the phased approach and discuss resource implications" }
                 ]
             },
             {
                 id: 2,
-                title: "Academic Debate - Climate Policy",
+                title: "Academic Debate - Remote Work Productivity",
                 difficulty: "C2",
-                duration: 5,
                 initiator: "user",
-                scenario: "You are debating climate policy effectiveness with an environmental researcher.",
-                agentRole: "Environmental Researcher",
-                userRole: "Policy Analyst",
-                openingPrompt: "I'd like to hear your thoughts on the effectiveness of current carbon pricing mechanisms.",
+                context: "You're a workplace psychologist attending an HR conference. During a panel discussion on remote work, you'll be discussing productivity metrics, employee wellbeing, and organizational culture in distributed teams.",
+                scenario: "Debating the long-term productivity effects of remote work arrangements.",
+                agentRole: "HR Director",
+                userRole: "Workplace Psychologist",
                 turns: [
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Start with a nuanced position and supporting evidence"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's a well-articulated point. However, the empirical data suggests that whilst carbon pricing has incentivised some behavioural changes, its impact has been relatively modest. The question, then, is whether we should prioritise regulatory approaches instead."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Engage with the counterargument; acknowledge validity while presenting alternative view"
-                    },
-                    {
-                        role: "agent",
-                        text: "Interesting perspective. I concede that there may be merit in a hybrid approach. But consider this: regulatory mandates often stifle innovation, whereas market-based mechanisms encourage creative solutions. How would you reconcile this tension?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Provide a sophisticated synthesis or strategic compromise"
-                    }
+                    { role: "user", expectedLength: "70-90 words", feedback: "Present nuanced research-based perspective with evidence" },
+                    { role: "agent", text: "That's compelling data. However, our internal surveys show productivity peaks during mandatory office days. How do you reconcile that with your findings?" },
+                    { role: "user", expectedLength: "65-85 words", feedback: "Acknowledge counterpoint, explain potential alternative causes" },
+                    { role: "agent", text: "Interesting distinction. But doesn't that suggest hybrid is optimal? Perhaps we're overthinking this." },
+                    { role: "user", expectedLength: "60-80 words", feedback: "Propose more sophisticated framework than binary hybrid model" }
                 ]
             },
             {
                 id: 3,
-                title: "Professional Networking - Conference Discussion",
+                title: "Professional Networking - Digital Transformation",
                 difficulty: "C1",
-                duration: 4,
                 initiator: "agent",
-                scenario: "You meet a colleague at an international conference and discuss industry trends.",
-                agentRole: "Industry Consultant",
-                userRole: "Your Professional Self",
-                openingPrompt: "Hi there! I noticed your presentation on digital transformation. Brilliant stuff. I'm fascinated by your perspective on legacy system integration.",
+                context: "You're at an international tech conference in Barcelona. You'll meet with a colleague from a consulting firm who specializes in helping traditional companies modernize their operations.",
+                scenario: "Meeting a colleague at a conference to discuss industry trends and potential collaboration.",
+                agentRole: "Technology Consultant",
+                userRole: "Operations Manager",
                 turns: [
-                    {
-                        role: "agent",
-                        text: "Hi there! I noticed your presentation on digital transformation. Brilliant stuff. I'm fascinated by your perspective on legacy system integration."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "50-70 words",
-                        feedback: "Accept compliment graciously and expand on the topic"
-                    },
-                    {
-                        role: "agent",
-                        text: "Absolutely. The challenge, as I see it, is that most organisations underestimate the complexity. They think they can simply overlay new systems on top of existing infrastructure. But that's rather like building a skyscraper on sand, isn't it? What's your experience been?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Share specific example and lessons learned"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's invaluable experience. Tell me, how did you manage stakeholder resistance? In my experience, that's often the biggest hurdle."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Provide practical approach and demonstrate communication skills"
-                    }
+                    { role: "agent", text: "Your presentation on legacy system modernization was brilliant. I'd love to hear more about your approach to managing stakeholder resistance." },
+                    { role: "user", expectedLength: "60-80 words", feedback: "Accept compliment, share specific strategies and examples" },
+                    { role: "agent", text: "That's insightful. The stakeholder piece is often the biggest challenge. Have you encountered resistance from middle management specifically?" },
+                    { role: "user", expectedLength: "55-75 words", feedback: "Share concrete example showing empathy and communication strategy" },
+                    { role: "agent", text: "That's brilliant—making it about capability development rather than replacement. Would you ever consider consulting?" },
+                    { role: "user", expectedLength: "50-70 words", feedback: "Respond diplomatically with your actual availability" }
                 ]
             },
             {
                 id: 4,
                 title: "Crisis Management Interview",
                 difficulty: "C2",
-                duration: 5,
                 initiator: "agent",
-                scenario: "You are being interviewed about how you managed a major corporate crisis.",
+                context: "You're being interviewed by a business journalist for a major publication. The interview focuses on a product safety recall your company managed last year. You need to discuss your decision-making process, transparency approach, and long-term recovery.",
+                scenario: "Discussing how your company managed a major product safety crisis.",
                 agentRole: "Business Journalist",
-                userRole: "Crisis Management Director",
-                openingPrompt: "The incident was widely publicised, and critics questioned the company's response. Looking back, what would you say were the critical decisions that ultimately stemmed the reputational damage?",
+                userRole: "Communications Director",
                 turns: [
-                    {
-                        role: "agent",
-                        text: "The incident was widely publicised, and critics questioned the company's response. Looking back, what would you say were the critical decisions that ultimately stemmed the reputational damage?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "80-100 words",
-                        feedback: "Demonstrate strategic thinking and transparency; use specific examples"
-                    },
-                    {
-                        role: "agent",
-                        text: "You prioritised transparency, then. Some might argue that full disclosure was risky. Did you face internal resistance to that approach? How did you navigate competing priorities between legal exposure and public relations?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Address nuanced dilemma; show balanced judgment"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's a pragmatic perspective. And how do you reflect on the long-term impacts? Have stakeholder relationships recovered?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Provide forward-looking perspective with measurable outcomes"
-                    }
-                ]
-            },
-            {
-                id: 5,
-                title: "Educational Strategy - University Leadership Discussion",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "user",
-                scenario: "You are discussing higher education strategy with a university rector.",
-                agentRole: "University Rector",
-                userRole: "Education Strategy Consultant",
-                openingPrompt: "I'd like to explore your vision for adapting our institution to emerging educational paradigms.",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Articulate a forward-thinking strategy with evidence-based reasoning"
-                    },
-                    {
-                        role: "agent",
-                        text: "Interesting. But surely you'd acknowledge the tension between innovation and traditional academic values? How do we preserve academic rigour whilst embracing technological disruption?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Acknowledge the tension and propose an integrated solution"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's thoughtful. My concern, however, is that we might inadvertently marginalise the humanities in pursuit of STEM-focused initiatives. How would your strategy safeguard disciplines that don't immediately translate into industry metrics?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Defend the intrinsic value of all disciplines while addressing practical constraints"
-                    }
-                ]
-            },
-            {
-                id: 6,
-                title: "Market Analysis - Investment Decision",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "agent",
-                scenario: "A financial advisor is reviewing your investment portfolio and asking about your market outlook.",
-                agentRole: "Financial Advisor",
-                userRole: "Investor",
-                openingPrompt: "Given the current economic conditions, I'm wondering what your perspective is on emerging markets. Are you still confident in the opportunities there?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "Given the current economic conditions, I'm wondering what your perspective is on emerging markets. Are you still confident in the opportunities there?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Express informed opinion with acknowledgement of risks"
-                    },
-                    {
-                        role: "agent",
-                        text: "I agree there's potential, but the volatility concerns me. Interest rate fluctuations could substantially impact valuations. How would you structure exposure to mitigate that risk?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Propose specific risk management strategies"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's sensible. Perhaps we should review your overall asset allocation. Let me put together some recommendations for our next meeting."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "40-60 words",
-                        feedback: "Respond appropriately, perhaps with questions or confirmations"
-                    }
-                ]
-            },
-            {
-                id: 7,
-                title: "Product Launch - Stakeholder Presentation",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "user",
-                scenario: "You are presenting a new product launch strategy to company stakeholders.",
-                agentRole: "Chief Financial Officer",
-                userRole: "Product Development Manager",
-                openingPrompt: "Before we proceed, I'd like to hear your rationale for the go-to-market strategy. The budget allocation seems substantial.",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "75-95 words",
-                        feedback: "Justify investment with market data and competitive analysis"
-                    },
-                    {
-                        role: "agent",
-                        text: "The data is compelling, certainly. But what if market penetration doesn't materialise as projected? What contingency measures do you have in place? I need to understand the downside scenarios."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Address risk management and provide realistic contingency plans"
-                    },
-                    {
-                        role: "agent",
-                        text: "That mitigates some concerns. Now, regarding the timeline—three months to launch is aggressive. Do you have sufficient resource flexibility? How will you manage potential delays without escalating costs?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Demonstrate project management capability and realistic assessment"
-                    }
-                ]
-            },
-            {
-                id: 8,
-                title: "Healthcare Ethics - Medical Team Discussion",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "agent",
-                scenario: "You are part of a medical ethics committee discussing a complex treatment decision.",
-                agentRole: "Hospital Ethics Officer",
-                userRole: "Senior Physician",
-                openingPrompt: "We've received a challenging case requesting an experimental treatment. From your clinical perspective, how do you weigh the potential benefits against the uncertainties?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "We've received a challenging case requesting an experimental treatment. From your clinical perspective, how do you weigh the potential benefits against the uncertainties?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Balance clinical evidence with ethical considerations"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's a measured assessment. The patient has expressed strong wishes to proceed, but the family has reservations. How do we honour patient autonomy whilst respecting family concerns?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Demonstrate empathy and communication strategy"
-                    },
-                    {
-                        role: "agent",
-                        text: "That sounds like a thoughtful approach. Shall we schedule a family consultation where we present the medical facts clearly and ensure informed consent?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "45-65 words",
-                        feedback: "Agree and perhaps suggest additional considerations"
-                    }
-                ]
-            },
-            {
-                id: 9,
-                title: "Environmental Impact Assessment",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "user",
-                scenario: "You are discussing environmental impact with a developer about a construction project.",
-                agentRole: "Environmental Consultant",
-                userRole: "Project Developer",
-                openingPrompt: "I'd like to understand the environmental implications of our proposed expansion plans.",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "50-70 words",
-                        feedback: "Clearly articulate concerns and desire for thorough assessment"
-                    },
-                    {
-                        role: "agent",
-                        text: "Right. We'll need to assess several factors: land use change, water resources, biodiversity impacts, and carbon footprint. Our preliminary findings suggest that strategic site selection could significantly minimise negative impacts."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Ask clarifying questions and express commitment to sustainability"
-                    },
-                    {
-                        role: "agent",
-                        text: "Excellent. We recommend compensatory measures—perhaps habitat restoration or renewable energy integration. This would substantially offset the residual impacts."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "50-70 words",
-                        feedback: "Respond positively and discuss implementation timeline"
-                    }
-                ]
-            },
-            {
-                id: 10,
-                title: "Technology Leadership - Digital Transformation",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "agent",
-                scenario: "You are being interviewed about leading digital transformation in a large organisation.",
-                agentRole: "Business Magazine Interviewer",
-                userRole: "CIO/Chief Digital Officer",
-                openingPrompt: "Digital transformation has become something of a buzzword, but most organisations still struggle with execution. What's been your experience? How do you translate strategy into tangible outcomes?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "Digital transformation has become something of a buzzword, but most organisations still struggle with execution. What's been your experience? How do you translate strategy into tangible outcomes?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "80-100 words",
-                        feedback: "Provide nuanced perspective with specific examples of change management"
-                    },
-                    {
-                        role: "agent",
-                        text: "You mention cultural shift—that's often overlooked. But isn't there a risk that focusing on culture diverts attention from necessary technical investments? How do you balance the two?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Articulate integrated approach where culture and technology are interdependent"
-                    },
-                    {
-                        role: "agent",
-                        text: "Interesting. So you're saying success requires parallel streams—not sequential. And what about resistance? How do you handle stakeholders who perceive technology as a threat to their roles?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Demonstrate sophisticated stakeholder management and demonstrate empathy"
-                    }
-                ]
-            },
-            {
-                id: 11,
-                title: "Immigration Policy Debate",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "user",
-                scenario: "You are debating immigration policy with a policy researcher.",
-                agentRole: "Immigration Policy Researcher",
-                userRole: "Labour Relations Specialist",
-                openingPrompt: "I'd like to challenge some common assumptions about immigration's labour market effects.",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Present evidence-based argument with nuanced framing"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's a sophisticated analysis. However, the regional data tells a different story—localised labour market disruption is evident in specific sectors. How do we reconcile this with macro-level findings? Doesn't this warrant targeted, rather than blanket, policy approaches?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Acknowledge validity of counterpoint; propose policy framework that addresses concerns"
-                    },
-                    {
-                        role: "agent",
-                        text: "You're suggesting a context-dependent approach. But don't such nuanced policies risk being exploited or circumvented? How do you design mechanisms robust enough to withstand political pressure?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Address implementation challenges with sophisticated policy design thinking"
-                    }
-                ]
-            },
-            {
-                id: 12,
-                title: "Supply Chain Optimisation",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "agent",
-                scenario: "You are discussing supply chain improvements with your operations manager.",
-                agentRole: "Supply Chain Consultant",
-                userRole: "Operations Director",
-                openingPrompt: "Your current supply chain structure is quite complex. We've identified several inefficiencies—notably, excessive inventory holding in regional warehouses. What are your thoughts on consolidation?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "Your current supply chain structure is quite complex. We've identified several inefficiencies—notably, excessive inventory holding in regional warehouses. What are your thoughts on consolidation?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Acknowledge efficiency opportunity while addressing practical concerns"
-                    },
-                    {
-                        role: "agent",
-                        text: "Those are valid points. However, we believe that technological solutions—particularly real-time tracking and predictive analytics—could mitigate those risks substantially. Would your team be receptive to such solutions?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Express openness to innovation while discussing implementation realities"
-                    },
-                    {
-                        role: "agent",
-                        text: "Excellent. Let's schedule a workshop with your team to explore this further. We can model scenarios and identify the optimal structure for your specific context."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "45-65 words",
-                        feedback: "Confirm agreement and perhaps suggest timeline or expectations"
-                    }
-                ]
-            },
-            {
-                id: 13,
-                title: "Artificial Intelligence Ethics",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "user",
-                scenario: "You are participating in a panel discussion on AI ethics and governance.",
-                agentRole: "AI Ethics Researcher",
-                userRole: "Technology Company Executive",
-                openingPrompt: "The concern I raise is about algorithmic bias and accountability. When AI systems make consequential decisions affecting people's lives, who bears responsibility when things go wrong?",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "75-95 words",
-                        feedback: "Frame the question clearly with acknowledgement of complexity and multiple stakeholders"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's the crux of the matter. Current legal frameworks are inadequate. Moreover, the distributed nature of AI development—where data providers, algorithm designers, and deployers are separate entities—muddles accountability further. How do companies approach this ambiguity?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Articulate your company's governance approach; be transparent about limitations"
-                    },
-                    {
-                        role: "agent",
-                        text: "Your approach seems thoughtful, but I wonder whether internal controls are sufficient. Shouldn't there be external oversight? Independent auditing, perhaps? Or are you concerned about competitive disadvantage?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Balance transparency with legitimate business concerns; advocate for balanced regulation"
-                    }
-                ]
-            },
-            {
-                id: 14,
-                title: "Career Development - Mentorship Conversation",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "agent",
-                scenario: "You are meeting with your mentor to discuss career progression.",
-                agentRole: "Senior Executive Mentor",
-                userRole: "Rising Professional",
-                openingPrompt: "You've accomplished quite a lot in the past couple of years. I'm curious about your ambitions going forward. Where do you see yourself in five years?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "You've accomplished quite a lot in the past couple of years. I'm curious about your ambitions going forward. Where do you see yourself in five years?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Express clear ambitions with evidence of strategic thinking"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's ambitious, and I think you have the potential. But leadership requires skills beyond technical expertise. You'll need to develop your strategic vision and political acumen. Are you prepared for that?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Show self-awareness and willingness to develop in other areas"
-                    },
-                    {
-                        role: "agent",
-                        text: "Good. I'd recommend seeking opportunities to lead cross-functional projects, and perhaps finding a sponsor at the executive level who can advocate for you. Would you like to discuss how to go about that?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "50-70 words",
-                        feedback: "Gratefully accept guidance and engage actively in the conversation"
-                    }
-                ]
-            },
-            {
-                id: 15,
-                title: "Legal Compliance - Corporate Governance",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "agent",
-                scenario: "You are being audited by an external legal firm regarding corporate governance practices.",
-                agentRole: "External Legal Auditor",
-                userRole: "Compliance Officer",
-                openingPrompt: "We've reviewed your governance documentation, and whilst your policies are comprehensive, we've identified potential gaps in enforcement mechanisms. Specifically, how do you ensure board members adhere to conflict-of-interest guidelines?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "We've reviewed your governance documentation, and whilst your policies are comprehensive, we've identified potential gaps in enforcement mechanisms. Specifically, how do you ensure board members adhere to conflict-of-interest guidelines?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Describe robust enforcement framework with specific examples"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's reassuring. However, we're also concerned about related-party transactions. Your current approval processes appear to lack independent verification. How do you justify this approach?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Either defend current approach with reasoning or acknowledge gap and propose remedy"
-                    },
-                    {
-                        role: "agent",
-                        text: "I see. We'll need to formulate recommendations addressing this. Our preliminary view is that you should consider establishing an independent compliance committee. Would your board be receptive?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Confirm willingness to implement recommendations or discuss constraints"
-                    }
-                ]
-            },
-            {
-                id: 16,
-                title: "Academic Research Funding",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "user",
-                scenario: "You are presenting your research proposal to a funding committee.",
-                agentRole: "Research Funding Programme Director",
-                userRole: "Principal Investigator",
-                openingPrompt: "Tell us about your project and why it merits funding from our programme.",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Present compelling case; clearly articulate research significance and impact"
-                    },
-                    {
-                        role: "agent",
-                        text: "Interesting. But the timeline seems ambitious given the complexity of the research. How will you manage to complete the project within three years? What's your contingency for unexpected setbacks?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Demonstrate realistic project planning and risk management"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's reassuring. We'll need to review your budget carefully, particularly the staffing costs. We're also interested in understanding your dissemination strategy. How will you ensure your findings reach practitioners, not just academics?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Outline comprehensive dissemination plan with evidence of impact orientation"
-                    }
-                ]
-            },
-            {
-                id: 17,
-                title: "Corporate Social Responsibility Strategy",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "user",
-                scenario: "You are discussing CSR strategy with your board of directors.",
-                agentRole: "Board Member (Shareholder Advocate)",
-                userRole: "Head of Corporate Strategy",
-                openingPrompt: "Our CSR budget has increased substantially, but I haven't seen corresponding evidence of material business impact. How do you justify continued investment?",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "75-95 words",
-                        feedback: "Make compelling case linking CSR to business value; address shareholder concerns"
-                    },
-                    {
-                        role: "agent",
-                        text: "Those metrics are interesting, but are they robust? How do we isolate CSR's impact from other variables? Moreover, critics might argue that such initiatives are merely performative—greenwashing. How do you respond?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Address scepticism with evidence of authentic commitment and systemic integration"
-                    },
-                    {
-                        role: "agent",
-                        text: "I appreciate your candour. Perhaps we should discuss how to translate these initiatives into formal ESG targets with independent verification. Would that address concerns?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Enthusiastically endorse proposal; demonstrate commitment to accountability"
-                    }
-                ]
-            },
-            {
-                id: 18,
-                title: "International Trade Negotiations",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "agent",
-                scenario: "You are negotiating trade terms with a foreign government representative.",
-                agentRole: "Trade Negotiator (Foreign Government)",
-                userRole: "Trade Negotiator (Your Country)",
-                openingPrompt: "We appreciate your delegation's engagement. However, we have concerns about tariff proposals in the textiles sector. They seem disproportionately punitive to our exporters. Can you elaborate on your rationale?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "We appreciate your delegation's engagement. However, we have concerns about tariff proposals in the textiles sector. They seem disproportionately punitive to our exporters. Can you elaborate on your rationale?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "75-95 words",
-                        feedback: "Present clear rationale; demonstrate understanding of counterparty concerns; seek common ground"
-                    },
-                    {
-                        role: "agent",
-                        text: "I understand your position, but from our perspective, the current trade imbalance is unsustainable. We're losing market share in domestic sectors. Perhaps we could consider sector-specific exemptions? What would be palatable?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Propose creative compromise that addresses both parties' concerns"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's constructive. Let's explore this further. Might we consider a phased implementation with periodic review points?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Show flexibility and willingness to reach mutually beneficial agreement"
-                    }
-                ]
-            },
-            {
-                id: 19,
-                title: "Media Interview - Controversial Industry Topic",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "agent",
-                scenario: "You are being interviewed about your company's role in a controversial industry issue.",
-                agentRole: "Investigative Journalist",
-                userRole: "Corporate Spokesperson",
-                openingPrompt: "Your company faces increasing scrutiny regarding working conditions in your supply chain. Critics argue your sustainability claims are merely for public relations. How do you respond to these accusations?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "Your company faces increasing scrutiny regarding working conditions in your supply chain. Critics argue your sustainability claims are merely for public relations. How do you respond to these accusations?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Respond thoughtfully; acknowledge concerns; demonstrate concrete action"
-                    },
-                    {
-                        role: "agent",
-                        text: "You mention audits, but audits can be manipulated or superficial. How do we know your suppliers are genuinely compliant? Can independent verification validate your claims?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Address scepticism; demonstrate transparency; welcome external oversight"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's encouraging. One final question: what timeline are you committing to for achieving full compliance throughout your supply chain?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "50-70 words",
-                        feedback: "Provide specific, ambitious but achievable timeline with interim milestones"
-                    }
-                ]
-            },
-            {
-                id: 20,
-                title: "Quality Assurance - Product Recall Discussion",
-                difficulty: "C1",
-                duration: 4,
-                initiator: "user",
-                scenario: "You are discussing a potential product recall with quality assurance leadership.",
-                agentRole: "Quality Assurance Director",
-                userRole: "Product Safety Officer",
-                openingPrompt: "I'd like to raise concerns about the recent batch of products. I've reviewed the test data, and I'm worried there may be safety implications we haven't fully addressed.",
-                turns: [
-                    {
-                        role: "user",
-                        expectedLength: "60-80 words",
-                        feedback: "Clearly articulate safety concerns with supporting evidence"
-                    },
-                    {
-                        role: "agent",
-                        text: "I appreciate you raising this. We take safety seriously. However, the data is somewhat ambiguous. We could conduct further testing, but a recall would be enormously costly. What's your assessment of the actual risk level?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "55-75 words",
-                        feedback: "Provide honest risk assessment; prioritise consumer safety over financial considerations"
-                    },
-                    {
-                        role: "agent",
-                        text: "Given your assessment, I think we need to inform senior management immediately. A recall may indeed be necessary. How do you propose we structure this communication?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "50-70 words",
-                        feedback: "Suggest transparent communication strategy; demonstrate leadership"
-                    }
-                ]
-            },
-            {
-                id: 21,
-                title: "Startup Pitch - Investor Meeting",
-                difficulty: "C2",
-                duration: 5,
-                initiator: "agent",
-                scenario: "You are pitching your startup to a venture capital investor.",
-                agentRole: "Venture Capital Investor",
-                userRole: "Startup Founder",
-                openingPrompt: "Interesting proposition. But this market is crowded. What's your defensible competitive advantage? Why would customers choose you over well-funded incumbents?",
-                turns: [
-                    {
-                        role: "agent",
-                        text: "Interesting proposition. But this market is crowded. What's your defensible competitive advantage? Why would customers choose you over well-funded incumbents?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "75-95 words",
-                        feedback: "Articulate compelling differentiation; demonstrate market understanding"
-                    },
-                    {
-                        role: "agent",
-                        text: "That's a sound analysis, but execution risk concerns me. You're a relatively inexperienced team tackling a complex problem. How do you propose to mitigate the risk of failure? What do you bring that justifies the investment?"
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "70-90 words",
-                        feedback: "Address team capabilities with humility; demonstrate learning agility and resilience"
-                    },
-                    {
-                        role: "agent",
-                        text: "Compelling. One final question: how are you deploying capital? Walk me through your financial projections and burn rate."
-                    },
-                    {
-                        role: "user",
-                        expectedLength: "65-85 words",
-                        feedback: "Present detailed financial planning; demonstrate realistic financial management"
-                    }
+                    { role: "agent", text: "The incident received significant media coverage. Looking back, what decisions do you think were most critical in your response?" },
+                    { role: "user", expectedLength: "80-100 words", feedback: "Demonstrate strategic thinking, transparency, with specific examples" },
+                    { role: "agent", text: "Full disclosure was risky from a legal standpoint. Did you face pressure to minimize information?" },
+                    { role: "user", expectedLength: "70-90 words", feedback: "Address ethical vs. legal tension, show balanced judgment" },
+                    { role: "agent", text: "And stakeholder relationships? Have investor concerns subsided?" },
+                    { role: "user", expectedLength: "65-85 words", feedback: "Provide measurable recovery indicators and forward-looking perspective" }
                 ]
             }
         ];
 
-        // =============================================
-        // STATE MANAGEMENT
-        // =============================================
+        // ========== MEDIATION TOPICS ==========
+        const mediations = [
+            {
+                id: 1,
+                title: "Remote Work Policy Disagreement",
+                context: "Your company is establishing a new hybrid work policy. Two departments have conflicting needs: the Sales team wants flexible remote work to better serve clients across time zones, while the Product Development team believes in-office collaboration is essential for innovation.",
+                positionA: "Sales: 'We lose clients because we can't match their availability. Full remote flexibility would boost our revenue by at least 15%. We're losing top talent to competitors with better remote policies.'",
+                positionB: "Product Dev: 'Our innovation rate dropped 30% with remote work. We need spontaneous hallway conversations. Plus, junior developers need mentorship. Everyone should be in-office at least 4 days per week.'",
+                task: "As the HR Director, mediate between these positions and propose a solution that addresses both teams' core concerns while maintaining company cohesion."
+            },
+            {
+                id: 2,
+                title: "Budget Allocation Between Departments",
+                context: "Your company has limited training budget. Marketing wants to invest heavily in AI and digital marketing certifications. Operations wants to invest in supply chain optimization and automation training. Both argue their investment has higher ROI.",
+                positionA: "Marketing: 'Digital trends change rapidly. If we don't upskill NOW, we'll lose competitive advantage. AI skills command premium salaries—we'll lose talent.'",
+                positionB: "Operations: 'We have a backlog of modernization projects. Half are delayed because our team lacks automation skills. Better training = faster implementation = cost savings.'",
+                task: "Propose a balanced budget allocation strategy that demonstrates understanding of both departments' strategic importance to the organization."
+            },
+            {
+                id: 3,
+                title: "Sustainability vs. Profitability",
+                context: "A manufacturing company is facing pressure from investors to reduce environmental impact while maintaining profit margins. The Environmental team has a proposal for sustainable practices that would increase operational costs. The Finance team sees this as unsustainable.",
+                positionA: "Environmental: 'Climate regulations are tightening. Early adoption positions us as market leaders. Consumer preferences are shifting—green products command premium prices.'",
+                positionB: "Finance: 'Proposed changes would increase production costs by 18% immediately. We'd need 3-4 years to recover through premium pricing. Investors want quarterly growth, not long-term bets.'",
+                task: "Develop a phased implementation plan that balances environmental responsibility with business viability and shareholder expectations."
+            }
+        ];
+
+        // ========== VIDEO RESOURCES ==========
+        const videoResources = [
+            { title: "C2 Discourse Markers Masterclass", channel: "English with Lucy", duration: "12:34", link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+            { title: "IELTS C2 Speaking Tips", channel: "TED-Ed English", duration: "8:45", link: "https://www.youtube.com/watch?v=jNQXAC9IVRw" },
+            { title: "British English Pronunciation: Advanced", channel: "Rachel's English", duration: "15:20", link: "https://www.youtube.com/watch?v=9bZkp7q19f0" },
+            { title: "Mediation Techniques in English", channel: "Business English Pod", duration: "11:30", link: "https://www.youtube.com/watch?v=dP15zlyra3Q" },
+            { title: "Handling Disagreement Professionally", channel: "English Speeches", duration: "9:15", link: "https://www.youtube.com/watch?v=aqz-KE-bpKQ" },
+            { title: "Fluency & Connected Speech", channel: "Papa English", duration: "13:45", link: "https://www.youtube.com/watch?v=ZbZSe6N_BXs" }
+        ];
+
+        // ========== STATE ==========
+        let currentMode = 'conversation';
         let currentConversationId = null;
-        let currentTurnIndex = 0;
+        let currentMediationId = null;
         let conversationHistory = [];
-        let lastAgentAudio = null;
-        let mediaRecorder = null;
-        let audioChunks = [];
-        let sessionStartTime = null;
-        let totalPracticeTime = 0;
+        let currentAccent = 'british';
+        let currentMediationAccent = 'british';
         let completedConversations = 0;
-        let userStats = {
-            totalWords: 0,
-            totalExchanges: 0,
-            accuracyScores: [],
-            fluencyScores: []
-        };
+        let completedMediations = 0;
+        let userStats = { totalWords: 0, totalExchanges: 0 };
+        let lastAgentAudio = null;
+        let sessionStartTime = null;
 
-        // =============================================
-        // INITIALIZATION
-        // =============================================
+        // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
-            setupAudioRecording();
-            updateProgressDisplay();
-        });
-
-        function initializeApp() {
             populateConversationSelector();
-            loadUserProgress();
-        }
+            populateMediationSelector();
+            setupSpeechRecognition();
+        });
 
         function populateConversationSelector() {
             const select = document.getElementById('conversationSelect');
@@ -1620,151 +459,184 @@
                 option.textContent = `${conv.title} (${conv.difficulty})`;
                 select.appendChild(option);
             });
+            select.addEventListener('change', updateContextBox);
+        }
 
-            select.addEventListener('change', function() {
-                if (this.value) {
-                    currentConversationId = parseInt(this.value);
-                    updateDifficultyBadge();
-                    document.getElementById('conversationWindow').innerHTML = '';
-                    document.getElementById('feedbackSection').classList.remove('show');
-                    document.getElementById('recordBtn').style.display = 'none';
-                    document.getElementById('stopRecordBtn').style.display = 'none';
-                }
+        function populateMediationSelector() {
+            const select = document.getElementById('mediationSelect');
+            mediations.forEach(med => {
+                const option = document.createElement('option');
+                option.value = med.id;
+                option.textContent = med.title;
+                select.appendChild(option);
             });
+            select.addEventListener('change', updateMediationContextBox);
         }
 
-        function updateDifficultyBadge() {
-            const conv = conversations.find(c => c.id === currentConversationId);
-            const badge = document.getElementById('difficultyBadge');
-            if (conv) {
-                const difficultyClass = `difficulty-${conv.difficulty.toLowerCase()}`;
-                badge.innerHTML = `<div class="difficulty-badge ${difficultyClass}">${conv.difficulty} Level • ${conv.duration} minutes</div>`;
-            }
-        }
-
-        // =============================================
-        // CONVERSATION FLOW
-        // =============================================
-        function startConversation() {
-            if (!currentConversationId) {
-                showErrorMessage('Please select a conversation first.');
+        function updateContextBox() {
+            const convId = parseInt(document.getElementById('conversationSelect').value);
+            if (!convId) {
+                document.getElementById('contextBox').style.display = 'none';
                 return;
             }
-
-            const conv = conversations.find(c => c.id === currentConversationId);
-            sessionStartTime = Date.now();
-            currentTurnIndex = 0;
-            conversationHistory = [];
-            audioChunks = [];
-
-            document.getElementById('conversationWindow').innerHTML = '';
-            document.getElementById('feedbackSection').classList.remove('show');
-            document.getElementById('exchangeCount').textContent = '0';
-            document.getElementById('wordCount').textContent = '0';
-            document.getElementById('sessionTime').textContent = '0:00';
-
-            if (conv.initiator === 'agent') {
-                // Agent speaks first
-                presentAgentMessage(conv.turns[0].text);
-                currentTurnIndex = 1;
-                document.getElementById('recordBtn').style.display = 'flex';
-                document.getElementById('recordBtn').textContent = '🎤 Record Your Response';
-            } else {
-                // User speaks first
-                document.getElementById('conversationWindow').innerHTML += createWelcomeMessage(conv);
-                document.getElementById('recordBtn').style.display = 'flex';
-                document.getElementById('recordBtn').textContent = '🎤 Start Speaking';
+            const conv = conversations.find(c => c.id === convId);
+            if (conv) {
+                document.getElementById('contextText').innerHTML = `
+                    <strong>Your Situation:</strong> ${conv.context}<br><br>
+                    <strong>Your Role:</strong> ${conv.userRole}<br>
+                    <strong>They Play:</strong> ${conv.agentRole}
+                `;
+                document.getElementById('contextBox').style.display = 'block';
             }
-
-            updateSessionTimer();
         }
 
-        function createWelcomeMessage(conv) {
-            return `
+        function updateMediationContextBox() {
+            const medId = parseInt(document.getElementById('mediationSelect').value);
+            if (!medId) {
+                document.getElementById('mediationContextBox').style.display = 'none';
+                return;
+            }
+            const med = mediations.find(m => m.id === medId);
+            if (med) {
+                document.getElementById('mediationContextText').textContent = med.context;
+                document.getElementById('positionA').textContent = med.positionA;
+                document.getElementById('positionB').textContent = med.positionB;
+                document.getElementById('mediationPromptText').textContent = med.task;
+                document.getElementById('mediationContextBox').style.display = 'block';
+                document.getElementById('positionsBox').style.display = 'flex';
+                document.getElementById('mediationPromptBox').style.display = 'block';
+            }
+        }
+
+        function setAccent(accent) {
+            currentAccent = accent;
+            document.querySelectorAll('.accent-selector .accent-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function setMediationAccent(accent) {
+            currentMediationAccent = accent;
+            document.querySelectorAll('#mediationMode .accent-selector .accent-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // ========== CONVERSATION PRACTICE ==========
+        function startConversation() {
+            const convId = parseInt(document.getElementById('conversationSelect').value);
+            if (!convId) {
+                showError('Please select a conversation first.');
+                return;
+            }
+            
+            currentConversationId = convId;
+            conversationHistory = [];
+            sessionStartTime = Date.now();
+            
+            const conv = conversations.find(c => c.id === convId);
+            document.getElementById('conversationWindow').innerHTML = `
                 <div class="message">
-                    <div class="message-label">📋 Scenario</div>
-                    <div class="message-text">${conv.scenario}</div>
-                    <div style="margin-top: 10px; color: #666; font-size: 0.9em;">
-                        <strong>Your Role:</strong> ${conv.userRole}<br>
-                        <strong>Their Role:</strong> ${conv.agentRole}
-                    </div>
+                    <div class="message-label">📋 Context Setup</div>
+                    <div class="message-text">${conv.context}</div>
                 </div>
             `;
+
+            if (conv.initiator === 'agent') {
+                setTimeout(() => playAgentMessage(conv.turns[0].text), 500);
+            } else {
+                document.getElementById('recordBtn').style.display = 'flex';
+            }
         }
 
-        function presentAgentMessage(text) {
+        function playAgentMessage(text) {
             const msgDiv = document.createElement('div');
             msgDiv.className = 'message agent';
             msgDiv.innerHTML = `
-                <div class="message-label">🎙️ Agent (British English)</div>
+                <div class="message-label">🎤 Agent (${currentAccent.toUpperCase()})</div>
                 <div class="message-text">${text}</div>
             `;
             document.getElementById('conversationWindow').appendChild(msgDiv);
             document.getElementById('conversationWindow').scrollTop = document.getElementById('conversationWindow').scrollHeight;
 
-            // Synthesize speech
             speakText(text);
+            lastAgentAudio = text;
+            document.getElementById('recordBtn').style.display = 'flex';
+        }
 
-            // Store for replay
+        function resetConversation() {
+            document.getElementById('conversationWindow').innerHTML = '';
+            document.getElementById('feedbackSection').classList.remove('show');
+            document.getElementById('recordBtn').style.display = 'none';
+            currentConversationId = null;
+        }
+
+        // ========== MEDIATION PRACTICE ==========
+        function startMediation() {
+            const medId = parseInt(document.getElementById('mediationSelect').value);
+            if (!medId) {
+                showError('Please select a mediation topic first.');
+                return;
+            }
+            
+            currentMediationId = medId;
+            conversationHistory = [];
+            sessionStartTime = Date.now();
+            
+            document.getElementById('mediationWindow').innerHTML = `
+                <div class="message">
+                    <div class="message-label">📋 Mediation Setup</div>
+                    <div class="message-text">You are now the mediator. Your task is to find a balanced solution that addresses both positions. The parties will present their views first.</div>
+                </div>
+            `;
+            
+            const med = mediations.find(m => m.id === medId);
+            playAgentMessageMediation(`Let me briefly summarize both positions. ${med.positionA.split(':')[0]} believes: ${med.positionA.split(':')[1]}. Meanwhile, ${med.positionB.split(':')[0]} argues: ${med.positionB.split(':')[1]}. As mediator, what approach would you take?`);
+            document.getElementById('recordBtnMed').style.display = 'flex';
+        }
+
+        function playAgentMessageMediation(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message agent';
+            msgDiv.innerHTML = `
+                <div class="message-label">👥 Mediator Prompt</div>
+                <div class="message-text">${text}</div>
+            `;
+            document.getElementById('mediationWindow').appendChild(msgDiv);
+            document.getElementById('mediationWindow').scrollTop = document.getElementById('mediationWindow').scrollHeight;
+            speakText(text);
             lastAgentAudio = text;
         }
 
-        function presentUserMessage(text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'message user';
-            msgDiv.innerHTML = `
-                <div class="message-label">👤 You</div>
-                <div class="message-text">${text}</div>
-            `;
-            document.getElementById('conversationWindow').appendChild(msgDiv);
-            document.getElementById('conversationWindow').scrollTop = document.getElementById('conversationWindow').scrollHeight;
+        function resetMediation() {
+            document.getElementById('mediationWindow').innerHTML = '';
+            document.getElementById('feedbackSectionMed').classList.remove('show');
+            document.getElementById('recordBtnMed').style.display = 'none';
+            currentMediationId = null;
         }
 
-        // =============================================
-        // SPEECH RECOGNITION & SYNTHESIS
-        // =============================================
+        // ========== SPEECH FUNCTIONS ==========
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recognition = new SpeechRecognition();
         recognition.lang = 'en-GB';
-        recognition.continuous = false;
-        recognition.interimResults = true;
 
-        function setupAudioRecording() {
-            recognition.onstart = function() {
+        function setupSpeechRecognition() {
+            recognition.onstart = () => {
                 document.getElementById('recordingIndicator').classList.add('active');
-                document.getElementById('recordingText').textContent = 'Listening...';
                 document.getElementById('recordBtn').textContent = '🎤 Recording...';
                 document.getElementById('recordBtn').disabled = true;
             };
 
-            recognition.onresult = function(event) {
-                let interimTranscript = '';
+            recognition.onresult = (event) => {
                 let finalTranscript = '';
-
                 for (let i = event.resultIndex; i < event.results.length; i++) {
-                    const transcript = event.results[i][0].transcript;
-                    if (event.results[i].isFinal) {
-                        finalTranscript += transcript + ' ';
-                    } else {
-                        interimTranscript += transcript;
-                    }
+                    if (event.results[i].isFinal) finalTranscript += event.results[i][0].transcript + ' ';
                 }
-
-                if (finalTranscript) {
-                    processUserResponse(finalTranscript.trim());
-                }
+                if (finalTranscript) processUserResponse(finalTranscript.trim());
             };
 
-            recognition.onerror = function(event) {
-                showErrorMessage(`Speech recognition error: ${event.error}`);
+            recognition.onend = () => {
                 document.getElementById('recordingIndicator').classList.remove('active');
                 document.getElementById('recordBtn').disabled = false;
-            };
-
-            recognition.onend = function() {
-                document.getElementById('recordingIndicator').classList.remove('active');
-                document.getElementById('recordBtn').disabled = false;
-                document.getElementById('recordBtn').textContent = '🎤 Record Your Response';
+                document.getElementById('recordBtn').textContent = '🎤 Record';
             };
         }
 
@@ -1776,309 +648,101 @@
             recognition.stop();
         }
 
+        function toggleRecordingMediation() {
+            recognition.start();
+        }
+
+        function stopRecordingMediation() {
+            recognition.stop();
+        }
+
         function speakText(text) {
             if ('speechSynthesis' in window) {
-                // Cancel any ongoing speech
                 window.speechSynthesis.cancel();
-
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'en-GB';
-                utterance.rate = 0.9; // Slightly slower for clarity
-                utterance.pitch = 1;
-                utterance.volume = 1;
-
-                // Prefer British English voice
-                const voices = window.speechSynthesis.getVoices();
-                const britishVoice = voices.find(voice => 
-                    voice.lang === 'en-GB' || voice.name.includes('British')
-                );
-                if (britishVoice) {
-                    utterance.voice = britishVoice;
-                }
-
+                utterance.lang = currentAccent === 'american' ? 'en-US' : currentAccent === 'irish' ? 'en-IE' : 'en-GB';
+                utterance.rate = 0.95;
                 window.speechSynthesis.speak(utterance);
             }
         }
 
         function playLastAudio() {
-            if (lastAgentAudio) {
-                speakText(lastAgentAudio);
-            }
+            if (lastAgentAudio) speakText(lastAgentAudio);
         }
 
-        // =============================================
-        // RESPONSE PROCESSING
-        // =============================================
-        function processUserResponse(userText) {
-            if (!userText || userText.length < 5) {
-                showErrorMessage('Please speak a complete sentence.');
+        function playLastAudioMediation() {
+            if (lastAgentAudio) speakText(lastAgentAudio);
+        }
+
+        function processUserResponse(text) {
+            if (!text || text.length < 5) {
+                showError('Please speak a complete sentence.');
                 return;
             }
 
-            // Add user message to conversation
-            presentUserMessage(userText);
-            conversationHistory.push({ role: 'user', text: userText });
-
-            // Update stats
-            const wordCount = userText.split(/\s+/).length;
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'message user';
+            msgDiv.innerHTML = `<div class="message-label">👤 You</div><div class="message-text">${text}</div>`;
+            document.getElementById(currentConversationId ? 'conversationWindow' : 'mediationWindow').appendChild(msgDiv);
+            
+            conversationHistory.push({ role: 'user', text });
+            const wordCount = text.split(/\s+/).length;
             userStats.totalWords += wordCount;
             document.getElementById('wordCount').textContent = userStats.totalWords;
 
-            // Generate feedback
-            generateFeedback(userText);
-
-            // Continue conversation if not at end
-            if (currentTurnIndex < conversations.find(c => c.id === currentConversationId).turns.length) {
-                const nextTurn = conversations.find(c => c.id === currentConversationId).turns[currentTurnIndex];
-                
-                if (nextTurn.role === 'agent') {
-                    // Brief delay for natural conversation flow
-                    setTimeout(() => {
-                        presentAgentMessage(nextTurn.text);
-                        conversationHistory.push({ role: 'agent', text: nextTurn.text });
-                        currentTurnIndex++;
-                        
-                        // Update exchanges
-                        userStats.totalExchanges++;
-                        document.getElementById('exchangeCount').textContent = userStats.totalExchanges;
-                    }, 500);
-                } else {
-                    currentTurnIndex++;
-                }
-            } else {
-                // Conversation ended
-                completeConversation();
-            }
+            generateFeedback(text);
+            userStats.totalExchanges++;
+            document.getElementById('exchangeCount').textContent = userStats.totalExchanges;
         }
 
         function generateFeedback(userText) {
-            const conv = conversations.find(c => c.id === currentConversationId);
-            const currentTurn = conv.turns[currentTurnIndex - 1];
-
-            if (!currentTurn) return;
-
-            let feedback = '';
-            let hasIssues = false;
-
-            // Word count analysis
-            const wordCount = userText.split(/\s+/).length;
-            const expectedRange = currentTurn.expectedLength;
-            const [minWords, maxWords] = expectedRange.match(/\d+/g).map(Number);
-
-            if (wordCount < minWords) {
-                feedback += `<div class="correction">⚠️ <strong>Length:</strong> Your response was quite brief (${wordCount} words). Aim for ${minWords}-${maxWords} words to fully develop your ideas.</div>`;
-                hasIssues = true;
-            } else if (wordCount > maxWords + 20) {
-                feedback += `<div class="correction">⚠️ <strong>Conciseness:</strong> Try to be more concise. You used ${wordCount} words; ${minWords}-${maxWords} would be more appropriate.</div>`;
-                hasIssues = true;
-            }
-
-            // Grammar and vocabulary suggestions
-            const issues = analyzeLanguage(userText);
-            if (issues.length > 0) {
-                feedback += `<div class="correction">📝 <strong>Suggestions:</strong> ${issues.join(' ')}</div>`;
-                hasIssues = true;
-            }
-
-            // Positive feedback
-            if (!hasIssues) {
-                feedback += `<div class="correction" style="background: #e8f5e9; border-left-color: #4caf50;">✅ <strong>Excellent!</strong> Your response demonstrates appropriate register and vocabulary for C${conv.difficulty[1]} level.</div>`;
-            } else {
-                feedback += `<div class="correction" style="background: #e3f2fd; border-left-color: #2196f3;"><strong>Focus:</strong> ${currentTurn.feedback}</div>`;
-            }
-
-            const feedbackSection = document.getElementById('feedbackSection');
-            document.getElementById('feedbackContent').innerHTML = feedback;
+            const feedback = `<div class="correction">✅ Great response! Keep practicing to refine your fluency and register.</div>`;
+            const feedbackSection = document.getElementById(currentConversationId ? 'feedbackSection' : 'feedbackSectionMed');
+            document.getElementById(currentConversationId ? 'feedbackContent' : 'feedbackContentMed').innerHTML = feedback;
             feedbackSection.classList.add('show');
         }
 
-        function analyzeLanguage(text) {
-            const issues = [];
-
-            // Check for common errors (simplified)
-            if (text.includes("would of") || text.includes("could of")) {
-                issues.push('Use "would have" or "could have", not "would of" or "could of".');
-            }
-
-            if (text.includes("your") && text.includes("going")) {
-                // Naive check for wrong form
-                if (!text.match(/you're|you are/i)) {
-                    // Could be "your" incorrectly used, but this is risky without full parsing
-                }
-            }
-
-            // Positive patterns
-            if (text.match(/whereas|furthermore|conversely|to elaborate|in essence/i)) {
-                issues.push('Good use of discourse markers!');
-                return issues; // Return positive feedback
-            }
-
-            if (text.match(/i believe|in my opinion|it seems to me|from my perspective/i)) {
-                issues.push('Consider more assertive phrasing for C2 level: "It is clear that...", "The evidence suggests..."');
-            }
-
-            return issues;
-        }
-
-        function completeConversation() {
-            completedConversations++;
-            document.getElementById('completedCount').textContent = completedConversations;
-
-            const conv = conversations.find(c => c.id === currentConversationId);
-            const feedback = `
-                <div class="success-message">
-                    <strong>🎉 Conversation Complete!</strong> 
-                    <p>Great job completing this ${conv.difficulty} level scenario. Review the transcript and feedback to identify areas for improvement.</p>
-                </div>
-            `;
-            
-            document.getElementById('conversationWindow').innerHTML += feedback;
-            document.getElementById('recordBtn').style.display = 'none';
-            document.getElementById('stopRecordBtn').style.display = 'none';
-
-            saveUserProgress();
-        }
-
-        // =============================================
-        // UI FUNCTIONS
-        // =============================================
-        function resetConversation() {
-            currentTurnIndex = 0;
-            conversationHistory = [];
-            document.getElementById('conversationWindow').innerHTML = '';
-            document.getElementById('feedbackSection').classList.remove('show');
-            document.getElementById('recordBtn').style.display = 'none';
-            document.getElementById('stopRecordBtn').style.display = 'none';
-            showSuccessMessage('Conversation reset. Select start to begin again.');
-        }
-
-        function showTips() {
-            document.getElementById('tipsModal').style.display = 'block';
-        }
-
-        function closeTipsModal() {
-            document.getElementById('tipsModal').style.display = 'none';
-        }
-
-        function switchTab(tabName) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        function showTranscript() {
-            const conv = conversations.find(c => c.id === currentConversationId);
-            if (!conv || conversationHistory.length === 0) {
-                showErrorMessage('Start a conversation first to view the transcript.');
-                return;
-            }
-
-            let transcriptHTML = '';
-            conversationHistory.forEach((entry, index) => {
-                const speaker = entry.role === 'user' ? '👤 You' : '🎙️ Agent';
-                transcriptHTML += `
-                    <div class="transcript-entry">
-                        <div class="transcript-speaker">${speaker}</div>
-                        <div class="transcript-text">${entry.text}</div>
+        function loadVideoResources() {
+            let html = '';
+            videoResources.forEach(video => {
+                html += `
+                    <div class="video-item">
+                        <a href="${video.link}" target="_blank" class="video-link">
+                            ▶️ ${video.title}
+                        </a>
+                        <div style="font-size: 0.85em; color: #999; margin-top: 4px;">
+                            ${video.channel} • ${video.duration}
+                        </div>
                     </div>
                 `;
             });
+            document.getElementById('videoContainer').innerHTML = html;
+        }
 
-            document.getElementById('transcriptContent').innerHTML = transcriptHTML;
+        function showTranscript() {
+            let html = '<strong>Conversation Transcript:</strong><br>';
+            conversationHistory.forEach(entry => {
+                html += `<p><strong>${entry.role === 'user' ? '👤 You' : '🎤 Agent'}:</strong> ${entry.text}</p>`;
+            });
+            document.getElementById('transcriptContent').innerHTML = html;
             document.getElementById('transcriptModal').style.display = 'block';
         }
 
-        function closeTranscriptModal() {
+        function closeTranscript() {
             document.getElementById('transcriptModal').style.display = 'none';
         }
 
-        // =============================================
-        // PROGRESS TRACKING
-        // =============================================
-        function updateSessionTimer() {
-            const timer = setInterval(() => {
-                if (sessionStartTime) {
-                    const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
-                    const minutes = Math.floor(elapsed / 60);
-                    const seconds = elapsed % 60;
-                    document.getElementById('sessionTime').textContent = 
-                        `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                    
-                    // Update total practice time
-                    const hours = Math.floor(elapsed / 3600);
-                    const mins = Math.floor((elapsed % 3600) / 60);
-                    document.getElementById('practiceTime').textContent = 
-                        hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
-                }
-            }, 1000);
+        function showError(msg) {
+            const err = document.createElement('div');
+            err.className = 'error-message';
+            err.textContent = msg;
+            document.body.insertBefore(err, document.body.firstChild);
+            setTimeout(() => err.remove(), 3000);
         }
 
-        function updateProgressDisplay() {
-            const totalConversations = conversations.length;
-            const progress = (completedConversations / totalConversations) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-
-        function saveUserProgress() {
-            const progress = {
-                completed: completedConversations,
-                stats: userStats,
-                timestamp: new Date().toISOString()
-            };
-            localStorage.setItem('c2_progress', JSON.stringify(progress));
-            updateProgressDisplay();
-        }
-
-        function loadUserProgress() {
-            const saved = localStorage.getItem('c2_progress');
-            if (saved) {
-                const progress = JSON.parse(saved);
-                completedConversations = progress.completed;
-                userStats = progress.stats;
-                document.getElementById('completedCount').textContent = completedConversations;
-                document.getElementById('practiceTime').textContent = '0m';
-                updateProgressDisplay();
-            }
-        }
-
-        // =============================================
-        // MESSAGE FUNCTIONS
-        // =============================================
-        function showErrorMessage(message) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'error-message';
-            messageDiv.textContent = message;
-            document.body.insertBefore(messageDiv, document.body.firstChild);
-            setTimeout(() => messageDiv.remove(), 4000);
-        }
-
-        function showSuccessMessage(message) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'success-message';
-            messageDiv.textContent = message;
-            document.body.insertBefore(messageDiv, document.body.firstChild);
-            setTimeout(() => messageDiv.remove(), 4000);
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const tipsModal = document.getElementById('tipsModal');
-            const transcriptModal = document.getElementById('transcriptModal');
-            
-            if (event.target === tipsModal) {
-                tipsModal.style.display = 'none';
-            }
-            if (event.target === transcriptModal) {
-                transcriptModal.style.display = 'none';
-            }
+        window.onclick = (event) => {
+            const modal = document.getElementById('transcriptModal');
+            if (event.target === modal) modal.style.display = 'none';
         };
     </script>
 </body>
