@@ -11,7 +11,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%), 
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%), 
                         url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80');
             background-size: cover;
             background-position: center;
@@ -19,90 +19,85 @@
             min-height: 100vh;
             padding: 20px;
         }
-        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
-        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .header p { font-size: 1.1em; opacity: 0.9; }
-        .mode-selector { display: flex; gap: 10px; justify-content: center; margin: 20px 0; padding: 0 30px; flex-wrap: wrap; }
-        .mode-btn { padding: 12px 24px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .container { max-width: 1400px; margin: 0 auto; background: rgba(255, 255, 255, 0.92); border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; text-align: center; }
+        .header h1 { font-size: 2.2em; margin-bottom: 8px; }
+        .header p { font-size: 1em; opacity: 0.9; }
+        .mode-selector { display: flex; gap: 10px; justify-content: center; margin: 15px 0; padding: 0 20px; flex-wrap: wrap; }
+        .mode-btn { padding: 10px 20px; border: 2px solid #667eea; background: rgba(255, 255, 255, 0.95); color: #667eea; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
         .mode-btn.active { background: #667eea; color: white; }
         .mode-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102,126,234,0.3); }
-        .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 40px; }
-        .left-panel { border-right: 2px solid #e0e0e0; padding-right: 30px; }
-        .right-panel { padding-left: 30px; }
-        .section-title { color: #333; font-size: 1.5em; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-        .section-title::before { content: ''; width: 4px; height: 30px; background: #667eea; border-radius: 2px; }
-        .context-box { background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        .context-title { font-weight: 600; color: #667eea; margin-bottom: 8px; }
-        .context-text { font-size: 0.95em; line-height: 1.6; color: #555; }
+        .main-content { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; padding: 30px; }
+        .left-panel { border-right: 2px solid #e0e0e0; padding-right: 25px; }
+        .right-panel { padding-left: 25px; }
+        .section-title { color: #333; font-size: 1.4em; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 4px; height: 25px; background: #667eea; border-radius: 2px; }
+        .context-box { background: rgba(240, 244, 255, 0.9); border-left: 4px solid #667eea; padding: 12px; border-radius: 6px; margin-bottom: 15px; }
+        .context-title { font-weight: 600; color: #667eea; margin-bottom: 6px; }
+        .context-text { font-size: 0.9em; line-height: 1.5; color: #555; }
         .conversation-selector select, .mediation-selector select {
-            width: 100%; padding: 12px; border: 2px solid #667eea; border-radius: 6px; font-size: 1em; background: white; cursor: pointer; margin-bottom: 12px;
+            width: 100%; padding: 10px; border: 2px solid #667eea; border-radius: 6px; font-size: 0.95em; background: rgba(255, 255, 255, 0.98); cursor: pointer; margin-bottom: 10px;
         }
-        .accent-selector { display: flex; gap: 8px; margin-bottom: 12px; }
-        .accent-btn { padding: 8px 12px; border: 2px solid #ddd; background: white; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: all 0.3s; }
+        .accent-selector { display: flex; gap: 8px; margin-bottom: 10px; }
+        .accent-btn { padding: 8px 12px; border: 2px solid #ddd; background: rgba(255, 255, 255, 0.95); border-radius: 4px; cursor: pointer; font-size: 0.85em; transition: all 0.3s; }
         .accent-btn.active { border-color: #667eea; background: #667eea; color: white; }
-        .btn-group { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        button { flex: 1; padding: 12px 20px; border: none; border-radius: 6px; font-size: 1em; font-weight: 600; cursor: pointer; transition: all 0.3s; min-width: 100px; }
+        .btn-group { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
+        button { flex: 1; padding: 10px 16px; border: none; border-radius: 6px; font-size: 0.95em; font-weight: 600; cursor: pointer; transition: all 0.3s; min-width: 90px; }
         .btn-primary { background: #667eea; color: white; }
         .btn-primary:hover:not(:disabled) { background: #5568d3; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102,126,234,0.4); }
-        .btn-secondary { background: #f0f0f0; color: #333; border: 2px solid #ddd; }
-        .btn-secondary:hover { background: #e8e8e8; border-color: #667eea; }
+        .btn-secondary { background: rgba(240, 240, 240, 0.95); color: #333; border: 2px solid #ddd; }
+        .btn-secondary:hover { background: rgba(232, 232, 232, 0.95); border-color: #667eea; }
         .btn-success { background: #48bb78; color: white; }
         .btn-success:hover { background: #38a169; }
-        .video-resources { background: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
-        .video-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e0e0e0; }
+        .video-resources { background: rgba(248, 249, 250, 0.95); border-radius: 8px; padding: 12px; margin-bottom: 15px; }
+        .video-item { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; }
         .video-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .video-link { color: #667eea; text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
         .video-link:hover { text-decoration: underline; }
-        .conversation-window { background: #f8f9fa; border-radius: 8px; padding: 20px; height: 500px; overflow-y: auto; margin-bottom: 20px; border: 1px solid #e0e0e0; }
-        .message { margin-bottom: 20px; padding: 12px 16px; border-radius: 8px; max-width: 90%; word-wrap: break-word; }
-        .message.agent { background: #e7f3ff; border-left: 4px solid #667eea; margin-right: auto; }
-        .message.user { background: #e6ffed; border-left: 4px solid #48bb78; margin-left: auto; text-align: right; }
-        .message-label { font-size: 0.8em; opacity: 0.7; margin-bottom: 5px; font-weight: 600; }
-        .message-text { font-size: 1em; line-height: 1.5; }
-        .feedback { background: #fef5e7; border-left: 4px solid #f39c12; padding: 15px; border-radius: 6px; margin: 15px 0; display: none; }
+        .conversation-window { background: rgba(248, 249, 250, 0.95); border-radius: 8px; padding: 15px; height: 350px; overflow-y: auto; margin-bottom: 15px; border: 1px solid #e0e0e0; }
+        .message { margin-bottom: 15px; padding: 10px 14px; border-radius: 8px; max-width: 90%; word-wrap: break-word; }
+        .message.agent { background: rgba(231, 243, 255, 0.9); border-left: 4px solid #667eea; margin-right: auto; }
+        .message.user { background: rgba(230, 255, 237, 0.9); border-left: 4px solid #48bb78; margin-left: auto; text-align: right; }
+        .message-label { font-size: 0.75em; opacity: 0.7; margin-bottom: 4px; font-weight: 600; }
+        .message-text { font-size: 0.95em; line-height: 1.4; }
+        .feedback { background: rgba(254, 245, 231, 0.95); border-left: 4px solid #f39c12; padding: 12px; border-radius: 6px; margin: 12px 0; display: none; }
         .feedback.show { display: block; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .feedback-title { font-weight: 600; color: #d68910; margin-bottom: 8px; }
-        .feedback-content { color: #333; font-size: 0.95em; line-height: 1.6; }
-        .correction { background: white; padding: 10px; border-radius: 4px; margin: 8px 0; border-left: 3px solid #e67e22; }
-        .stats-panel { background: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
-        .stat-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #e0e0e0; }
+        .feedback-title { font-weight: 600; color: #d68910; margin-bottom: 6px; }
+        .feedback-content { color: #333; font-size: 0.9em; line-height: 1.5; }
+        .correction { background: white; padding: 8px; border-radius: 4px; margin: 6px 0; border-left: 3px solid #e67e22; }
+        .stats-panel { background: rgba(248, 249, 250, 0.95); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .stat-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0; }
         .stat-item:last-child { border-bottom: none; }
-        .stat-label { color: #666; font-weight: 500; }
+        .stat-label { color: #666; font-weight: 500; font-size: 0.9em; }
         .stat-value { color: #667eea; font-weight: 700; }
-        .tips-section { background: #f0f4ff; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
-        .tips-title { color: #667eea; font-weight: 600; margin-bottom: 15px; }
-        .tip { background: white; padding: 12px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #667eea; font-size: 0.95em; line-height: 1.5; }
+        .tips-section { background: rgba(240, 244, 255, 0.9); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .tips-title { color: #667eea; font-weight: 600; margin-bottom: 12px; }
+        .tip { background: rgba(255, 255, 255, 0.95); padding: 10px; border-radius: 6px; margin-bottom: 8px; border-left: 3px solid #667eea; font-size: 0.9em; line-height: 1.4; }
         .tip strong { color: #667eea; }
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .modal-content { background: white; margin: 5% auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; animation: slideUp 0.3s; }
+        .modal-content { background: white; margin: 5% auto; padding: 25px; border-radius: 12px; width: 90%; max-width: 700px; max-height: 85vh; overflow-y: auto; animation: slideUp 0.3s; }
         @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .modal-header { font-size: 1.8em; font-weight: 600; color: #333; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .modal-header { font-size: 1.6em; font-weight: 600; color: #333; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
         .close-btn { font-size: 2em; font-weight: bold; color: #999; cursor: pointer; background: none; border: none; padding: 0; width: auto; }
         .close-btn:hover { color: #333; }
-        .tab-buttons { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tab-btn { flex: 1; padding: 10px; border: 2px solid #ddd; background: white; color: #333; border-radius: 6px; cursor: pointer; font-weight: 600; min-width: 80px; }
-        .tab-btn.active { border-color: #667eea; background: #667eea; color: white; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .mediation-prompt { background: #e8f5e9; border-left: 4px solid #48bb78; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
-        .mediation-prompt-title { font-weight: 600; color: #2e7d32; margin-bottom: 8px; }
-        .mediation-prompt-text { color: #333; line-height: 1.6; }
-        .positions { display: flex; gap: 15px; margin-bottom: 20px; }
-        .position { flex: 1; background: #f5f5f5; padding: 12px; border-radius: 6px; border-left: 3px solid #667eea; }
-        .position-title { font-weight: 600; color: #667eea; margin-bottom: 6px; }
-        .position-text { font-size: 0.9em; line-height: 1.5; color: #555; }
-        @media (max-width: 1024px) { .main-content { grid-template-columns: 1fr; } .left-panel { border-right: none; border-bottom: 2px solid #e0e0e0; padding-right: 0; padding-bottom: 30px; } .right-panel { padding-left: 0; } }
-        @media (max-width: 768px) { .container { border-radius: 0; } .main-content { padding: 20px; gap: 20px; } .mode-selector { padding: 0 15px; } .header { padding: 20px; } .header h1 { font-size: 1.8em; } .section-title { font-size: 1.2em; } .conversation-window { height: 400px; } }
-        .recording-indicator { display: flex; align-items: center; gap: 10px; padding: 15px; background: #fff5f5; border-left: 4px solid #f56565; border-radius: 6px; margin-bottom: 20px; display: none; }
+        .mediation-prompt { background: rgba(232, 245, 233, 0.95); border-left: 4px solid #48bb78; padding: 12px; border-radius: 6px; margin-bottom: 15px; }
+        .mediation-prompt-title { font-weight: 600; color: #2e7d32; margin-bottom: 6px; }
+        .mediation-prompt-text { color: #333; line-height: 1.5; font-size: 0.95em; }
+        .positions { display: flex; gap: 12px; margin-bottom: 15px; }
+        .position { flex: 1; background: rgba(245, 245, 245, 0.95); padding: 10px; border-radius: 6px; border-left: 3px solid #667eea; }
+        .position-title { font-weight: 600; color: #667eea; margin-bottom: 5px; font-size: 0.9em; }
+        .position-text { font-size: 0.85em; line-height: 1.4; color: #555; }
+        @media (max-width: 1024px) { .main-content { grid-template-columns: 1fr; gap: 15px; } .left-panel { border-right: none; border-bottom: 2px solid #e0e0e0; padding-right: 0; padding-bottom: 20px; } .right-panel { padding-left: 0; } }
+        @media (max-width: 768px) { .container { border-radius: 0; } .main-content { padding: 15px; gap: 15px; } .header { padding: 15px; } .header h1 { font-size: 1.6em; } .section-title { font-size: 1.1em; } .conversation-window { height: 280px; } .modal-content { margin: 10% auto; } }
+        .recording-indicator { display: flex; align-items: center; gap: 8px; padding: 12px; background: rgba(255, 245, 245, 0.95); border-left: 4px solid #f56565; border-radius: 6px; margin-bottom: 15px; display: none; font-size: 0.9em; }
         .recording-indicator.active { display: flex; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0%, 100% { background: #fff5f5; } 50% { background: #fed7d7; } }
-        .recording-dot { width: 12px; height: 12px; background: #f56565; border-radius: 50%; animation: blink 1s infinite; }
+        @keyframes pulse { 0%, 100% { background: rgba(255, 245, 245, 0.95); } 50% { background: rgba(254, 215, 215, 0.95); } }
+        .recording-dot { width: 10px; height: 10px; background: #f56565; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 49%, 100% { opacity: 1; } 50%, 99% { opacity: 0.3; } }
-        .error-message { background: #ffebee; color: #c62828; padding: 12px; border-radius: 6px; border-left: 4px solid #c62828; margin-bottom: 15px; }
-        .success-message { background: #e8f5e9; color: #2e7d32; padding: 12px; border-radius: 6px; border-left: 4px solid #2e7d32; margin-bottom: 15px; }
+        .error-message { background: rgba(255, 235, 238, 0.95); color: #c62828; padding: 10px; border-radius: 6px; border-left: 4px solid #c62828; margin-bottom: 12px; font-size: 0.9em; }
+        .success-message { background: rgba(232, 245, 233, 0.95); color: #2e7d32; padding: 10px; border-radius: 6px; border-left: 4px solid #2e7d32; margin-bottom: 12px; font-size: 0.9em; }
     </style>
 </head>
 <body>
@@ -125,20 +120,18 @@
                     <div class="section-title">Conversation Practice</div>
                     
                     <div class="conversation-selector">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Choose Scenario:</label>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 600; color: #333; font-size: 0.9em;">Choose Scenario:</label>
                         <select id="conversationSelect">
                             <option value="">-- Select a conversation --</option>
                         </select>
                     </div>
 
-                    <!-- Context Box -->
                     <div class="context-box" id="contextBox" style="display: none;">
                         <div class="context-title">📋 Exam Context</div>
                         <div class="context-text" id="contextText"></div>
                     </div>
 
-                    <!-- Accent Selector -->
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Agent Accent:</label>
+                    <label style="display: block; margin-bottom: 6px; font-weight: 600; color: #333; font-size: 0.9em;">Agent Accent:</label>
                     <div class="accent-selector">
                         <button class="accent-btn active" onclick="setAccent('british')">🇬🇧 British</button>
                         <button class="accent-btn" onclick="setAccent('american')">🇺🇸 American</button>
@@ -155,7 +148,7 @@
                         <span>Listening...</span>
                     </div>
 
-                    <div class="btn-group" style="margin-bottom: 20px;">
+                    <div class="btn-group">
                         <button class="btn-success" id="recordBtn" onclick="toggleRecording()" style="display: none;">🎤 Record</button>
                         <button id="stopRecordBtn" style="background: #f56565; color: white; display: none;" onclick="stopRecording()">⏹️ Stop</button>
                         <button class="btn-secondary" onclick="playLastAudio()">🔊 Replay</button>
@@ -173,7 +166,7 @@
                     <div class="section-title">Mediation Practice</div>
                     
                     <div class="mediation-selector">
-                        <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Choose Topic:</label>
+                        <label style="display: block; margin-bottom: 6px; font-weight: 600; color: #333; font-size: 0.9em;">Choose Topic:</label>
                         <select id="mediationSelect">
                             <option value="">-- Select a mediation topic --</option>
                         </select>
@@ -200,7 +193,7 @@
                         <div class="mediation-prompt-text" id="mediationPromptText"></div>
                     </div>
 
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #333;">Agent Accent:</label>
+                    <label style="display: block; margin-bottom: 6px; font-weight: 600; color: #333; font-size: 0.9em;">Agent Accent:</label>
                     <div class="accent-selector">
                         <button class="accent-btn active" onclick="setMediationAccent('british')">🇬🇧 British</button>
                         <button class="accent-btn" onclick="setMediationAccent('american')">🇺🇸 American</button>
@@ -217,7 +210,7 @@
                         <span>Listening...</span>
                     </div>
 
-                    <div class="btn-group" style="margin-bottom: 20px;">
+                    <div class="btn-group">
                         <button class="btn-success" id="recordBtnMed" onclick="toggleRecordingMediation()" style="display: none;">🎤 Record</button>
                         <button id="stopRecordBtnMed" style="background: #f56565; color: white; display: none;" onclick="stopRecordingMediation()">⏹️ Stop</button>
                         <button class="btn-secondary" onclick="playLastAudioMediation()">🔊 Replay</button>
@@ -262,7 +255,7 @@
                     </div>
                 </div>
 
-                <button class="btn-primary" onclick="showTranscript()" style="width: 100%; margin-bottom: 20px;">📄 View Transcript</button>
+                <button class="btn-primary" onclick="showTranscript()" style="width: 100%; margin-bottom: 15px;">📄 View Transcript</button>
 
                 <div class="tips-section">
                     <div class="tips-title">✨ Quick Tips</div>
@@ -283,7 +276,7 @@
                     </div>
                 </div>
 
-                <div class="stats-panel" style="margin-top: 20px;">
+                <div class="stats-panel">
                     <div class="stat-item">
                         <span class="stat-label">Words Spoken</span>
                         <span class="stat-value" id="wordCount">0</span>
@@ -309,7 +302,6 @@
     </div>
 
     <script>
-        // ========== MODE MANAGEMENT ==========
         function switchMode(mode) {
             document.getElementById('conversationMode').style.display = mode === 'conversation' ? 'block' : 'none';
             document.getElementById('mediationMode').style.display = mode === 'mediation' ? 'block' : 'none';
@@ -323,7 +315,6 @@
             }
         }
 
-        // ========== CONVERSATION SCENARIOS WITH CONTEXT ==========
         const conversations = [
             {
                 id: 1,
@@ -398,22 +389,21 @@
             }
         ];
 
-        // ========== MEDIATION TOPICS ==========
         const mediations = [
             {
                 id: 1,
                 title: "Remote Work Policy Disagreement",
                 context: "Your company is establishing a new hybrid work policy. Two departments have conflicting needs: the Sales team wants flexible remote work to better serve clients across time zones, while the Product Development team believes in-office collaboration drives innovation.",
-                positionA: "Sales: 'We lose clients because we can't match their availability. Full remote flexibility would boost our revenue by at least 15%. We're losing top talent to competitors who offer this.'",
-                positionB: "Product Dev: 'Our innovation rate dropped 30% with remote work. We need spontaneous hallway conversations. Plus, junior developers need mentorship. Everyone should be in office at least 3 days.'",
+                positionA: "Sales: 'We lose clients because we can't match their availability. Full remote flexibility would boost our revenue by at least 15%. We're losing top talent to competitors.'",
+                positionB: "Product Dev: 'Our innovation rate dropped 30% with remote work. We need spontaneous hallway conversations. Plus, junior developers need mentorship.'",
                 task: "As the HR Director, mediate between these positions and propose a solution that addresses both teams' core concerns while maintaining company cohesion."
             },
             {
                 id: 2,
                 title: "Budget Allocation Between Departments",
-                context: "Your company has limited training budget. Marketing wants to invest heavily in AI and digital marketing certifications. Operations wants to invest in supply chain optimization and automation skills. Both argue their training is critical.",
+                context: "Your company has limited training budget. Marketing wants to invest heavily in AI and digital marketing certifications. Operations wants to invest in supply chain optimization and automation skills.",
                 positionA: "Marketing: 'Digital trends change rapidly. If we don't upskill NOW, we'll lose competitive advantage. AI skills command premium salaries—we'll lose talent.'",
-                positionB: "Operations: 'We have a backlog of modernization projects. Half are delayed because our team lacks automation skills. Better training = faster implementation = cost savings.'",
+                positionB: "Operations: 'We have a backlog of modernization projects. Half are delayed because our team lacks automation skills. Better training means faster implementation and cost savings.'",
                 task: "Propose a balanced budget allocation strategy that demonstrates understanding of both departments' strategic importance to the organization."
             },
             {
@@ -421,12 +411,11 @@
                 title: "Sustainability vs. Profitability",
                 context: "A manufacturing company is facing pressure from investors to reduce environmental impact while maintaining profit margins. The Environmental team has a proposal for sustainable manufacturing processes. The Finance team is concerned about costs.",
                 positionA: "Environmental: 'Climate regulations are tightening. Early adoption positions us as market leaders. Consumer preferences are shifting—green products command premium prices.'",
-                positionB: "Finance: 'Proposed changes would increase production costs by 18% immediately. We'd need 3-4 years to recover through premium pricing. Investors want quarterly growth, not long-term bets.'",
+                positionB: "Finance: 'Proposed changes would increase production costs by 18% immediately. We'd need 3-4 years to recover through premium pricing. Investors want quarterly growth.'",
                 task: "Develop a phased implementation plan that balances environmental responsibility with business viability and shareholder expectations."
             }
         ];
 
-        // ========== VIDEO RESOURCES ==========
         const videoResources = [
             { title: "C2 Discourse Markers Masterclass", channel: "English with Lucy", duration: "12:34", link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
             { title: "IELTS C2 Speaking Tips", channel: "TED-Ed English", duration: "8:45", link: "https://www.youtube.com/watch?v=jNQXAC9IVRw" },
@@ -436,20 +425,16 @@
             { title: "Fluency & Connected Speech", channel: "Papa English", duration: "13:45", link: "https://www.youtube.com/watch?v=ZbZSe6N_BXs" }
         ];
 
-        // ========== STATE ==========
         let currentMode = 'conversation';
         let currentConversationId = null;
         let currentMediationId = null;
         let conversationHistory = [];
         let currentAccent = 'british';
         let currentMediationAccent = 'british';
-        let completedConversations = 0;
-        let completedMediations = 0;
         let userStats = { totalWords: 0, totalExchanges: 0 };
         let lastAgentAudio = null;
         let sessionStartTime = null;
 
-        // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', function() {
             populateConversationSelector();
             populateMediationSelector();
@@ -525,26 +510,17 @@
             event.target.classList.add('active');
         }
 
-        // ========== CONVERSATION PRACTICE ==========
         function startConversation() {
             const convId = parseInt(document.getElementById('conversationSelect').value);
             if (!convId) {
                 showError('Please select a conversation first.');
                 return;
             }
-            
             currentConversationId = convId;
             conversationHistory = [];
             sessionStartTime = Date.now();
-            
             const conv = conversations.find(c => c.id === convId);
-            document.getElementById('conversationWindow').innerHTML = `
-                <div class="message">
-                    <div class="message-label">📋 Context Setup</div>
-                    <div class="message-text">${conv.context}</div>
-                </div>
-            `;
-
+            document.getElementById('conversationWindow').innerHTML = `<div class="message"><div class="message-label">📋 Context Setup</div><div class="message-text">${conv.context}</div></div>`;
             if (conv.initiator === 'agent') {
                 setTimeout(() => playAgentMessage(conv.turns[0].text), 500);
             } else {
@@ -555,13 +531,9 @@
         function playAgentMessage(text) {
             const msgDiv = document.createElement('div');
             msgDiv.className = 'message agent';
-            msgDiv.innerHTML = `
-                <div class="message-label">🎤 Agent (${currentAccent.toUpperCase()})</div>
-                <div class="message-text">${text}</div>
-            `;
+            msgDiv.innerHTML = `<div class="message-label">🎤 Agent (${currentAccent.toUpperCase()})</div><div class="message-text">${text}</div>`;
             document.getElementById('conversationWindow').appendChild(msgDiv);
             document.getElementById('conversationWindow').scrollTop = document.getElementById('conversationWindow').scrollHeight;
-
             speakText(text);
             lastAgentAudio = text;
             document.getElementById('recordBtn').style.display = 'flex';
@@ -574,37 +546,25 @@
             currentConversationId = null;
         }
 
-        // ========== MEDIATION PRACTICE ==========
         function startMediation() {
             const medId = parseInt(document.getElementById('mediationSelect').value);
             if (!medId) {
                 showError('Please select a mediation topic first.');
                 return;
             }
-            
             currentMediationId = medId;
             conversationHistory = [];
             sessionStartTime = Date.now();
-            
-            document.getElementById('mediationWindow').innerHTML = `
-                <div class="message">
-                    <div class="message-label">📋 Mediation Setup</div>
-                    <div class="message-text">You are now the mediator. Your task is to find a balanced solution that addresses both positions. The parties will present their views first.</div>
-                </div>
-            `;
-            
+            document.getElementById('mediationWindow').innerHTML = `<div class="message"><div class="message-label">📋 Mediation Setup</div><div class="message-text">You are now the mediator. Your task is to find a balanced solution that addresses both positions.</div></div>`;
             const med = mediations.find(m => m.id === medId);
-            playAgentMessageMediation(`Let me briefly summarize both positions. ${med.positionA.split(':')[0]} believes: ${med.positionA.split(':')[1]}. Meanwhile, ${med.positionB.split(':')[0]} states: ${med.positionB.split(':')[1]}. Your task is to mediate.`);
+            playAgentMessageMediation(`Let me briefly summarize both positions. ${med.positionA.split(':')[0]} believes: ${med.positionA.split(':')[1]}. Meanwhile, ${med.positionB.split(':')[0]} believes: ${med.positionB.split(':')[1]}.`);
             document.getElementById('recordBtnMed').style.display = 'flex';
         }
 
         function playAgentMessageMediation(text) {
             const msgDiv = document.createElement('div');
             msgDiv.className = 'message agent';
-            msgDiv.innerHTML = `
-                <div class="message-label">👥 Mediator Prompt</div>
-                <div class="message-text">${text}</div>
-            `;
+            msgDiv.innerHTML = `<div class="message-label">👥 Mediator Prompt</div><div class="message-text">${text}</div>`;
             document.getElementById('mediationWindow').appendChild(msgDiv);
             document.getElementById('mediationWindow').scrollTop = document.getElementById('mediationWindow').scrollHeight;
             speakText(text);
@@ -618,7 +578,6 @@
             currentMediationId = null;
         }
 
-        // ========== SPEECH FUNCTIONS ==========
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         const recognition = new SpeechRecognition();
         recognition.lang = 'en-GB';
@@ -629,7 +588,6 @@
                 document.getElementById('recordBtn').textContent = '🎤 Recording...';
                 document.getElementById('recordBtn').disabled = true;
             };
-
             recognition.onresult = (event) => {
                 let finalTranscript = '';
                 for (let i = event.resultIndex; i < event.results.length; i++) {
@@ -637,7 +595,6 @@
                 }
                 if (finalTranscript) processUserResponse(finalTranscript.trim());
             };
-
             recognition.onend = () => {
                 document.getElementById('recordingIndicator').classList.remove('active');
                 document.getElementById('recordBtn').disabled = false;
@@ -645,21 +602,10 @@
             };
         }
 
-        function toggleRecording() {
-            recognition.start();
-        }
-
-        function stopRecording() {
-            recognition.stop();
-        }
-
-        function toggleRecordingMediation() {
-            recognition.start();
-        }
-
-        function stopRecordingMediation() {
-            recognition.stop();
-        }
+        function toggleRecording() { recognition.start(); }
+        function stopRecording() { recognition.stop(); }
+        function toggleRecordingMediation() { recognition.start(); }
+        function stopRecordingMediation() { recognition.stop(); }
 
         function speakText(text) {
             if ('speechSynthesis' in window) {
@@ -671,30 +617,22 @@
             }
         }
 
-        function playLastAudio() {
-            if (lastAgentAudio) speakText(lastAgentAudio);
-        }
-
-        function playLastAudioMediation() {
-            if (lastAgentAudio) speakText(lastAgentAudio);
-        }
+        function playLastAudio() { if (lastAgentAudio) speakText(lastAgentAudio); }
+        function playLastAudioMediation() { if (lastAgentAudio) speakText(lastAgentAudio); }
 
         function processUserResponse(text) {
             if (!text || text.length < 5) {
                 showError('Please speak a complete sentence.');
                 return;
             }
-
             const msgDiv = document.createElement('div');
             msgDiv.className = 'message user';
             msgDiv.innerHTML = `<div class="message-label">👤 You</div><div class="message-text">${text}</div>`;
             document.getElementById(currentConversationId ? 'conversationWindow' : 'mediationWindow').appendChild(msgDiv);
-            
             conversationHistory.push({ role: 'user', text });
             const wordCount = text.split(/\s+/).length;
             userStats.totalWords += wordCount;
             document.getElementById('wordCount').textContent = userStats.totalWords;
-
             generateFeedback(text);
             userStats.totalExchanges++;
             document.getElementById('exchangeCount').textContent = userStats.totalExchanges;
@@ -710,16 +648,7 @@
         function loadVideoResources() {
             let html = '';
             videoResources.forEach(video => {
-                html += `
-                    <div class="video-item">
-                        <a href="${video.link}" target="_blank" class="video-link">
-                            ▶️ ${video.title}
-                        </a>
-                        <div style="font-size: 0.85em; color: #999; margin-top: 4px;">
-                            ${video.channel} • ${video.duration}
-                        </div>
-                    </div>
-                `;
+                html += `<div class="video-item"><a href="${video.link}" target="_blank" class="video-link">▶️ ${video.title}</a><div style="font-size: 0.8em; color: #999; margin-top: 3px;">${video.channel} • ${video.duration}</div></div>`;
             });
             document.getElementById('videoContainer').innerHTML = html;
         }
@@ -733,9 +662,7 @@
             document.getElementById('transcriptModal').style.display = 'block';
         }
 
-        function closeTranscript() {
-            document.getElementById('transcriptModal').style.display = 'none';
-        }
+        function closeTranscript() { document.getElementById('transcriptModal').style.display = 'none'; }
 
         function showError(msg) {
             const err = document.createElement('div');
