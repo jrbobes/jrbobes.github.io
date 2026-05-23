@@ -43,6 +43,15 @@
             top: 0;
             z-index: 100;
             border-bottom: 1px solid #e8e8e8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .nav-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
         }
 
         nav h1 {
@@ -50,7 +59,6 @@
             font-weight: 400;
             letter-spacing: 0.8px;
             color: var(--primary-dark);
-            margin-bottom: 0.25rem;
             text-transform: uppercase;
         }
 
@@ -62,9 +70,51 @@
             text-transform: uppercase;
         }
 
+        nav .nav-right {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.8rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-size: 0.7rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid transparent;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary-dark);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a svg {
+            width: 14px;
+            height: 14px;
+        }
+
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: 80vh;
             background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
             display: flex;
             align-items: center;
@@ -98,54 +148,8 @@
             font-weight: 300;
             letter-spacing: -1.5px;
             color: var(--primary-dark);
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             line-height: 1.2;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: #555;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 0.9rem 2.2rem;
-            background: var(--primary-dark);
-            color: white;
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 400;
-            font-size: 0.85rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--primary-dark);
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #2c2c2c;
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: -1;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
         .scroll-indicator {
@@ -247,121 +251,6 @@
             line-height: 1.8;
             opacity: 0;
             animation: slideInUp 0.8s ease-out 0.3s forwards;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            opacity: 0;
-            animation: slideInUp 0.8s ease-out 0.4s forwards;
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.1rem;
-            background: transparent;
-            color: var(--primary-dark);
-            text-decoration: none;
-            border: 1px solid #ddd;
-            border-radius: 0;
-            font-weight: 400;
-            font-size: 0.75rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .social-link::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--neutral-light);
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: -1;
-        }
-
-        .social-link:hover::after {
-            left: 100%;
-        }
-
-        .social-link:hover {
-            color: var(--primary-dark);
-            border-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .social-link svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .github-link {
-            display: inline-block;
-            padding: 0.9rem 2.2rem;
-            background: var(--primary-dark);
-            color: white;
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 400;
-            font-size: 0.75rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 2rem;
-            border: 1px solid var(--primary-dark);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0;
-            animation: slideInUp 0.8s ease-out 0.5s forwards;
-        }
-
-        .github-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: #2c2c2c;
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: -1;
-        }
-
-        .github-link:hover::before {
-            left: 100%;
-        }
-
-        .github-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .academic-profiles {
-            background: var(--neutral-light);
-            padding: 1.8rem;
-            border-radius: 0;
-            border: 1px solid #e0e0e0;
-            margin-top: 2.5rem;
-            opacity: 0;
-            animation: slideInUp 0.8s ease-out 0.6s forwards;
-        }
-
-        .academic-profiles h3 {
-            font-size: 0.8rem;
-            color: var(--primary-dark);
-            margin-bottom: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
         }
 
         /* Projects Section */
@@ -545,6 +434,17 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            nav .nav-right {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
             .about-section {
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
@@ -561,16 +461,25 @@
         }
 
         @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            nav h1 {
+                font-size: 1rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.65rem;
+            }
+
             .hero {
-                height: 80vh;
+                height: 70vh;
             }
 
             .hero-content h2 {
                 font-size: 1.8rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
             }
 
             .about-section {
@@ -592,10 +501,6 @@
                 font-size: 1.6rem;
             }
 
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
             .project-image {
                 height: 180px;
             }
@@ -606,6 +511,21 @@
         }
 
         @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            nav .nav-right {
+                gap: 0.8rem;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                padding: 0.3rem 0.5rem;
+                font-size: 0.6rem;
+            }
+
             .hero {
                 height: 60vh;
             }
@@ -614,22 +534,9 @@
                 font-size: 1.4rem;
             }
 
-            .hero-content p {
-                font-size: 0.95rem;
-            }
-
             .about-content h2,
             .projects-header h2 {
                 font-size: 1.4rem;
-            }
-
-            .social-links {
-                flex-direction: column;
-            }
-
-            .social-link {
-                width: 100%;
-                justify-content: center;
             }
 
             .project-card {
@@ -644,15 +551,6 @@
                 gap: 1.5rem;
             }
 
-            .cta-button {
-                padding: 0.8rem 1.8rem;
-                font-size: 0.8rem;
-            }
-
-            nav h1 {
-                font-size: 1rem;
-            }
-
             main-container {
                 padding: 0 1.5rem;
             }
@@ -662,16 +560,48 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <h1>José Bobes</h1>
-        <p class="subtitle">Developer • Researcher • Innovator</p>
+        <div class="nav-left">
+            <h1>José Bobes</h1>
+            <p class="subtitle">Developer • Researcher • Innovator</p>
+        </div>
+        <div class="nav-right">
+            <a href="https://github.com/jrbobes" target="_blank" title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 . .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.017 12.017 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://scholar.google.com/citations?user=jngC0tUAAAAJ" target="_blank" title="Google Scholar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                Scholar
+            </a>
+            <a href="https://orcid.org/0000-0002-7317-3039" target="_blank" title="ORCID">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 7v10"></path>
+                    <path d="M9 9h6"></path>
+                </svg>
+                ORCID
+            </a>
+            <a href="https://www.linkedin.com/in/jos%C3%A9-bobes-bascar%C3%A1n-54891269/" target="_blank" title="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.809 0-9.731h3.554v1.375c.43-.66 1.201-1.6 2.923-1.6 2.135 0 3.735 1.396 3.735 4.4v5.156z"/>
+                    <circle cx="5.937" cy="9.021" r="1.578"/>
+                    <path d="M6.009 20.452h-3.554V10.721h3.554z"/>
+                    <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                </svg>
+                LinkedIn
+            </a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h2>Building Tomorrow's Solutions</h2>
-            <p>A minimalist approach to software engineering and research</p>
-            <a href="#about" class="cta-button">Discover</a>
         </div>
         <div class="scroll-indicator">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -697,39 +627,8 @@
                     With expertise in AI, machine learning, and epidemiological research, I combine rigorous scientific methodology with clean, efficient software engineering practices.
                 </p>
                 <p>
-                    My work focuses on delivering solutions that are as beautiful in their simplicity as they are powerful in their impact. Every line of code serves a purpose.
+                    My work focuses on delivering solutions that are as beautiful in their simplicity as they are powerful in their impact.
                 </p>
-                <a href="https://github.com/jrbobes" target="_blank" class="github-link">View on GitHub</a>
-
-                <div class="academic-profiles">
-                    <h3>Academic Presence</h3>
-                    <div class="social-links">
-                        <a href="https://scholar.google.com/citations?user=jngC0tUAAAAJ" target="_blank" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                            </svg>
-                            Scholar
-                        </a>
-                        <a href="https://orcid.org/0000-0002-7317-3039" target="_blank" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <path d="M12 7v10"></path>
-                                <path d="M9 9h6"></path>
-                            </svg>
-                            ORCID
-                        </a>
-                        <a href="https://www.linkedin.com/in/jos%C3%A9-bobes-bascar%C3%A1n-54891269/" target="_blank" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.809 0-9.731h3.554v1.375c.43-.66 1.201-1.6 2.923-1.6 2.135 0 3.735 1.396 3.735 4.4v5.156z"/>
-                                <circle cx="5.937" cy="9.021" r="1.578"/>
-                                <path d="M6.009 20.452h-3.554V10.721h3.554z"/>
-                                <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                            </svg>
-                            LinkedIn
-                        </a>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -832,15 +731,6 @@
                 img.style.transform = `translate(${distX}px, ${distY}px)`;
             });
         });
-
-        // Cubic bezier easing for smooth animations
-        function easeOutCubic(t) {
-            return 1 - Math.pow(1 - t, 3);
-        }
-
-        // Smooth scroll on wheel
-        let isScrolling = false;
-        let scrollPosition = 0;
 
         // Intersection Observer for lazy animation triggers
         const observerOptions = {
