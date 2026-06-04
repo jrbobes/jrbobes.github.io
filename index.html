@@ -1,188 +1,654 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-    <title>José Bobes — Developer & Researcher</title>
-
-    <!-- Inter from Google Fonts (preconnect + preload friendly) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="José Bobes - Machine Learning & Research. Minimalist design, impactful solutions.">
+    <title>José Bobes — ML Engineer & Researcher</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Base reset and typography */
-        *{box-sizing:border-box;margin:0;padding:0}
-        html,body{height:100%;width:100%;overflow:auto;font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:var(--bg-soft, #fbf8f6);color:var(--text, #0f1720)}
-        :root{
-            --nav-h:76px;
-            --footer-h:56px;
-            --gap:26px;
-            --max-w:1280px;
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* RESET & BASE                                                           */
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        *,*::before,*::after { box-sizing: border-box; }
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            color: #e0e6ed;
+            overflow-x: hidden;
+        }
+        
+        body { display: flex; flex-direction: column; }
 
-            /* Variante A — cálida y minimal */
-            --bg-soft:#fbf8f6;           /* página */
-            --card-from:#ffffff;         /* tarjeta superior */
-            --card-to:#fbfbfb;           /* tarjeta inferior */
-            --card-bg:linear-gradient(180deg,var(--card-from),var(--card-to));
-            --muted:#6b7280;
-            --accent:#f3efe9;           /* hover / sutil */
-            --link:#0b61ff;             /* enlaces */
-            --text:#0f1720;
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* ANIMATED BACKGROUND                                                    */
+        /* ════════════════���══════════════════════════════════════════════════════ */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0d1117 100%);
+            z-index: -1;
+            opacity: 1;
         }
 
-        /* Navigation */
-        nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:transparent}
-        nav h1{font-size:1.05rem;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;color:var(--text)}
-        nav small{color:var(--muted);font-weight:500}
-        nav .nav-right{display:flex;gap:18px;align-items:center}
-        nav a{font-size:1rem;color:var(--text);text-decoration:none;opacity:0.95}
-
-        /* Main area: prefer single-screen layout but allow scroll when necessary */
-        .viewport{min-height:calc(100vh - var(--nav-h) - var(--footer-h));display:grid;place-items:center;padding:32px}
-
-        /* Grid layout using available width; left about, right projects */
-        .page-grid{width:100%;max-width:var(--max-w);height:100%;display:grid;grid-template-columns: 1.05fr 1.25fr;gap:var(--gap);align-items:stretch}
-
-        /* About card: larger type, no borders, subtle background */
-        .about-card{background:var(--card-bg);padding:40px;border-radius:14px;display:flex;flex-direction:column;gap:20px;box-shadow:0 12px 40px rgba(15,23,32,0.05)}
-        .about-card h2{font-size:1.6rem;font-weight:700;color:var(--text);letter-spacing:-0.6px}
-        .about-card p{color:#334155;line-height:1.65;font-size:1.05rem}
-        .contact{margin-top:auto;color:var(--muted);font-size:0.98rem}
-        .contact a{color:var(--text);text-decoration:none;font-weight:600}
-
-        /* Projects column: vertical list but optimized to use space */
-        .projects-column{display:grid;grid-auto-rows:1fr;gap:18px}
-        .project-card{display:flex;gap:20px;padding:20px;background:transparent;border-radius:12px;align-items:center}
-        .project-card:hover{background:var(--accent)}
-
-        /* Project image: larger, rounded, no borders. Use shadows for depth */
-        .project-image{width:240px;height:152px;flex:0 0 240px;object-fit:cover;border-radius:12px;box-shadow:0 12px 36px rgba(15,23,32,0.06)}
-        .project-content{display:flex;flex-direction:column;gap:10px}
-        .project-content h3{font-size:1.28rem;margin:0;color:var(--text);font-weight:700}
-        .project-content p{font-size:1.02rem;color:#334155;margin:0}
-        .project-link{margin-top:auto;font-weight:700;font-size:0.95rem;color:var(--link);text-decoration:none}
-
-        /* Footer */
-        footer{height:var(--footer-h);display:flex;align-items:center;justify-content:center;background:transparent;font-size:0.95rem;color:var(--muted)}
-
-        /* Responsiveness: collapse to single column but still allow scroll on narrow heights */
-        @media (max-width:1000px){
-            .page-grid{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
-            .project-image{width:160px;height:104px}
-            nav{padding:0 18px}
-            .viewport{padding:18px}
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: float 20s ease-in-out infinite;
         }
 
-        /* If viewport height is small, slightly reduce typography to avoid overflow */
-        @media (max-height:680px){
-            :root{--nav-h:64px;--footer-h:48px}
-            .about-card h2{font-size:1.45rem}
-            .about-card p{font-size:1rem}
-            .project-content h3{font-size:1.12rem}
-            .project-content p{font-size:0.95rem}
-            .project-image{width:180px;height:110px}
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #00d4ff, #0066ff);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
         }
 
-        /* Accessibility: ensure focus visible for keyboard users */
-        a:focus{outline:3px solid rgba(11,97,255,0.14);outline-offset:3px;border-radius:6px}
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #ff006e, #8338ec);
+            bottom: -50px;
+            left: -100px;
+            animation-delay: 5s;
+        }
 
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #00d4ff, #00f5ff);
+            top: 50%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(40px, -40px) rotate(180deg); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* NAVIGATION                                                             */
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        nav {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(15, 20, 25, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .logo {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        nav .logo h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            background: linear-gradient(135deg, #00d4ff, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav .logo small {
+            font-size: 0.7rem;
+            color: #8b92a0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #b0b8c1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #ff006e);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: #00d4ff; }
+
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* MAIN CONTENT                                                           */
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        main {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            padding: 60px 48px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0;
+            background: linear-gradient(135deg, #ffffff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #a0a8b0;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .hero .role-badge {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            padding: 10px 16px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 24px;
+            font-size: 0.9rem;
+            color: #00d4ff;
+            width: fit-content;
+            font-weight: 500;
+        }
+
+        .role-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00d4ff;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .cta-btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            color: #0f1419;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 48px rgba(0, 212, 255, 0.5);
+        }
+
+        .cta-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e6ed;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* VISUAL SHOWCASE */
+        .visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .showcase-card {
+            position: absolute;
+            width: 280px;
+            height: 360px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .showcase-card:nth-child(1) {
+            transform: translateX(-80px) translateY(-40px) rotateZ(-8deg);
+            z-index: 3;
+        }
+
+        .showcase-card:nth-child(2) {
+            transform: translateY(0) rotateZ(0deg);
+            z-index: 2;
+        }
+
+        .showcase-card:nth-child(3) {
+            transform: translateX(80px) translateY(40px) rotateZ(8deg);
+            z-index: 1;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-20px) rotateZ(0deg) !important;
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
+            z-index: 4 !important;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            height: 50px;
+            width: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #a0a8b0;
+            line-height: 1.5;
+            margin: 0;
+            flex: 1;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* STATS SECTION                                                          */
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        .stats {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(0, 212, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #8b92a0;
+            margin-top: 8px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* FOOTER                                                                 */
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        footer {
+            padding: 48px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(15, 20, 25, 0.5);
+            color: #8b92a0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover { color: #ff006e; }
+
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* RESPONSIVE                                                             */
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero h2 { font-size: 2.8rem; }
+
+            .visual { height: 350px; }
+
+            .showcase-card {
+                width: 240px;
+                height: 300px;
+                padding: 20px;
+            }
+
+            .showcase-card:nth-child(1) {
+                transform: translateX(-60px) translateY(-30px) rotateZ(-6deg);
+            }
+
+            .showcase-card:nth-child(2) {
+                transform: translateY(0) rotateZ(0deg);
+            }
+
+            .showcase-card:nth-child(3) {
+                transform: translateX(60px) translateY(30px) rotateZ(6deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 24px;
+                height: 70px;
+            }
+
+            nav .nav-links { gap: 16px; }
+
+            main { padding: 40px 24px; }
+
+            .hero h2 { font-size: 2rem; }
+
+            .hero .subtitle { font-size: 1rem; }
+
+            .visual { height: 280px; }
+
+            .showcase-card {
+                width: 200px;
+                height: 250px;
+                padding: 16px;
+            }
+
+            .showcase-card:nth-child(1) {
+                transform: translateX(-40px) translateY(-20px) rotateZ(-4deg);
+            }
+
+            .showcase-card:nth-child(3) {
+                transform: translateX(40px) translateY(20px) rotateZ(4deg);
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn { width: 100%; justify-content: center; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* SCROLL ANIMATIONS                                                      */
+        /* ═══════════════════════════════════════════════════════════════════════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero { animation: fadeInUp 0.8s ease-out; }
+        .visual { animation: fadeInUp 0.8s ease-out 0.2s backwards; }
+        .stats { animation: fadeInUp 0.8s ease-out 0.4s backwards; }
     </style>
 </head>
 <body>
+    <!-- Background Canvas -->
+    <div class="bg-canvas"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Navigation -->
     <nav>
-        <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="logo">
             <h1>José Bobes</h1>
-            <small>Developer • Researcher • Innovator</small>
+            <small>ML & Research</small>
         </div>
-        <div class="nav-right">
-            <a href="https://github.com/jrbobes" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://scholar.google.com/citations?user=jngC0tUAAAAJ" target="_blank" rel="noopener">Scholar</a>
-            <a href="https://orcid.org/0000-0002-7317-3039" target="_blank" rel="noopener">ORCID</a>
+        <div class="nav-links">
+            <a href="https://github.com/jrbobes" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://scholar.google.com/citations?user=jngC0tUAAAAJ" target="_blank" rel="noopener noreferrer">Scholar</a>
+            <a href="https://linkedin.com/in/jrbobes" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://orcid.org/0000-0002-7317-3039" target="_blank" rel="noopener noreferrer">ORCID</a>
         </div>
     </nav>
 
-    <div class="viewport">
-        <div class="page-grid">
-            <!-- ABOUT (left) -->
-            <section class="about-card" aria-labelledby="about-title">
-                <h2 id="about-title">About — Minimal, Effective</h2>
-                <p>
-                    Soy desarrollador e investigador centrado en soluciones minimalistas y de alto impacto. Mi trabajo combina modelos de machine learning con buenas prácticas reproducibles para proyectos en salud y epidemiología.
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="role-badge">Active in ML & Healthcare Research</div>
+                
+                <h2>Machine Learning for Impact</h2>
+                
+                <p class="subtitle">
+                    I design minimalist, high-impact solutions at the intersection of machine learning and biomedical research. My focus: reproducible pipelines, interpretable models, and collaboration between engineers and domain experts.
                 </p>
-                <p>
-                    Prefiero interfaces limpias y tipografía cuidada que facilitan la lectura y la colaboración entre clínicos e ingenieros.
+
+                <p class="subtitle">
+                    Specializing in epidemic forecasting, sleep analysis, and oncology research with human-in-the-loop approaches.
                 </p>
-                <div class="contact">Contacto: <a href="mailto:jrbobes@gmail.com">jrbobes@gmail.com</a></div>
+
+                <div class="cta-buttons">
+                    <a href="https://github.com/jrbobes" class="cta-btn primary" target="_blank" rel="noopener noreferrer">Explore Projects</a>
+                    <a href="mailto:jrbobes@gmail.com" class="cta-btn secondary">Get in Touch</a>
+                </div>
             </section>
 
-            <!-- PROJECTS (right) -->
-            <aside class="projects-column" aria-label="Proyectos destacados">
-                <div class="project-card" style="background:var(--card-bg)">
-                    <img class="project-image"
-                         src="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=1600&q=80&auto=format&fit=crop"
-                         srcset="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=600&q=80 600w, https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=900&q=80 900w, https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=1600&q=80 1600w"
-                         sizes="(max-width:1000px) 160px, 240px"
-                         alt="Laboratory microscope" loading="lazy">
-                    <div class="project-content">
-                        <h3>Hantavirus — Epidemic Tracker</h3>
-                        <p>Plataforma de visualización y análisis predictivo para monitorizar brotes en tiempo real.</p>
-                        <a class="project-link" href="https://epidemic-tracker--jrbobes.replit.app" target="_blank" rel="noopener">Explorar el tracker →</a>
+            <!-- Visual Showcase -->
+            <section class="visual">
+                <div class="card-stack">
+                    <div class="showcase-card">
+                        <div class="card-icon">🦠</div>
+                        <h3 class="card-title">Epidemic Tracking</h3>
+                        <p class="card-desc">Real-time hantavirus forecasting and visualization platform for outbreak monitoring</p>
                     </div>
-                </div>
 
-                <div class="project-card" style="background:var(--card-bg)">
-                    <img class="project-image"
-                         src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&q=80&auto=format&fit=crop"
-                         srcset="https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&q=80 600w, https://images.unsplash.com/photo-1584515933487-779824d29309?w=900&q=80 900w, https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&q=80 1600w"
-                         sizes="(max-width:1000px) 160px, 240px"
-                         alt="Medical data visualization" loading="lazy">
-                    <div class="project-content">
-                        <h3>Next-gen-somnus</h3>
-                        <p>Análisis de registros de sueño con modelos interpretables y pipelines reproducibles.</p>
-                        <a class="project-link" href="https://next-gen-somnus.github.io/" target="_blank" rel="noopener">Detalles →</a>
+                    <div class="showcase-card">
+                        <div class="card-icon">🧬</div>
+                        <h3 class="card-title">Sleep Analysis</h3>
+                        <p class="card-desc">Interpretable ML for polysomnography with reproducible research pipelines</p>
                     </div>
-                </div>
 
-                <div class="project-card" style="background:var(--card-bg)">
-                    <img class="project-image"
-                         src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80&auto=format&fit=crop"
-                         srcset="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80 600w, https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80 900w, https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80 1600w"
-                         sizes="(max-width:1000px) 160px, 240px"
-                         alt="Histology slide / cancer research" loading="lazy">
-                    <div class="project-content">
-                        <h3>HITL — Pancreatic Cancer Research</h3>
-                        <p>Human-in-the-loop ML para investigación oncológica, integrando pericia clínica y modelos supervisados.</p>
-                        <a class="project-link" href="https://www.udc.es/en/lidiagroup/proyectos_id/hl_ml/" target="_blank" rel="noopener">Discover →</a>
+                    <div class="showcase-card">
+                        <div class="card-icon">🔬</div>
+                        <h3 class="card-title">Oncology Research</h3>
+                        <p class="card-desc">Human-in-the-loop machine learning for pancreatic cancer detection and analysis</p>
                     </div>
                 </div>
-            </aside>
+            </section>
         </div>
-    </div>
 
+        <!-- Stats Section -->
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Research Publications</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Active Projects</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Reproducible Code</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <div>&copy; 2026 José Bobes — <a href="https://github.com/jrbobes" target="_blank" rel="noopener">GitHub</a></div>
+        <p>© 2026 José Bobes — Crafted with minimal elegance | <a href="https://github.com/jrbobes/jrbobes.github.io" target="_blank" rel="noopener noreferrer">View Source</a></p>
     </footer>
 
+    <!-- Interaction Scripts -->
     <script>
-        // Ensure images don't cause layout shifts; hide if fail
-        document.querySelectorAll('.project-image').forEach(img => {
-            img.addEventListener('error', () => img.style.display = 'none');
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
         });
 
-        // Small safety: if content would overflow vertically on very small viewports, slightly scale type down
-        function safeScale() {
-            const vh = window.innerHeight;
-            if (vh < 520) {
-                document.documentElement.style.setProperty('--nav-h','56px');
-                document.documentElement.style.setProperty('--footer-h','44px');
-                document.body.style.fontSize = '15px';
-            } else {
-                document.body.style.fontSize = '';
-            }
+        // Parallax effect on mouse move
+        const container = document.querySelector('.container');
+        if (container) {
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 30;
+                const y = (e.clientY / window.innerHeight - 0.5) * 30;
+                const visual = document.querySelector('.visual');
+                if (visual) {
+                    visual.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg)`;
+                }
+            });
         }
-        safeScale();
-        window.addEventListener('resize', safeScale, {passive:true});
+
+        // Card interaction
+        document.querySelectorAll('.showcase-card').forEach((card, index) => {
+            card.addEventListener('mouseenter', function() {
+                document.querySelectorAll('.showcase-card').forEach((c, i) => {
+                    if (i !== index) c.style.opacity = '0.5';
+                });
+            });
+
+            card.addEventListener('mouseleave', function() {
+                document.querySelectorAll('.showcase-card').forEach((c) => {
+                    c.style.opacity = '1';
+                });
+            });
+        });
+
+        // Observe elements for fade-in animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
