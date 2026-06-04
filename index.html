@@ -1,763 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>José Bobes - Developer & Researcher</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Reset & base */
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%;width:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif;background:#fafafa;color:#1a1a1a}
+        :root{--nav-h:64px;--footer-h:48px;--gap:18px;--max-w:1200px}
 
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Layout: single screen without scroll */
+        nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#fff;border-bottom:1px solid #e8e8e8}
+        nav h1{font-size:0.95rem;font-weight:600;letter-spacing:0.6px;text-transform:uppercase}
+        nav .nav-right{display:flex;gap:12px;align-items:center}
+        nav a{font-size:0.75rem;color:inherit;text-decoration:none}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #fafafa;
-            color: #2c2c2c;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-        }
+        /* Main area fills remaining viewport between nav and footer */
+        .viewport{height:calc(100vh - var(--nav-h) - var(--footer-h));display:grid;place-items:center;padding:20px}
+        .page-grid{width:100%;max-width:var(--max-w);height:100%;display:grid;grid-template-columns: 1fr 1fr;grid-template-rows: 1fr;gap:var(--gap);align-items:stretch}
 
-        /* Minimalist neutral color palette */
-        :root {
-            --primary-dark: #1a1a1a;
-            --primary-light: #ffffff;
-            --neutral-light: #f5f5f5;
-            --neutral-medium: #cccccc;
-            --neutral-dark: #333333;
-            --accent: #4a4a4a;
-        }
+        /* About column (left) and Projects column (right) stacked to fit */
+        .about-card{background:#fff;padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 6px 24px rgba(0,0,0,0.06);border:1px solid #eee}
+        .about-card h2{font-weight:600;font-size:1.25rem;letter-spacing:-0.6px}
+        .about-card p{color:#444;line-height:1.45;font-size:0.92rem}
 
-        /* Navigation */
-        nav {
-            background: var(--primary-light);
-            padding: 1.5rem 2rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #e8e8e8;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .nav-left {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-        }
-
-        nav h1 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            letter-spacing: 0.8px;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-        }
-
-        nav .subtitle {
-            font-size: 0.75rem;
-            color: #888;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-        }
-
-        nav .nav-right {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 0.8rem;
-            color: var(--primary-dark);
-            text-decoration: none;
-            font-size: 0.7rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            border-bottom: 1px solid transparent;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary-dark);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        nav a svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 600px;
-            padding: 2rem;
-            opacity: 0;
-            animation: fadeInScale 1.2s ease-out forwards;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .hero-content h2 {
-            font-size: 3rem;
-            font-weight: 300;
-            letter-spacing: -1.5px;
-            color: var(--primary-dark);
-            margin-bottom: 2rem;
-            line-height: 1.2;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            animation: gentleBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes gentleBounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
-
-        .scroll-indicator svg {
-            width: 20px;
-            height: 20px;
-            stroke: #999;
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        /* Main Container */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* About Section */
-        .about-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            padding: 6rem 2rem;
-            background: var(--primary-light);
-            position: relative;
-            align-items: center;
-        }
-
-        .about-image-wrapper {
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-        }
-
-        .about-image {
-            width: 100%;
-            height: auto;
-            min-height: 450px;
-            border-radius: 0;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: grayscale(100%);
-        }
-
-        .about-image-wrapper:hover .about-image {
-            transform: scale(1.02);
-            filter: grayscale(80%);
-        }
-
-        .about-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .about-content h2 {
-            font-size: 2.2rem;
-            font-weight: 300;
-            letter-spacing: -1px;
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-            opacity: 0;
-            animation: slideInUp 0.8s ease-out 0.2s forwards;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .about-content p {
-            font-size: 0.95rem;
-            color: #555;
-            margin-bottom: 1.2rem;
-            line-height: 1.8;
-            opacity: 0;
-            animation: slideInUp 0.8s ease-out 0.3s forwards;
-        }
-
-        /* Projects Section */
-        .projects-section {
-            padding: 6rem 2rem;
-            background: var(--neutral-light);
-            position: relative;
-        }
-
-        .projects-header {
-            max-width: 1200px;
-            margin: 0 auto 3.5rem;
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-            animation: slideInUp 0.8s ease-out forwards;
-        }
-
-        .projects-header h2 {
-            font-size: 2.2rem;
-            font-weight: 300;
-            letter-spacing: -1px;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .projects-header p {
-            color: #666;
-            font-size: 0.95rem;
-            font-weight: 300;
-        }
-
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 0;
-            border: 1px solid #e0e0e0;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            animation: slideInUp 0.8s ease-out forwards;
-        }
-
-        .project-card:nth-child(1) { animation-delay: 0.2s; }
-        .project-card:nth-child(2) { animation-delay: 0.3s; }
-        .project-card:nth-child(3) { animation-delay: 0.4s; }
-
-        .project-image {
-            width: 100%;
-            height: 220px;
-            border-radius: 0;
-            object-fit: cover;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: grayscale(100%);
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.03);
-            filter: grayscale(50%);
-        }
-
-        .project-card:hover {
-            border-color: var(--primary-dark);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-            transform: translateY(-6px);
-        }
-
-        .project-content {
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            line-height: 1.3;
-            letter-spacing: -0.3px;
-        }
-
-        .project-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            line-height: 1.7;
-            flex-grow: 1;
-        }
-
-        .project-link {
-            display: inline-block;
-            padding: 0.7rem 1.6rem;
-            background: transparent;
-            color: var(--primary-dark);
-            text-decoration: none;
-            border-radius: 0;
-            font-weight: 600;
-            font-size: 0.75rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #ddd;
-            width: fit-content;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .project-link::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--primary-dark);
-            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: -1;
-        }
-
-        .project-link:hover::after {
-            left: 100%;
-        }
-
-        .project-link:hover {
-            color: white;
-            border-color: var(--primary-dark);
-            transform: translateX(4px);
-        }
+        /* Projects column: grid of compact cards that fit */
+        .projects-column{display:grid;grid-template-rows:repeat(3,1fr);gap:var(--gap);}
+        .project-card{display:flex;gap:14px;padding:14px;background:#fff;border:1px solid #eee;align-items:center}
+        .project-image{width:120px;height:88px;flex:0 0 120px;object-fit:cover;border-radius:4px;border:1px solid #e6e6e6}
+        .project-content{display:flex;flex-direction:column;gap:8px}
+        .project-content h3{font-size:1rem;margin:0}
+        .project-content p{font-size:0.85rem;color:#555;margin:0}
+        .project-link{margin-top:auto;font-weight:600;font-size:0.78rem;color:#1a1a1a;text-decoration:none}
 
         /* Footer */
-        footer {
-            background: white;
-            color: #888;
-            text-align: center;
-            padding: 2.5rem 2rem;
-            border-top: 1px solid #e8e8e8;
-            font-size: 0.85rem;
-            position: relative;
-            z-index: 2;
+        footer{height:var(--footer-h);display:flex;align-items:center;justify-content:center;border-top:1px solid #e8e8e8;background:#fff;font-size:0.85rem}
+
+        /* Responsive: collapse to single column if very narrow but still fit without scroll */
+        @media (max-width:920px){
+            .page-grid{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
+            .projects-column{grid-template-rows:repeat(3,auto)}
+            .viewport{padding:12px}
+            .project-image{width:100px;height:72px}
         }
 
-        footer a {
-            color: var(--primary-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        /* Tweak text sizes to help fit on small viewports */
+        @media (max-height:600px){
+            .about-card h2{font-size:1.05rem}
+            .about-card p,.project-content p{font-size:0.82rem}
+            .project-content h3{font-size:0.95rem}
         }
 
-        footer a:hover {
-            color: #555;
-        }
-
-        /* Reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-
-            nav .nav-right {
-                width: 100%;
-                flex-wrap: wrap;
-            }
-
-            .about-section {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                padding: 4rem 2rem;
-            }
-
-            .hero-content h2 {
-                font-size: 2.2rem;
-            }
-
-            .projects-container {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            nav h1 {
-                font-size: 1rem;
-            }
-
-            nav a {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.65rem;
-            }
-
-            .hero {
-                height: 70vh;
-            }
-
-            .hero-content h2 {
-                font-size: 1.8rem;
-            }
-
-            .about-section {
-                padding: 3rem 1.5rem;
-                gap: 2rem;
-            }
-
-            .projects-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .projects-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-content h2,
-            .projects-header h2 {
-                font-size: 1.6rem;
-            }
-
-            .project-image {
-                height: 180px;
-            }
-
-            .about-image {
-                min-height: 350px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            nav {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            nav .nav-right {
-                gap: 0.8rem;
-                flex-wrap: wrap;
-            }
-
-            nav a {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.6rem;
-            }
-
-            .hero {
-                height: 60vh;
-            }
-
-            .hero-content h2 {
-                font-size: 1.4rem;
-            }
-
-            .about-content h2,
-            .projects-header h2 {
-                font-size: 1.4rem;
-            }
-
-            .project-card {
-                padding: 0;
-            }
-
-            .project-content {
-                padding: 1.5rem;
-            }
-
-            .projects-container {
-                gap: 1.5rem;
-            }
-
-            main-container {
-                padding: 0 1.5rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
-        <div class="nav-left">
+        <div style="display:flex;flex-direction:column;">
             <h1>José Bobes</h1>
-            <p class="subtitle">Developer • Researcher • Innovator</p>
+            <small style="color:#888;font-size:0.68rem">Developer • Researcher • Innovator</small>
         </div>
         <div class="nav-right">
-            <a href="https://github.com/jrbobes" target="_blank" title="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.[...]
-                </svg>
-                GitHub
-            </a>
-            <a href="https://scholar.google.com/citations?user=jngC0tUAAAAJ" target="_blank" title="Google Scholar">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-                Scholar
-            </a>
-            <a href="https://orcid.org/0000-0002-7317-3039" target="_blank" title="ORCID">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 7v10"></path>
-                    <path d="M9 9h6"></path>
-                </svg>
-                ORCID
-            </a>
-            <a href="https://www.linkedin.com/in/jos%C3%A9-bobes-bascar%C3%A1n-54891269/" target="_blank" title="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.418-.103.249-.129.597-.129.946v5.441h-3.554s.05-8.809 0-9.731h3.554v1.375c.43-.6[...]
-                    <circle cx="5.937" cy="9.021" r="1.578"/>
-                    <path d="M6.009 20.452h-3.554V10.721h3.554z"/>
-                    <path d="M22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                </svg>
-                LinkedIn
-            </a>
+            <a href="https://github.com/jrbobes" target="_blank">GitHub</a>
+            <a href="https://scholar.google.com/citations?user=jngC0tUAAAAJ" target="_blank">Scholar</a>
+            <a href="https://orcid.org/0000-0002-7317-3039" target="_blank">ORCID</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Building Tomorrow's Solutions</h2>
-        </div>
-        <div class="scroll-indicator">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3v14M12 17l-5-5M12 17l5-5" stroke="currentColor" fill="none"/>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Main Container -->
-    <div class="main-container">
-        <!-- About Section -->
-        <section class="about-section" id="about">
-            <div class="about-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop" alt="Technology and Innovation" class="about-image reveal">
-            </div>
-
-            <div class="about-content">
-                <h2>About Me</h2>
+    <div class="viewport">
+        <div class="page-grid">
+            <!-- ABOUT (left) - photo removed as requested -->
+            <section class="about-card" aria-labelledby="about-title">
+                <h2 id="about-title">About Me</h2>
                 <p>
-                    I'm a software developer and researcher passionate about creating elegant, minimalist solutions that tackle complex problems at the intersection of technology and science.
+                    Soy desarrollador e investigador con foco en soluciones minimalistas y de alto impacto. Combino machine learning y metodología científica para proyectos en salud y epidemiología.
                 </p>
                 <p>
-                    With expertise in AI, machine learning, and epidemiological research, I combine rigorous scientific methodology with clean, efficient software engineering practices.
+                    Prefiero diseños limpios, reproducibles y eficientes que facilitan la colaboración entre equipos y la integración con flujos clínicos.
                 </p>
-                <p>
-                    My work focuses on delivering solutions that are as beautiful in their simplicity as they are powerful in their impact.
-                </p>
-            </div>
-        </section>
+                <p style="margin-top:8px;color:#666;font-size:0.82rem">Contacto: <a href="mailto:jrbobes@gmail.com">jrbobes@gmail.com</a></p>
+            </section>
 
-        <!-- Projects Section -->
-        <section class="projects-section">
-            <div class="projects-header">
-                <h2>Featured Projects</h2>
-                <p>Clean, purposeful solutions in research and software engineering</p>
-            </div>
-            <div class="projects-container">
+            <!-- PROJECTS (right) -->
+            <aside class="projects-column" aria-label="Proyectos destacados">
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1573864037282-f48c6eb53141?w=500&q=80" alt="Hantavirus Epidemic Tracker" class="project-image">
+                    <img class="project-image" src="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=800&q=80&auto=format&fit=crop" alt="Laboratory microscope">
                     <div class="project-content">
                         <h3>Hantavirus Epidemic Tracker</h3>
-                        <p>
-                            An epidemiological tracking system providing real-time visualization and predictive analytics for disease monitoring. Built with precision and clarity as core principl[...]
-                        </p>
-                        <a href="https://epidemic-tracker--jrbobes.replit.app" target="_blank" class="project-link">Explore →</a>
+                        <p>Visualización y análisis predictivo para el monitoreo de epidemias.</p>
+                        <a class="project-link" href="https://epidemic-tracker--jrbobes.replit.app" target="_blank">Explorar →</a>
                     </div>
                 </div>
+
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=500&q=80" alt="Next-gen-somnus Sleep Analysis" class="project-image">
+                    <img class="project-image" src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80&auto=format&fit=crop" alt="Medical data visualization">
                     <div class="project-content">
                         <h3>Next-gen-somnus</h3>
-                        <p>
-                            Machine learning algorithms for comprehensive sleep recording analysis. Advancing diagnostic capabilities through clean, interpretable models and elegant data visualiz[...]
-                        </p>
-                        <a href="https://next-gen-somnus.github.io/" target="_blank" class="project-link">Learn More →</a>
+                        <p>Análisis de registros de sueño con modelos interpretables.</p>
+                        <a class="project-link" href="https://next-gen-somnus.github.io/" target="_blank">Detalles →</a>
                     </div>
                 </div>
+
                 <div class="project-card">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80" alt="Pancreatic Cancer Research" class="project-image">
+                    <img class="project-image" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80&auto=format&fit=crop" alt="Histology slide / cancer research">
                     <div class="project-content">
                         <h3>HITL: Pancreatic Cancer Research</h3>
-                        <p>
-                            Human-in-the-Loop machine learning applied to oncology research. Integrating human expertise with automated learning for more intuitive and effective solutions.
-                        </p>
-                        <a href="https://www.udc.es/en/lidiagroup/proyectos_id/hl_ml/" target="_blank" class="project-link">Discover →</a>
+                        <p>Human-in-the-loop ML para investigación oncológica, integrando experto y modelos.</p>
+                        <a class="project-link" href="https://www.udc.es/en/lidiagroup/proyectos_id/hl_ml/" target="_blank">Discover →</a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </aside>
+        </div>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 José Bobes. All rights reserved. | <a href="https://github.com/jrbobes" target="_blank">GitHub</a></p>
+        <div>&copy; 2026 José Bobes — <a href="https://github.com/jrbobes" target="_blank">GitHub</a></div>
     </footer>
 
     <script>
-        // Smooth scroll reveal on scroll
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            reveals.forEach(reveal => {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveal.getBoundingClientRect().top;
-                const revealPoint = 100;
-                
-                if (revealTop < windowHeight - revealPoint) {
-                    reveal.classList.add('active');
-                }
-            });
-        }
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // Subtle parallax effect on mouse move
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            const images = document.querySelectorAll('.about-image, .project-image');
-            images.forEach((img) => {
-                const rect = img.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                const distX = (mouseX - centerX) * 0.01;
-                const distY = (mouseY - centerY) * 0.01;
-                
-                img.style.transform = `translate(${distX}px, ${distY}px)`;
-            });
-        });
-
-        // Intersection Observer for lazy animation triggers
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(element => {
-            observer.observe(element);
-        });
-
-        // Initialize
-        window.addEventListener('scroll', revealOnScroll, { passive: true });
-        revealOnScroll();
-
-        // Stagger animations for project cards
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach((card, index) => {
-            observer.observe(card);
+        // No scrolling page: keep interactions minimal and stable.
+        // Ensure images don't introduce layout shifts after load.
+        document.querySelectorAll('.project-image').forEach(img => {
+            img.addEventListener('error', () => img.style.display = 'none');
         });
     </script>
 </body>
