@@ -1,64 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title>José Bobes - Developer & Researcher</title>
+    <title>José Bobes — Developer & Researcher</title>
     <style>
-        /* Reset & base */
+        /* Base reset and typography */
         *{box-sizing:border-box;margin:0;padding:0}
-        html,body{height:100%;width:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif;background:#fafafa;color:#1a1a1a}
-        :root{--nav-h:64px;--footer-h:48px;--gap:18px;--max-w:1200px}
+        html,body{height:100%;width:100%;overflow:hidden;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#fbfdff;color:#0f1720}
+        :root{
+            --nav-h:72px;
+            --footer-h:52px;
+            --gap:22px;
+            --max-w:1280px;
+            --accent:#e6f0ff; /* subtle blue */
+            --muted:#6b7280;
+            --text: #0f1720;
+        }
 
-        /* Layout: single screen without scroll */
-        nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#fff;border-bottom:1px solid #e8e8e8}
-        nav h1{font-size:0.95rem;font-weight:600;letter-spacing:0.6px;text-transform:uppercase}
-        nav .nav-right{display:flex;gap:12px;align-items:center}
-        nav a{font-size:0.75rem;color:inherit;text-decoration:none}
+        /* Navigation */
+        nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:transparent}
+        nav h1{font-size:1rem;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;color:var(--text)}
+        nav small{color:var(--muted);font-weight:500}
+        nav .nav-right{display:flex;gap:16px;align-items:center}
+        nav a{font-size:0.9rem;color:var(--text);text-decoration:none;opacity:0.9}
 
-        /* Main area fills remaining viewport between nav and footer */
-        .viewport{height:calc(100vh - var(--nav-h) - var(--footer-h));display:grid;place-items:center;padding:20px}
-        .page-grid{width:100%;max-width:var(--max-w);height:100%;display:grid;grid-template-columns: 1fr 1fr;grid-template-rows: 1fr;gap:var(--gap);align-items:stretch}
+        /* Main area fits between nav and footer, no scroll */
+        .viewport{height:calc(100vh - var(--nav-h) - var(--footer-h));display:grid;place-items:center;padding:28px}
 
-        /* About column (left) and Projects column (right) stacked to fit */
-        .about-card{background:#fff;padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 6px 24px rgba(0,0,0,0.06);border:1px solid #eee}
-        .about-card h2{font-weight:600;font-size:1.25rem;letter-spacing:-0.6px}
-        .about-card p{color:#444;line-height:1.45;font-size:0.92rem}
+        /* Grid layout using available width; left about, right projects */
+        .page-grid{width:100%;max-width:var(--max-w);height:100%;display:grid;grid-template-columns: 1.05fr 1.25fr;gap:var(--gap);align-items:stretch}
 
-        /* Projects column: grid of compact cards that fit */
-        .projects-column{display:grid;grid-template-rows:repeat(3,1fr);gap:var(--gap);}
-        .project-card{display:flex;gap:14px;padding:14px;background:#fff;border:1px solid #eee;align-items:center}
-        .project-image{width:120px;height:88px;flex:0 0 120px;object-fit:cover;border-radius:4px;border:1px solid #e6e6e6}
+        /* About card: larger type, no borders, subtle background */
+        .about-card{background:linear-gradient(180deg,var(--accent),#ffffff);padding:34px;border-radius:12px;box-shadow:none;display:flex;flex-direction:column;gap:18px}
+        .about-card h2{font-size:1.6rem;font-weight:700;color:var(--text);letter-spacing:-0.6px}
+        .about-card p{color:#334155;line-height:1.6;font-size:1.05rem}
+        .contact{margin-top:auto;color:var(--muted);font-size:0.95rem}
+        .contact a{color:var(--text);text-decoration:none;font-weight:600}
+
+        /* Projects column: vertical list but use space efficiently */
+        .projects-column{display:grid;grid-auto-rows:1fr;gap:18px}
+        .project-card{display:flex;gap:18px;padding:18px;background:transparent;border-radius:10px;align-items:center}
+        .project-card:hover{background:rgba(230,240,255,0.6)}
+
+        /* Project image: larger, rounded, no borders */
+        .project-image{width:220px;height:140px;flex:0 0 220px;object-fit:cover;border-radius:10px;box-shadow:0 8px 30px rgba(15,23,32,0.06)}
         .project-content{display:flex;flex-direction:column;gap:8px}
-        .project-content h3{font-size:1rem;margin:0}
-        .project-content p{font-size:0.85rem;color:#555;margin:0}
-        .project-link{margin-top:auto;font-weight:600;font-size:0.78rem;color:#1a1a1a;text-decoration:none}
+        .project-content h3{font-size:1.2rem;margin:0;color:var(--text);font-weight:700}
+        .project-content p{font-size:0.98rem;color:#334155;margin:0}
+        .project-link{margin-top:auto;font-weight:700;font-size:0.92rem;color:#0b61ff;text-decoration:none}
 
         /* Footer */
-        footer{height:var(--footer-h);display:flex;align-items:center;justify-content:center;border-top:1px solid #e8e8e8;background:#fff;font-size:0.85rem}
+        footer{height:var(--footer-h);display:flex;align-items:center;justify-content:center;background:transparent;font-size:0.95rem;color:var(--muted)}
 
-        /* Responsive: collapse to single column if very narrow but still fit without scroll */
-        @media (max-width:920px){
+        /* Responsiveness: collapse to single column, still fit without scroll on narrow heights */
+        @media (max-width:1000px){
             .page-grid{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
-            .projects-column{grid-template-rows:repeat(3,auto)}
-            .viewport{padding:12px}
-            .project-image{width:100px;height:72px}
+            .project-image{width:140px;height:96px}
         }
 
-        /* Tweak text sizes to help fit on small viewports */
-        @media (max-height:600px){
-            .about-card h2{font-size:1.05rem}
-            .about-card p,.project-content p{font-size:0.82rem}
-            .project-content h3{font-size:0.95rem}
+        @media (max-height:640px){
+            :root{--nav-h:64px;--footer-h:48px}
+            .about-card h2{font-size:1.35rem}
+            .about-card p{font-size:0.98rem}
+            .project-content h3{font-size:1.05rem}
+            .project-content p{font-size:0.9rem}
+            .project-image{width:160px;height:100px}
         }
 
+        /* Accessibility: ensure focus visible for keyboard users */
+        a:focus{outline:3px solid rgba(11,97,255,0.14);outline-offset:3px;border-radius:6px}
     </style>
 </head>
 <body>
     <nav>
-        <div style="display:flex;flex-direction:column;">
+        <div style="display:flex;flex-direction:column;gap:4px">
             <h1>José Bobes</h1>
-            <small style="color:#888;font-size:0.68rem">Developer • Researcher • Innovator</small>
+            <small>Developer • Researcher • Innovator</small>
         </div>
         <div class="nav-right">
             <a href="https://github.com/jrbobes" target="_blank">GitHub</a>
@@ -69,43 +87,43 @@
 
     <div class="viewport">
         <div class="page-grid">
-            <!-- ABOUT (left) - photo removed as requested -->
+            <!-- ABOUT (left) -->
             <section class="about-card" aria-labelledby="about-title">
-                <h2 id="about-title">About Me</h2>
+                <h2 id="about-title">About — Minimal, Effective</h2>
                 <p>
-                    Soy desarrollador e investigador con foco en soluciones minimalistas y de alto impacto. Combino machine learning y metodología científica para proyectos en salud y epidemiología.
+                    Soy desarrollador e investigador centrado en soluciones minimalistas y de alto impacto. Mi trabajo combina modelos de machine learning con buenas prácticas reproducibles para proyectos en salud y epidemiología.
                 </p>
                 <p>
-                    Prefiero diseños limpios, reproducibles y eficientes que facilitan la colaboración entre equipos y la integración con flujos clínicos.
+                    Prefiero interfaces limpias y tipografía cuidada que facilitan la lectura y la colaboración entre clínicos e ingenieros.
                 </p>
-                <p style="margin-top:8px;color:#666;font-size:0.82rem">Contacto: <a href="mailto:jrbobes@gmail.com">jrbobes@gmail.com</a></p>
+                <div class="contact">Contacto: <a href="mailto:jrbobes@gmail.com">jrbobes@gmail.com</a></div>
             </section>
 
             <!-- PROJECTS (right) -->
             <aside class="projects-column" aria-label="Proyectos destacados">
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=800&q=80&auto=format&fit=crop" alt="Laboratory microscope">
+                <div class="project-card" style="background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:20px">
+                    <img class="project-image" src="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=1600&q=80&auto=format&fit=crop" alt="Laboratory microscope">
                     <div class="project-content">
-                        <h3>Hantavirus Epidemic Tracker</h3>
-                        <p>Visualización y análisis predictivo para el monitoreo de epidemias.</p>
-                        <a class="project-link" href="https://epidemic-tracker--jrbobes.replit.app" target="_blank">Explorar →</a>
+                        <h3>Hantavirus — Epidemic Tracker</h3>
+                        <p>Plataforma de visualización y análisis predictivo para monitorizar brotes en tiempo real.</p>
+                        <a class="project-link" href="https://epidemic-tracker--jrbobes.replit.app" target="_blank">Explorar el tracker →</a>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80&auto=format&fit=crop" alt="Medical data visualization">
+                <div class="project-card" style="background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:20px">
+                    <img class="project-image" src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&q=80&auto=format&fit=crop" alt="Medical data visualization">
                     <div class="project-content">
                         <h3>Next-gen-somnus</h3>
-                        <p>Análisis de registros de sueño con modelos interpretables.</p>
+                        <p>Análisis de registros de sueño con modelos interpretables y pipelines reproducibles.</p>
                         <a class="project-link" href="https://next-gen-somnus.github.io/" target="_blank">Detalles →</a>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80&auto=format&fit=crop" alt="Histology slide / cancer research">
+                <div class="project-card" style="background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:20px">
+                    <img class="project-image" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80&auto=format&fit=crop" alt="Histology slide / cancer research">
                     <div class="project-content">
-                        <h3>HITL: Pancreatic Cancer Research</h3>
-                        <p>Human-in-the-loop ML para investigación oncológica, integrando experto y modelos.</p>
+                        <h3>HITL — Pancreatic Cancer Research</h3>
+                        <p>Human-in-the-loop ML para investigación oncológica, integrando pericia clínica y modelos supervisados.</p>
                         <a class="project-link" href="https://www.udc.es/en/lidiagroup/proyectos_id/hl_ml/" target="_blank">Discover →</a>
                     </div>
                 </div>
@@ -118,11 +136,22 @@
     </footer>
 
     <script>
-        // No scrolling page: keep interactions minimal and stable.
-        // Ensure images don't introduce layout shifts after load.
+        // Ensure images don't cause layout shifts; hide if fail
         document.querySelectorAll('.project-image').forEach(img => {
             img.addEventListener('error', () => img.style.display = 'none');
         });
+
+        // Small safety: if content would overflow vertically on very small viewports, scale type down slightly
+        function safeScale() {
+            const vh = window.innerHeight;
+            if (vh < 520) {
+                document.documentElement.style.setProperty('--nav-h','56px');
+                document.documentElement.style.setProperty('--footer-h','44px');
+                document.body.style.fontSize = '15px';
+            }
+        }
+        safeScale();
+        window.addEventListener('resize', safeScale, {passive:true});
     </script>
 </body>
 </html>
