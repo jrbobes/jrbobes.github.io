@@ -5,59 +5,63 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <title>José Bobes — Developer & Researcher</title>
 
-    <!-- Inter from Google Fonts -->
+    <!-- Inter from Google Fonts (preconnect + preload friendly) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* Base reset and typography */
         *{box-sizing:border-box;margin:0;padding:0}
-        html,body{height:100%;width:100%;overflow:auto;font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:#fbfbfb;color:#0f1720}
+        html,body{height:100%;width:100%;overflow:auto;font-family:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:var(--bg-soft, #fbf8f6);color:var(--text, #0f1720)}
         :root{
-            --nav-h:72px;
+            --nav-h:76px;
             --footer-h:56px;
-            --gap:22px;
+            --gap:26px;
             --max-w:1280px;
 
-            /* Default subtle, slightly warm-gray tone (based on Kasra's clean palettes) */
-            --bg-soft:#fbf8f6;
-            --card-bg:linear-gradient(180deg,#ffffff,#fbfbfb);
+            /* Variante A — cálida y minimal */
+            --bg-soft:#fbf8f6;           /* página */
+            --card-from:#ffffff;         /* tarjeta superior */
+            --card-to:#fbfbfb;           /* tarjeta inferior */
+            --card-bg:linear-gradient(180deg,var(--card-from),var(--card-to));
             --muted:#6b7280;
-            --accent:#f3efe9; /* soft warm */
-            --link:#0b61ff;
+            --accent:#f3efe9;           /* hover / sutil */
+            --link:#0b61ff;             /* enlaces */
             --text:#0f1720;
         }
 
         /* Navigation */
-        nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:transparent}
+        nav{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:transparent}
         nav h1{font-size:1.05rem;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;color:var(--text)}
         nav small{color:var(--muted);font-weight:500}
-        nav .nav-right{display:flex;gap:16px;align-items:center}
-        nav a{font-size:0.95rem;color:var(--text);text-decoration:none;opacity:0.95}
+        nav .nav-right{display:flex;gap:18px;align-items:center}
+        nav a{font-size:1rem;color:var(--text);text-decoration:none;opacity:0.95}
 
         /* Main area: prefer single-screen layout but allow scroll when necessary */
-        .viewport{min-height:calc(100vh - var(--nav-h) - var(--footer-h));display:grid;place-items:center;padding:28px}
+        .viewport{min-height:calc(100vh - var(--nav-h) - var(--footer-h));display:grid;place-items:center;padding:32px}
 
         /* Grid layout using available width; left about, right projects */
         .page-grid{width:100%;max-width:var(--max-w);height:100%;display:grid;grid-template-columns: 1.05fr 1.25fr;gap:var(--gap);align-items:stretch}
 
         /* About card: larger type, no borders, subtle background */
-        .about-card{background:var(--card-bg);padding:36px;border-radius:12px;display:flex;flex-direction:column;gap:18px;box-shadow:0 10px 30px rgba(15,23,32,0.04)}
+        .about-card{background:var(--card-bg);padding:40px;border-radius:14px;display:flex;flex-direction:column;gap:20px;box-shadow:0 12px 40px rgba(15,23,32,0.05)}
         .about-card h2{font-size:1.6rem;font-weight:700;color:var(--text);letter-spacing:-0.6px}
-        .about-card p{color:#334155;line-height:1.6;font-size:1.05rem}
-        .contact{margin-top:auto;color:var(--muted);font-size:0.95rem}
+        .about-card p{color:#334155;line-height:1.65;font-size:1.05rem}
+        .contact{margin-top:auto;color:var(--muted);font-size:0.98rem}
         .contact a{color:var(--text);text-decoration:none;font-weight:600}
 
         /* Projects column: vertical list but optimized to use space */
         .projects-column{display:grid;grid-auto-rows:1fr;gap:18px}
-        .project-card{display:flex;gap:18px;padding:18px;background:transparent;border-radius:12px;align-items:center}
+        .project-card{display:flex;gap:20px;padding:20px;background:transparent;border-radius:12px;align-items:center}
         .project-card:hover{background:var(--accent)}
 
         /* Project image: larger, rounded, no borders. Use shadows for depth */
-        .project-image{width:220px;height:140px;flex:0 0 220px;object-fit:cover;border-radius:10px;box-shadow:0 8px 30px rgba(15,23,32,0.06)}
-        .project-content{display:flex;flex-direction:column;gap:8px}
-        .project-content h3{font-size:1.2rem;margin:0;color:var(--text);font-weight:700}
-        .project-content p{font-size:0.98rem;color:#334155;margin:0}
-        .project-link{margin-top:auto;font-weight:700;font-size:0.92rem;color:var(--link);text-decoration:none}
+        .project-image{width:240px;height:152px;flex:0 0 240px;object-fit:cover;border-radius:12px;box-shadow:0 12px 36px rgba(15,23,32,0.06)}
+        .project-content{display:flex;flex-direction:column;gap:10px}
+        .project-content h3{font-size:1.28rem;margin:0;color:var(--text);font-weight:700}
+        .project-content p{font-size:1.02rem;color:#334155;margin:0}
+        .project-link{margin-top:auto;font-weight:700;font-size:0.95rem;color:var(--link);text-decoration:none}
 
         /* Footer */
         footer{height:var(--footer-h);display:flex;align-items:center;justify-content:center;background:transparent;font-size:0.95rem;color:var(--muted)}
@@ -65,17 +69,19 @@
         /* Responsiveness: collapse to single column but still allow scroll on narrow heights */
         @media (max-width:1000px){
             .page-grid{grid-template-columns:1fr;grid-template-rows:1fr 1fr}
-            .project-image{width:140px;height:96px}
+            .project-image{width:160px;height:104px}
+            nav{padding:0 18px}
+            .viewport{padding:18px}
         }
 
         /* If viewport height is small, slightly reduce typography to avoid overflow */
-        @media (max-height:640px){
+        @media (max-height:680px){
             :root{--nav-h:64px;--footer-h:48px}
-            .about-card h2{font-size:1.35rem}
-            .about-card p{font-size:0.98rem}
-            .project-content h3{font-size:1.05rem}
-            .project-content p{font-size:0.9rem}
-            .project-image{width:160px;height:100px}
+            .about-card h2{font-size:1.45rem}
+            .about-card p{font-size:1rem}
+            .project-content h3{font-size:1.12rem}
+            .project-content p{font-size:0.95rem}
+            .project-image{width:180px;height:110px}
         }
 
         /* Accessibility: ensure focus visible for keyboard users */
@@ -85,7 +91,7 @@
 </head>
 <body>
     <nav>
-        <div style="display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;flex-direction:column;gap:6px">
             <h1>José Bobes</h1>
             <small>Developer • Researcher • Innovator</small>
         </div>
@@ -113,9 +119,10 @@
             <!-- PROJECTS (right) -->
             <aside class="projects-column" aria-label="Proyectos destacados">
                 <div class="project-card" style="background:var(--card-bg)">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=1200&q=80&auto=format&fit=crop" 
+                    <img class="project-image"
+                         src="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=1600&q=80&auto=format&fit=crop"
                          srcset="https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=600&q=80 600w, https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=900&q=80 900w, https://images.unsplash.com/photo-1580281657521-9f8a4f3f0e1e?w=1600&q=80 1600w"
-                         sizes="(max-width:1000px) 140px, 220px"
+                         sizes="(max-width:1000px) 160px, 240px"
                          alt="Laboratory microscope" loading="lazy">
                     <div class="project-content">
                         <h3>Hantavirus — Epidemic Tracker</h3>
@@ -125,9 +132,10 @@
                 </div>
 
                 <div class="project-card" style="background:var(--card-bg)">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=1200&q=80&auto=format&fit=crop"
+                    <img class="project-image"
+                         src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&q=80&auto=format&fit=crop"
                          srcset="https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&q=80 600w, https://images.unsplash.com/photo-1584515933487-779824d29309?w=900&q=80 900w, https://images.unsplash.com/photo-1584515933487-779824d29309?w=1600&q=80 1600w"
-                         sizes="(max-width:1000px) 140px, 220px"
+                         sizes="(max-width:1000px) 160px, 240px"
                          alt="Medical data visualization" loading="lazy">
                     <div class="project-content">
                         <h3>Next-gen-somnus</h3>
@@ -137,9 +145,10 @@
                 </div>
 
                 <div class="project-card" style="background:var(--card-bg)">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop"
+                    <img class="project-image"
+                         src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80&auto=format&fit=crop"
                          srcset="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80 600w, https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80 900w, https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80 1600w"
-                         sizes="(max-width:1000px) 140px, 220px"
+                         sizes="(max-width:1000px) 160px, 240px"
                          alt="Histology slide / cancer research" loading="lazy">
                     <div class="project-content">
                         <h3>HITL — Pancreatic Cancer Research</h3>
