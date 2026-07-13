@@ -11,9 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* RESET & BASE                                                           */
-        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* RESET & BASE */
         *,*::before,*::after { box-sizing: border-box; }
         html, body { 
             margin: 0; 
@@ -21,495 +19,82 @@
             height: 100%; 
             width: 100%;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
-            color: #e0e6ed;
+            background: #fbfcfd;
+            color: #0f1724;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
             overflow-x: hidden;
         }
-        
         body { display: flex; flex-direction: column; }
 
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* ANIMATED BACKGROUND                                                    */
-        /* ════════════════���══════════════════════════════════════════════════════ */
-        .bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0d1117 100%);
-            z-index: -1;
-            opacity: 1;
-        }
-
-        .blob {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            z-index: -1;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .blob-1 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #00d4ff, #0066ff);
-            top: -100px;
-            right: -100px;
-            animation-delay: 0s;
-        }
-
-        .blob-2 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, #ff006e, #8338ec);
-            bottom: -50px;
-            left: -100px;
-            animation-delay: 5s;
-        }
-
-        .blob-3 {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #00d4ff, #00f5ff);
-            top: 50%;
-            right: 10%;
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(40px, -40px) rotate(180deg); }
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* NAVIGATION                                                             */
-        /* ═══════════════════════════════════════════════════════════════════════ */
+        /* NAVIGATION */
         nav {
-            height: 80px;
+            height: 72px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 48px;
-            background: rgba(15, 20, 25, 0.7);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 36px;
+            background: rgba(255,255,255,0.8);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.04);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(6px);
         }
 
-        nav .logo {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
+        nav .logo { display:flex; flex-direction:column; gap:2px; }
+        nav .logo h1 { font-size:1.05rem; margin:0; font-weight:700; color:#0f1724; }
+        nav .logo small { font-size:0.67rem; color:#475569; text-transform:uppercase; letter-spacing:0.6px; }
 
-        nav .logo h1 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin: 0;
-            background: linear-gradient(135deg, #00d4ff, #ff006e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        nav .nav-links { display:flex; gap:20px; align-items:center; }
+        nav a { color:#334155; text-decoration:none; font-size:0.92rem; font-weight:500; position:relative; }
+        nav a::after { content:''; position:absolute; bottom:-6px; left:0; width:0; height:2px; background:#7dd3fc; transition:width .25s ease; }
+        nav a:hover::after { width:100%; }
 
-        nav .logo small {
-            font-size: 0.7rem;
-            color: #8b92a0;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
+        /* MAIN */
+        main { flex:1; display:grid; place-items:center; padding:60px 28px; }
+        .container { max-width:1100px; width:100%; display:grid; grid-template-columns: 1fr 420px; gap:48px; align-items:center; }
 
-        nav .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
+        /* HERO */
+        .hero { display:flex; flex-direction:column; gap:20px; }
+        .role-badge { display:inline-flex; gap:8px; align-items:center; padding:8px 14px; background:#f0f9ff; border:1px solid #e0f2fe; border-radius:999px; color:#0369a1; font-weight:600; font-size:0.9rem; }
+        .hero h2 { font-size:2.6rem; margin:0; line-height:1.05; color:#06202a; }
+        .hero .subtitle { font-size:1rem; color:#334155; line-height:1.6; max-width:680px; }
 
-        nav a {
-            color: #b0b8c1;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+        .cta-buttons { display:flex; gap:12px; margin-top:8px; }
+        .cta-btn { padding:12px 22px; border-radius:10px; border:none; font-size:0.95rem; font-weight:600; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+        .cta-btn.primary { background:#0369a1; color:#fff; }
+        .cta-btn.secondary { background:transparent; color:#0369a1; border:1px solid rgba(3,105,161,0.12); }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00d4ff, #ff006e);
-            transition: width 0.3s ease;
-        }
+        /* VISUAL (replacing cards) */
+        .visual { display:flex; align-items:center; justify-content:center; width:100%; height:360px; background: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%); border-radius:16px; border:1px solid rgba(15,23,42,0.04); box-shadow: 0 6px 18px rgba(15,23,42,0.04); }
+        .visual svg { width:320px; height:auto; display:block; }
 
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: #00d4ff; }
+        /* PROJECT LIST (simple, no cards) */
+        .projects { display:flex; flex-direction:column; gap:12px; }
+        .project-link { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:10px; background:#fff; border:1px solid rgba(15,23,42,0.04); text-decoration:none; color:#0f1724; box-shadow: 0 3px 10px rgba(2,6,23,0.03); }
+        .project-link small { color:#475569; }
 
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* MAIN CONTENT                                                           */
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        main {
-            flex: 1;
-            display: grid;
-            place-items: center;
-            padding: 60px 48px;
-            position: relative;
-            z-index: 1;
-        }
+        /* STATS */
+        .stats { margin-top:32px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+        .stat-item { text-align:center; padding:18px; background:transparent; border-radius:12px; }
+        .stat-number { font-size:1.8rem; font-weight:700; color:#0f1724; }
+        .stat-label { font-size:0.95rem; color:#64748b; margin-top:6px; }
 
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
+        /* FOOTER */
+        footer { padding:36px; text-align:center; border-top:1px solid rgba(15,23,42,0.04); background:transparent; color:#475569; font-size:0.92rem; }
+        footer a { color:#0369a1; text-decoration:none; }
 
-        /* HERO SECTION */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
+        /* RESPONSIVE */
+        @media (max-width:1024px) { .container { grid-template-columns:1fr; gap:28px; } .visual { height:300px; } }
+        @media (max-width:640px) { nav { padding:0 18px; } main { padding:28px 18px; } .hero h2 { font-size:1.8rem; } .visual { height:220px; } .stats { grid-template-columns:1fr; } .cta-buttons { flex-direction:column; } .cta-btn { width:100%; justify-content:center; } }
 
-        .hero h2 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin: 0;
-            background: linear-gradient(135deg, #ffffff, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
-        }
-
-        .hero .subtitle {
-            font-size: 1.1rem;
-            color: #a0a8b0;
-            line-height: 1.6;
-            max-width: 500px;
-        }
-
-        .hero .role-badge {
-            display: inline-flex;
-            gap: 8px;
-            align-items: center;
-            padding: 10px 16px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 24px;
-            font-size: 0.9rem;
-            color: #00d4ff;
-            width: fit-content;
-            font-weight: 500;
-        }
-
-        .role-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #00d4ff;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            margin-top: 12px;
-        }
-
-        .cta-btn {
-            padding: 14px 32px;
-            border-radius: 8px;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cta-btn.primary {
-            background: linear-gradient(135deg, #00d4ff, #0099ff);
-            color: #0f1419;
-            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.3);
-        }
-
-        .cta-btn.primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 48px rgba(0, 212, 255, 0.5);
-        }
-
-        .cta-btn.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #e0e6ed;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* VISUAL SHOWCASE */
-        .visual {
-            position: relative;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-stack {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .showcase-card {
-            position: absolute;
-            width: 280px;
-            height: 360px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .showcase-card:nth-child(1) {
-            transform: translateX(-80px) translateY(-40px) rotateZ(-8deg);
-            z-index: 3;
-        }
-
-        .showcase-card:nth-child(2) {
-            transform: translateY(0) rotateZ(0deg);
-            z-index: 2;
-        }
-
-        .showcase-card:nth-child(3) {
-            transform: translateX(80px) translateY(40px) rotateZ(8deg);
-            z-index: 1;
-        }
-
-        .showcase-card:hover {
-            transform: translateY(-20px) rotateZ(0deg) !important;
-            background: rgba(0, 212, 255, 0.1);
-            border-color: rgba(0, 212, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2);
-            z-index: 4 !important;
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            height: 50px;
-            width: 50px;
-            background: linear-gradient(135deg, #00d4ff, #0099ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: #a0a8b0;
-            line-height: 1.5;
-            margin: 0;
-            flex: 1;
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* STATS SECTION                                                          */
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        .stats {
-            margin-top: 48px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 24px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            background: rgba(0, 212, 255, 0.05);
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #00d4ff, #ff006e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.95rem;
-            color: #8b92a0;
-            margin-top: 8px;
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* FOOTER                                                                 */
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        footer {
-            padding: 48px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(15, 20, 25, 0.5);
-            color: #8b92a0;
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: #00d4ff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover { color: #ff006e; }
-
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* RESPONSIVE                                                             */
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .hero h2 { font-size: 2.8rem; }
-
-            .visual { height: 350px; }
-
-            .showcase-card {
-                width: 240px;
-                height: 300px;
-                padding: 20px;
-            }
-
-            .showcase-card:nth-child(1) {
-                transform: translateX(-60px) translateY(-30px) rotateZ(-6deg);
-            }
-
-            .showcase-card:nth-child(2) {
-                transform: translateY(0) rotateZ(0deg);
-            }
-
-            .showcase-card:nth-child(3) {
-                transform: translateX(60px) translateY(30px) rotateZ(6deg);
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 0 24px;
-                height: 70px;
-            }
-
-            nav .nav-links { gap: 16px; }
-
-            main { padding: 40px 24px; }
-
-            .hero h2 { font-size: 2rem; }
-
-            .hero .subtitle { font-size: 1rem; }
-
-            .visual { height: 280px; }
-
-            .showcase-card {
-                width: 200px;
-                height: 250px;
-                padding: 16px;
-            }
-
-            .showcase-card:nth-child(1) {
-                transform: translateX(-40px) translateY(-20px) rotateZ(-4deg);
-            }
-
-            .showcase-card:nth-child(3) {
-                transform: translateX(40px) translateY(20px) rotateZ(4deg);
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .cta-btn { width: 100%; justify-content: center; }
-        }
-
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        /* SCROLL ANIMATIONS                                                      */
-        /* ═══════════════════════════════════════════════════════════════════════ */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero { animation: fadeInUp 0.8s ease-out; }
-        .visual { animation: fadeInUp 0.8s ease-out 0.2s backwards; }
-        .stats { animation: fadeInUp 0.8s ease-out 0.4s backwards; }
+        /* SUBTLE FADE IN */
+        .fade-in { opacity:0; transform:translateY(18px); animation:fadeInUp .6s ease-out forwards; }
+        @keyframes fadeInUp { to { opacity:1; transform:none; } }
     </style>
 </head>
 <body>
-    <!-- Background Canvas -->
-    <div class="bg-canvas"></div>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
 
     <!-- Navigation -->
     <nav>
@@ -531,61 +116,77 @@
             <!-- Hero Section -->
             <section class="hero">
                 <div class="role-badge">Active in ML & Healthcare Research</div>
-                
                 <h2>Machine Learning for Impact</h2>
-                
-                <p class="subtitle">
-                    I design minimalist, high-impact solutions at the intersection of machine learning and biomedical research. My focus: reproducible pipelines, interpretable models, and collaboration between engineers and domain experts.
-                </p>
-
-                <p class="subtitle">
-                    Specializing in epidemic forecasting, sleep analysis, and oncology research with human-in-the-loop approaches.
-                </p>
+                <p class="subtitle">I design minimalist, high-impact solutions at the intersection of machine learning and biomedical research. My focus: reproducible pipelines, interpretable models, and collaborative systems that move research into practice.</p>
+                <p class="subtitle">Specializing in epidemic forecasting, sleep analysis, and oncology research with human-in-the-loop approaches.</p>
 
                 <div class="cta-buttons">
                     <a href="https://github.com/jrbobes" class="cta-btn primary" target="_blank" rel="noopener noreferrer">Explore Projects</a>
                     <a href="mailto:jrbobes@gmail.com" class="cta-btn secondary">Get in Touch</a>
                 </div>
-            </section>
 
-            <!-- Visual Showcase -->
-            <section class="visual">
-                <div class="card-stack">
-                    <div class="showcase-card">
-                        <div class="card-icon">🦠</div>
-                        <h3 class="card-title">Epidemic Tracking</h3>
-                        <p class="card-desc">Real-time hantavirus forecasting and visualization platform for outbreak monitoring</p>
+                <div class="stats" style="margin-top:22px;">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Research Publications</div>
                     </div>
-
-                    <div class="showcase-card">
-                        <div class="card-icon">🧬</div>
-                        <h3 class="card-title">Sleep Analysis</h3>
-                        <p class="card-desc">Interpretable ML for polysomnography with reproducible research pipelines</p>
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Active Projects</div>
                     </div>
-
-                    <div class="showcase-card">
-                        <div class="card-icon">🔬</div>
-                        <h3 class="card-title">Oncology Research</h3>
-                        <p class="card-desc">Human-in-the-loop machine learning for pancreatic cancer detection and analysis</p>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Reproducible Code</div>
                     </div>
                 </div>
             </section>
-        </div>
 
-        <!-- Stats Section -->
-        <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Research Publications</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">5+</div>
-                <div class="stat-label">Active Projects</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Reproducible Code</div>
-            </div>
+            <!-- Visual / Simple Project List -->
+            <aside>
+                <div class="visual" aria-hidden="true">
+                    <!-- Minimal SVG illustration to keep visual interest without cards -->
+                    <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="abstract data illustration">
+                        <defs>
+                            <linearGradient id="g1" x1="0" x2="1">
+                                <stop offset="0%" stop-color="#7dd3fc"/>
+                                <stop offset="100%" stop-color="#60a5fa"/>
+                            </linearGradient>
+                            <linearGradient id="g2" x1="0" x2="1">
+                                <stop offset="0%" stop-color="#bbf7d0"/>
+                                <stop offset="100%" stop-color="#86efac"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="0" y="0" width="600" height="400" rx="12" fill="transparent" />
+                        <g transform="translate(60,40)">
+                            <circle cx="120" cy="80" r="60" fill="url(#g1)" opacity="0.95" />
+                            <rect x="220" y="40" width="180" height="100" rx="14" fill="url(#g2)" opacity="0.95" />
+                            <path d="M20 220 Q140 120 260 220 T500 220" fill="none" stroke="#93c5fd" stroke-width="6" stroke-linecap="round" opacity="0.9" />
+                            <g fill="#0f1724" font-size="18" font-weight="600">
+                                <text x="32" y="38">Epidemic Tracking</text>
+                                <text x="236" y="38">Sleep Analysis</text>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <div style="margin-top:16px;">
+                    <div style="font-weight:700;color:#0f1724;margin-bottom:8px;">Selected Projects</div>
+                    <div class="projects">
+                        <a class="project-link" href="https://epidemic-tracker--jrbobes.replit.app/" target="_blank" rel="noopener noreferrer">
+                            <span>Hantavirus Epidemic Tracker</span>
+                            <small>Real-time forecasting</small>
+                        </a>
+                        <a class="project-link" href="#" target="_blank" rel="noopener noreferrer">
+                            <span>Polysomnography ML</span>
+                            <small>Interpretable sleep models</small>
+                        </a>
+                        <a class="project-link" href="#" target="_blank" rel="noopener noreferrer">
+                            <span>Oncology Human-in-loop</span>
+                            <small>Pancreatic cancer analysis</small>
+                        </a>
+                    </div>
+                </div>
+            </aside>
         </div>
     </main>
 
@@ -596,7 +197,7 @@
 
     <!-- Interaction Scripts -->
     <script>
-        // Smooth scroll behavior
+        // Smooth scroll for internal anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -605,40 +206,8 @@
             });
         });
 
-        // Parallax effect on mouse move
-        const container = document.querySelector('.container');
-        if (container) {
-            document.addEventListener('mousemove', (e) => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 30;
-                const y = (e.clientY / window.innerHeight - 0.5) * 30;
-                const visual = document.querySelector('.visual');
-                if (visual) {
-                    visual.style.transform = `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg)`;
-                }
-            });
-        }
-
-        // Card interaction
-        document.querySelectorAll('.showcase-card').forEach((card, index) => {
-            card.addEventListener('mouseenter', function() {
-                document.querySelectorAll('.showcase-card').forEach((c, i) => {
-                    if (i !== index) c.style.opacity = '0.5';
-                });
-            });
-
-            card.addEventListener('mouseleave', function() {
-                document.querySelectorAll('.showcase-card').forEach((c) => {
-                    c.style.opacity = '1';
-                });
-            });
-        });
-
-        // Observe elements for fade-in animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // Observe elements for fade-in animation (stats & projects)
+        const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -80px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -648,7 +217,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.stat-item').forEach(el => observer.observe(el));
+        document.querySelectorAll('.stat-item, .project-link').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
